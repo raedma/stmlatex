@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This file includes the common LaTeX
+% acronym definitions
+% for structural mechanics
+%
+% It can be used independently if only
+% acronyms are necessary or with symbols,..
+% in stmglossaries.sty
+%
+% Usage
+%  - Premble:
+%    - \usepackage{stmglossariesacronymitems}
+%    - \makeglossaries
+%  - Document: e.g. (Adapt to your type of glossary item)
+%    - \printglossary[type=\acronymtype] or
+%    - \printglossary[type=\acronymtype,nonumberlist]
+%  - Compilation: e.g. (Adapt to your type of glossary item)
+%    - makeindex -s [MYTEXFILENAME].ist -o [MYTEXFILENAME].acr [MYTEXFILENAME].acn
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Requirements                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmglossariesacronymitems}[2019/10/27 STMs custom LaTeX acronym definitions]
+
+% If not loaded in advance, load the glossaries package with some default options
+\@ifpackageloaded{glossaries}{%
+%
+}{%
+  \RequirePackage[%
+    acronym,   % create a list of acronyms
+    nomain,    % do not use the main glossary
+    toc,       % add glossary titles to table of contents
+  ]{glossaries}%
+}%
+
+%------------------
+% Options
+%------------------
+
+% Do not load the styles
+% Default behaviour is to load the styles to really have a benefit
+% https://tex.stackexchange.com/a/135255/44634
+% Load the default
+\newif\ifstmglossaries@loadacronymstyles
+\DeclareOption{loadacronymstyles}{\stmglossaries@loadacronymstylestrue}
+\DeclareOption{noloadacronymstyles}{\stmglossaries@loadacronymstylesfalse}
+
+\ExecuteOptions{loadacronymstyles} % default is to load the styles
+
+\ProcessOptions\relax
+
+\ifstmglossaries@loadacronymstyles
+  \RequirePackage{stmglossariesacronymstyles}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Functionality                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newacronym{ACARE}{ACARE}{advisory council for aviation research and innovation in europe}
+\newacronym{AFP}{AFP}{automated fibre placement}
+\newacronym{APU}{APU}{auxiliary power unit}
+
+\newacronym{BB}{BB}{bond-based}
+\newacronym{BB-PD}{BB-PD}{bond-based peridynamics}
+
+\newacronym{BOM}{BOM}{bill of material}
+\newacronym{BSD}{BSD}{Berkeley software distribution}
+
+\newacronym{CA}{CA}{consortium agreement}
+\newacronym{CAGR}{CAGR}{compound annual growth rate}
+\newacronym{CAI}{CAI}{compression after impact}
+\newacronym{CDR}{CDR}{critical design review}
+\newacronym{CE}{CE}{constraint equation}
+\newacronym{CER}{CER}{composite engineering requirements}
+\newacronym[plural=CFRPs,firstplural=carbon fibre reinforced plastics]{CFRP}{CFRP}{carbon fibre reinforced plastic}
+\newacronym{CLT}{CLT}{classical laminate theory}
+\newacronym[plural=CMs,firstplural=continuum mechanics]{CM}{CM}{continuum mechanic}
+\newacronym{CT}{CT}{compact tension}
+\newacronym[plural=CZMs,firstplural=cohesive zone models]{CZM}{CZM}{cohesive zone model}
+
+\newacronym{DCB}{DCB}{double cantilever beam}
+\newacronym[%
+  first       ={design environment for lightweight structures (DELiS)},%
+  firstplural ={design environments for lightweight structures (DELiSs)},%
+  text        ={DELiS},%
+  plural      ={DELiSs},%
+]{DELiS}{DELiS}{design environment for lightweight structures}
+\newacronym{DFP}{DFP}{dry fibre placement}
+\newacronym{DKT}{DKT}{discrete Kirchhoff theory}
+\newacronym{DOA}{DOA}{design organization approval}
+\newacronym{DOE}{DOE}{design of experiments}
+\newacronym[longplural={degrees of freedom}]{DOF}{DOF}{degree of freedom}
+\newacronym{DSC}{DSC}{differential scanning calorimeter}
+
+\newacronym{E2E}{E2E}{end to end}
+
+\newacronym{FBG}{FBG}{fibre bragg grating}
+\newacronym{FDM}{FDM}{finite difference method}
+\newacronym{FE}{FE}{finite element}
+\newacronym{FEM}{FEM}{finite element method}
+\newacronym{FSDT}{FSDT}{first-order shear deformation theory}
+\newacronym{FTE}{FTE}{full time equivalent}
+\newacronym{FVC}{FVC}{fibre volume content}
+\newacronym{FVM}{FVM}{finite volume method}
+\newacronym[plural=FRPs,firstplural=fiber reinforced plastics (FRPs)]{FRP}{FRP}{fiber reinforced plastic}
+
+\newacronym[longplural={global finite element models}]{GFEM}{GFEM}{global finite element model}
+\newacronym{GPL}{GPL}{GNU General Public License}
+
+\newacronym{IAB}{IAB}{industrial advisory board}
+\newacronym{IDE}{IDE}{Integrated Development Environment}
+
+\newacronym{jCoMoT}{jCoMoT}{Java computational mechanics format translator}
+\newacronym{jMeS}{jMeS}{Java mechanics suite}
+
+\newacronym{KPI}{KPI}{key performance indicator}
+
+\newacronym{LCA}{LCA}{life cycle assessment}
+\newacronym{LPS}{LPS}{linear peridynamic solid}
+
+\newacronym{MBSE}{MBSE}{model-based systems engineering}
+\newacronym{MDO}{MDO}{multi-disciplinary optimization}
+\newacronym{MPC}{MPC}{multi-point constraint}
+\newacronym{MRL}{MRL}{manufacturing readiness level}
+\newacronym{MRO}{MRO}{maintenance, repair and overhaul}
+
+\newacronym{NDA}{NDA}{non-disclosure agreement}
+\newacronym{NDI}{NDI}{non-destructive inspection}
+\newacronym{NSB}{NSB}{non-ordinary state-based}
+\newacronym{NSB-PD}{NSB-PD}{non-ordinary state-based peridynamics}
+
+\newacronym{ODE}{ODE}{ordinary differential equation}
+\newacronym{OSB}{OSB}{ordinary state-based}
+\newacronym{OSB-PD}{OSB-PD}{ordinary state-based peridynamics}
+
+\newacronym{PD}{PD}{peridynamic}
+\newacronym[plural=PDEs,firstplural=partial differential equations]{PDE}{PDE}{partial differential equation}
+\newacronym{PMC}{PMC}{project management committee}
+\newacronym{POJO}{POJO}{plain old Java object}
+
+\newacronym{RMS}{RMS}{risk mitigation structure}
+\newacronym{RVE}{RVE}{representative volume element}
+
+\newacronym{SAI}{SAI}{shear after impact}
+\newacronym{SB-PD}{SB-PD}{state-based peridynamics}
+\newacronym{SC}{SC}{steering committee}
+\newacronym{SEM}{SEM}{scanning electron microscopy}
+\newacronym{SHM}{SHM}{structural health monitoring}
+
+\newacronym{TAI}{TAI}{tension after impact}
+\newacronym{TGA}{TGA}{thermogravimetric analysis}
+\newacronym{TMA}{TMA}{thermomechanical analysis}
+\newacronym{TRL}{TRL}{technology readiness level}
+
+\newacronym{WORA}{WORA}{write once, run anywhere}
+\newacronym{WP}{WP}{work package}
+
+\newacronym{XFEM}{XFEM}{extended finite element method}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput

@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This file includes the common LaTeX
+% glossaries style definitions
+% (acronyms, glossaries, symbols)
+% for structural mechanics
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmglossariesacronymstyles}[2019/10/27 STMs custom LaTeX glossaries style definitions]
+
+% Now paste your code from the preamble here
+
+% If not loaded in advance, load the glossaries package with some default options
+\@ifpackageloaded{glossaries}{%
+%
+}{%
+  \RequirePackage[%
+    acronym,   % create a list of acronyms
+    nomain,    % do not use the main glossary
+    toc,       % add glossary titles to table of contents
+  ]{glossaries}%
+}%
+
+\@ifpackageloaded{longtable}{}{\RequirePackage{longtable}}%
+\@ifpackageloaded{tabu}{}{\RequirePackage{tabu}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Functionality                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redefine package options         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Den Punkt am Ende jeder Beschreibung deaktivieren
+\renewcommand*{\glspostdescription}{}
+% \renewcommand*{\glspostdescription}{\dotfill}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Own styles                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% -----------------
+% Acronym-styles
+% -----------------
+
+\newglossarystyle{stmacronymstyle}{%
+  \renewenvironment{theglossary}%
+    {\begin{longtabu} to \linewidth {lX}}%
+    {\end{longtabu}}%
+  % Header line
+  \renewcommand*{\glossaryheader}{%
+  }%
+  % indicate what to do at the start of each logical group
+  %\renewcommand*{\glsgroupheading}[1]{}%
+  %\renewcommand*{\glsgroupskip}{}% What to do between groups
+  \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentryitem{##1}\glstarget{##1}{##2} 
+     %\glstarget{##2}{##2}% Name
+      & ##3\glspostdescription ##5% Description
+      \\% end of row
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput

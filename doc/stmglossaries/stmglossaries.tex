@@ -1,0 +1,593 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmglossaries package
+%
+% Usage
+%  - Compile using 'arara stmglossaries.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a%rara: biber
+% a%rara: biber
+% arara: makeglossaries
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[morewrites]{stmglossaries}
+% \usepackage{morewrites}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{%
+  language=[LaTeX]TeX,
+  backgroundcolor=\color{gray!25},
+  basicstyle=\ttfamily,
+  breaklines=true,
+}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmglossaries package description}
+\subtitle{Copyright \copyright{} 2019 DLR FA STM\\v20191027}
+\date{\today}
+
+% ---------------------------
+% Utility glossary
+% ---------------------------
+
+\newglossary[slg10]{example1list}{syi10}{syg10}{Scalars}
+\newglossary[slg11]{example2list}{syi11}{syg11}{Scalars}
+\newglossary[slg12]{exampleindexlist}{syi12}{syg12}{Indices}
+\newglossary[slg13]{exampleexponentlist}{syi13}{syg13}{Exponents}
+\newglossary[slg14]{exampleoperatorlist}{syi14}{syg14}{Operators}
+
+\newglossaryentry{exampleforce}{%
+  symbol      ={\ensuremath{\romanscalarsymbol{F}}},%
+  name        ={Force},%
+  description ={},%
+  user1       ={\ensuremath{\protect\si{\protect\newton}}},%
+  type        =example1list,%
+  sort        =aruF,%
+}
+
+\newglossaryentry{examplemass}{%
+  symbol      ={\ensuremath{\romanscalarsymbol{m}}},%
+  name        ={Mass},%
+  description ={},%
+  user1       ={\ensuremath{\protect\si{\protect\newton}}},%
+  type        =example1list,%
+  sort        =arlm,%
+}
+
+\newglossaryentry{exampleacceleration}{%
+  symbol      ={\ensuremath{\romanscalarsymbol{a}}},%
+  name        ={Acceleration},%
+  description ={},%
+  user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter\protect\per\protect\second\protect\squared}}},%
+  type        =example1list,%
+  sort        =arla,%
+}
+
+\newglossaryentry{examplestrain}{%
+  symbol      ={\ensuremath{\greekscalarsymbol{\varepsilon}}},%
+  name        ={Strain},%
+  description ={},%
+  user1       ={},%
+  type        =example2list,%
+  sort        =bglepsilon,%
+}
+
+\newglossaryentry{examplezero}{%
+  symbol      ={\ensuremath{0}},%
+  name        ={},%
+  description ={Reference configuration},%
+  user1       ={},
+%   type        =indexlist,%
+  type        =exampleindexlist,%
+  sort        =izero,%
+}
+
+\newglossaryentry{exampleelastic}{%
+  symbol      ={\ensuremath{e}},%
+  name        ={},%
+  description ={Elastic},%
+  user1       ={},
+  type        =exampleexponentlist,%
+  sort        =ee,%
+}
+
+\newglossaryentry{examplefrechet}{%
+  symbol      ={\ensuremath{\nabla}},%
+  name        ={Fr\'{e}chet derivative},%
+  description ={Fr\'{e}chet derivative},%
+  user1       ={\ensuremath{\protect\nabla}},%
+  user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
+  user3       ={},%
+  type        =exampleoperatorlist,%
+  sort        =onabla,%
+}
+
+% \glsaddall%unused[types={scalarlist}]
+% \glsaddall[types=scalarlist]
+% \glsaddallunused[scalarlist]
+% 
+% \newglossary[slg10]{allscalarsymbollist}{syi10}{syg10}{Scalars}
+% \loadglsentries[allscalarsymbollist]{../../tex/latex/stmglossaries/stmglossariessymbolitemdefs.sty}
+% \forallglsentries[scalarlist]{\lfoo}{\glsmoveentry{\lfoo}{allscalarsymbollist}}
+% \forallglsentries[vectorlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+% \forallglsentries[matrixlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+% \forallglsentries[statelist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+
+% \glsunsetall[scalarlist]
+% \glsreset{scalarlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make glossaries                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeglossaries
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+For larger documents, such as reports and thesis, it is nice to have \LaTeX{} take care of things like a list of acronyms or symbols.
+
+If you write multiple documents you maybe want to make sure that the acronyms and symbols you use throughout all your texts are consistent. And you maybe also want to have the chance to change a symbol at a single location instead of crawling through every equation that might be affected by a change in notation.
+
+This package provides an expendable set of commonly used acronyms as well as symbols in structural mechanics. It is build upon the \href{https://ctan.org/pkg/glossaries?lang=en}{glossaries} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Example}
+
+This is a simple test. It uses an acronym \gls{APU}. The example also has an equation to test the symbols:
+
+% \begin{equation}  
+% \glssymbol{symb:scalar:load:force} = \glssymbol{symb:scalar:mass}\glssymbol{symb:scalar:acceleration}
+% \end{equation}
+
+\begin{equation}  
+\glssymbol{exampleforce} = \glssymbol{examplemass}\glssymbol{exampleacceleration}
+\end{equation}
+
+% \begin{equation}  
+% \divergenceoperator(\glssymbol{symb:vector:mech:stress:cauchy})+\glssymbol{symb:vector:load:bodyforce}=\glssymbol{symb:scalar:mat:density}\glssymbol{symb:vector:mech:acceleration}
+% \end{equation}
+% 
+% \begin{equation}  
+% \glssymbol{symb:vector:mech:stress:cauchy} = \glssymbol{symb:matrix:mat:stiffness}\glssymbol{symb:vector:mech:strain}
+% \end{equation}
+% 
+% \begin{equation}  
+% \glssymbol{symb:state:scalar:position:deformed},\glssymbol{symb:state:vector:direction:deformed},\glssymbol{symb:state:double:modulus}
+% \end{equation}
+
+It creates a nice little list of symbols
+
+\glstocfalse
+\printglossary[type=example1list  ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=scalarlist  ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=vectorlist  ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=matrixlist  ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=statelist   ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=indexlist   ,style=stmindexstyle   ,nonumberlist]
+% \printglossary[type=exponentlist,style=stmexponentstyle,nonumberlist]
+% \printglossary[type=operatorlist,style=stmoperatorstyle,nonumberlist]
+\glstoctrue
+
+and list of acronyms
+
+\glstocfalse
+\printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
+% \printglossary[style=altlist,title=Glossary]
+\glstoctrue
+
+\section{Contents}
+\label{sec:contents}
+
+There are multiple packages included:
+
+\begin{itemize}[noitemsep]
+  %\setlength\itemsep{0.25ex}
+  \item \texttt{stmglossaries.sty}
+  \item \texttt{stmglossariesacronymitems.sty}
+  \item \texttt{stmglossariesacronymstyles.sty}
+  \item \texttt{stmglossariessymbolitems.sty}
+  \item \texttt{stmglossariessymbolstyles.sty}
+\end{itemize}
+
+\texttt{stmglossariesacronymitems.sty} contains all acronym definitions. These can be used by the \texttt{\textbackslash gls}-like commands of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.1}{section 6.1 of the \texttt{glossaries} documentation}.
+
+\texttt{stmglossariesacronymstyles} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=\acronymtype,style=STYLENAME]+. See \autoref{sec:usage:styles:acronyms} for details.
+
+\texttt{stmglossariessymbolitems.sty} contains all symbol definitions. These can be used by the \texttt{\textbackslash glssymbol} command of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.2}{section 6.2 of the \texttt{glossaries} documentation}.
+
+\texttt{stmglossariessymbolstyles} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=scalarlist,style=STYLENAME]+. See \autoref{sec:usage:styles:symbols} for details.
+
+\texttt{stmglossaries.sty} is a wrapper around the definitions for \texttt{acronyms} and \texttt{symbols} and loads both.
+
+\section{Usage - in the preamble}
+\label{sec:usage:preamble}
+
+There are different options to load acronyms, symbols or the whole thing. Additionally, the package offers some predefined styles to set your symbols in a nice way.
+
+\subsection{Load the whole package - acronyms and symbols}
+\label{sec:usage:preamble:wholepackage}
+
+This way, the acronym as well as the symbol items are loaded. Load the package by adding
+
+\begin{verbatim}
+\usepackage{stmglossaries}
+\end{verbatim}
+
+to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+
+\subsubsection{Options}
+
+\paragraph{Option \protect\textit{loadstyles} and \protect\textit{noloadstyles}}
+
+These options are only available for loading the whole package, with
+
+\begin{verbatim}
+\usepackage[noloadstyles]{stmglossaries}
+\end{verbatim}
+
+\texttt{loadstyles} is the default and loads the styles. It is used in case \texttt{noloadstyles} is not set explicitly.
+
+\paragraph{Option \protect\textit{morewrites} and \protect\textit{nomorewrites}}
+
+\texttt{morewrites} is the default and loads the \href{https://ctan.org/pkg/morewrites?lang=en}{morewrites} package. It is used in case \texttt{nomorewrites} is not set explicitly.
+
+\subsection{Load the acronyms package}
+\label{sec:usage:preamble:acronymspackage}
+
+This way, the acronyms are loaded. Load the package individually by adding
+
+\begin{verbatim}
+\usepackage{stmglossariesacronymitems}
+\end{verbatim}
+
+to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+
+\subsubsection{Options}
+
+\paragraph{Option \protect\textit{loadacronymstyles} and \protect\textit{noloadacronymstyles}}
+
+Load or do not load the style definitions from \texttt{stmglossariesacronymstyles} with
+
+\begin{verbatim}
+\usepackage[loadacronymstyles]{stmglossariesacronymitems}
+\usepackage{stmglossariesacronymitems}
+\end{verbatim}
+
+or
+
+\begin{verbatim}
+\usepackage[noloadacronymstyles]{stmglossariesacronymitems}
+\end{verbatim}
+
+\texttt{loadacronymstyles} is the default and loads the styles. It is used in case \texttt{noloadacronymstyles} is not set explicitly. So the 
+
+\subsection{Load the symbols package}
+\label{sec:usage:preamble:symbolspackage}
+
+This way, the acronyms are loaded. Load the package individually by adding
+
+\begin{verbatim}
+\usepackage{stmglossariessymbolitems}
+\end{verbatim}
+
+to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+
+\subsubsection{Options}
+
+\paragraph{Option \protect\textit{loadsymbolstyles} and \protect\textit{noloadsymbolstyles}}
+
+Load or do not load the style definitions from \texttt{stmglossariessymbolstyles} with
+
+\begin{verbatim}
+\usepackage[loadsymbolstyles]{stmglossariessymbolitems}
+\usepackage{stmglossariessymbolitems}
+\end{verbatim}
+
+or
+
+\begin{verbatim}
+\usepackage[noloadsymbolstyles]{stmglossariessymbolitems}
+\end{verbatim}
+
+\texttt{loadacronymstyles} is the default and creates the styles. It is used in case \texttt{noloadacronymstyles} is not set explicitly.
+
+
+\section{Usage - in the document}
+\label{sec:usage:document}
+
+\subsection{Acronyms}
+\label{sec:usage:document:acronyms}
+
+Print the list of acronyms with the style \textit{stmacronymstyle} and without number using \textit{nonumberlist} with
+
+\begin{verbatim}
+\printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
+\end{verbatim}
+
+For a description of acronym styles, see \autoref{sec:usage:styles:acronyms}.
+
+\subsection{Symbols}
+\label{sec:usage:document:symbols}
+
+\subsubsection{Commands}
+\label{sec:usage:document:symbols:commands}
+
+There might be a time where you very locally want to define a symbol without adding it to the global list of symbol. Despite that, you want to make sure that the symbol, e.g. for a vector, a matrix or a state, uses the correct notation style.
+
+Therefore, \texttt{stmglossariessymbolitems} defines a couple of useful styling commands
+
+\begin{labeling}{\textbackslash romandoublestatesymbol}
+\item [\textbackslash romanscalarsymbol] A roman scalar symbol
+\item [\textbackslash greekscalarsymbol] A greek scalar symbol
+\item [\textbackslash romanvectorsymbol] A roman vector symbol
+\item [\textbackslash greekvectorsymbol] A greek vector symbol
+\item [\textbackslash romanmatrixsymbol] A roman matrix symbol
+\item [\textbackslash scalarstatesymbol] A greek matrix symbol
+\item [\textbackslash romanvectorstatesymbol] A roman vector state symbol
+\item [\textbackslash romandoublestatesymbol] A roman double state symbol
+\end{labeling}
+
+\subsubsection{Lists}
+\label{sec:usage:symbols:document:lists}
+
+\texttt{stmglossariessymbolitems} defines a number of lists for different types of symbols:
+
+\begin{labeling}{exponentlist}
+\item [scalarlist] A list for scalar values
+\item [vectorlist] A list for vectors
+\item [matrixlist] A list for matrices
+\item [statelist] A list for peridynamic states
+\item [indexlist] A list for indices
+\item [exponentlist] A list for exponents
+\item [operatorlist] A list for mathematical operators
+\end{labeling}
+
+\subsubsection{Combine lists}
+\label{sec:usage:symbols:document:combinelists}
+
+In case you want to combine the predefined lists and print a single combined list, use
+
+\begin{verbatim}
+\documentclass{...}
+
+\usepackage{stmglossaries}
+%\usepackage{stmglossariessymbolitems}
+
+\newglossary[slg1]{symbollist}{syi1}{syg1}{Nomenclature}
+\forallglsentries[scalarlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+\forallglsentries[vectorlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+\forallglsentries[matrixlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+\forallglsentries[statelist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
+\makeglossaries
+
+\begin{document}
+
+...
+
+\printglossary[type=symbollist,style=YOURSTYLENAME,nonumberlist]
+
+\end{document}
+\end{verbatim}
+
+as described in \href{https://ctan.net/macros/latex/contrib/glossaries/glossaries-user.pdf#section.16.1}{section 16.1 of the \texttt{glossaries} documentation}.
+
+\section{Styles}
+\label{sec:usage:styles}
+
+\subsection{Acronym styles}
+\label{sec:usage:styles:acronyms}
+
+\subsubsection{\protect\texttt{stmacronymstyle}}
+\label{sec:usage:styles:acronyms:stmacronymstyle}
+
+\paragraph{Description}
+
+This is a style for acronyms. It has one item column which is left aligned. The columns are \textit{Abbreviation} and \textit{Description}. Column headings are not printed.
+
+\paragraph{Example}
+
+\glstocfalse
+\printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
+% \printglossary[style=altlist,title=Glossary]
+\glstoctrue
+
+\subsection{Symbol styles}
+\label{sec:usage:styles:symbols}
+
+\subsubsection{\protect\texttt{stmsymbolstyle}}
+
+\paragraph{Description}
+
+This is the basic style for variables. It has one item column which is left aligned. The columns are \textit{Symbol}, \textit{Name} and \textit{Description}. Column headings are printed.
+
+\paragraph{Example}
+
+\glstocfalse
+\printglossary[type=example1list,style=stmsymbolstyle,nonumberlist]
+\glstoctrue
+
+\subsubsection{\protect\texttt{stmonecolpapersymbolstyle}}
+
+\paragraph{Description}
+
+This is a style for variables for papers with one centered item column. The columns are \textit{Symbol} and \textit{Name}. Column headings are not printed.
+
+\paragraph{Example}
+
+\glstocfalse
+\printglossary[type=example1list,style=stmonecolpapersymbolstyle,nonumberlist]
+\glstoctrue
+
+\subsubsection{\protect\texttt{stmtwocolpapersymbolstyle}}
+
+\paragraph{Description}
+
+This is a style for variables for papers with two centered item column. The columns are \textit{Symbol} and \textit{Name}. Column headings are not printed.
+
+\paragraph{Example}
+
+\glstocfalse
+\printglossary[type=example1list,style=stmtwocolpapersymbolstyle,nonumberlist]
+\glstoctrue
+
+\subsubsection{\protect\texttt{stmindexstyle}}
+
+\paragraph{Description}
+
+This is a style for variable indices with one left align item column. The columns are \textit{Symbol} and \textit{Description}. Column headings are  printed.
+
+\paragraph{Example}
+
+\begin{equation}
+\glssymbol{examplestrain}_{\glssymbol{examplezero}}
+\end{equation}
+
+\glstocfalse
+\printglossary[type=exampleindexlist   ,style=stmindexstyle   ,nonumberlist]
+\glstoctrue
+
+\subsubsection{\protect\texttt{stmexponentstyle}}
+
+\paragraph{Description}
+
+This is a style for variable exponents with one left align item column. The columns are \textit{Symbol} and \textit{Description}. Column headings are  printed.
+
+\paragraph{Example}
+
+\begin{equation}
+\glssymbol{examplestrain}^{\glssymbol{exampleelastic}}
+\end{equation}
+
+\glstocfalse
+\printglossary[type=exampleexponentlist,style=stmexponentstyle,nonumberlist]
+\glstoctrue
+
+\subsubsection{\protect\texttt{stmoperatorstyle}}
+
+\paragraph{Description}
+
+This is a style for variable operators with one left align item column. The columns are \textit{Symbol} and \textit{Description}. Column headings are  printed.
+
+\paragraph{Example}
+
+\begin{equation}
+\glssymbol{examplefrechet}
+\end{equation}
+
+\glstocfalse
+\printglossary[type=exampleoperatorlist,style=stmoperatorstyle,nonumberlist]
+\glstoctrue
+
+\glsresetall
+\glstoctrue
+
+\newpage
+
+\appendix
+\section{All acronyms}
+\section{All symbols}
+
+\glstocfalse
+% \glsaddall[types={allscalarsymbollist}]
+\glsaddall[types={scalarlist}]
+\glsaddall[types={vectorlist}]
+\glsaddall[types={matrixlist}]
+\glsaddall[types={statelist}]
+\glsaddall[types={indexlist}]
+\glsaddall[types={exponentlist}]
+\glsaddall[types={operatorlist}]
+
+% \glsreset{symb:scalar:scalarromannull}
+% \glsreset{symb:scalar:scalargreeknull}
+% \glsreset{symb:state:scalar:stateromannull}
+% \glsreset{symb:state:vector:stateromannull}
+
+% \glsaddallunused{scalarlist}
+% \glsaddallunused[types={allscalarsymbollist}]
+% \printglossary[type=allscalarsymbollist  ,style=stmsymbollabelstyle  ,nonumberlist]
+\printglossary[type=scalarlist  ,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=vectorlist  ,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=matrixlist  ,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=statelist   ,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=indexlist   ,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=exponentlist,style=stmsymbollabelstyle,nonumberlist]
+\printglossary[type=operatorlist,style=stmoperatorlabelstyle,nonumberlist]
+\glsresetall
+\glstoctrue
+
+\newpage
+\section{The code}
+
+\subsection{stmglossaries.sty}
+
+\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossaries.sty}
+
+% \subsection{stmglossariesacronymitems.sty}
+% 
+% \lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariesacronymitems.sty}
+
+\subsection{stmglossariesacronymstyles.sty}
+
+\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariesacronymstyles.sty}
+
+% \subsection{stmglossariessymbolitems.sty}
+% 
+% \lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariessymbolitems.sty}
+
+\subsection{stmglossariessymbolstyles.sty}
+
+\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariessymbolstyles.sty}
+
+\end{document}
