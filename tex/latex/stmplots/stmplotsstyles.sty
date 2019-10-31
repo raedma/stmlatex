@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is a interface to all stm pgfplots definitions
+% Based upon the pgfplots package:
+%   https://ctan.org/pkg/pgfplots
+%
+% Usage
+%  - Premble:
+%    - \usepackage{stmtikz}
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmplotsstyles}[2019/10/27 STMs custom LaTeX plot styles definitions]
+
+% ---------------------------
+% Package
+% ---------------------------
+
+\@ifpackageloaded{pgfplots}{}{%
+  \usepackage{pgfplots}%
+}
+
+% ---------------------------
+% colormaps
+% ---------------------------
+
+\pgfplotsset{
+  colormap={abaqusblueredcolormap}{
+    rgb255( 0cm)=(  0,  0,255);
+    rgb255( 1cm)=(  0, 93,255);
+    rgb255( 2cm)=(  0,185,255);
+    rgb255( 3cm)=(  0,255,232);
+    rgb255( 4cm)=(  0,255,139);
+    rgb255( 5cm)=(  0,255,139);
+    rgb255( 6cm)=(  0,255, 46);
+    rgb255( 7cm)=( 46,255,  0);
+    rgb255( 8cm)=(139,255,  0);
+    rgb255( 9cm)=(232,255,  0);
+    rgb255(10cm)=(255,185,  0);
+    rgb255(11cm)=(255, 93,  0);
+    rgb255(12cm)=(255,  0,  0);
+  }
+}
+
+\pgfplotsset{
+  colormap={paraviewblueredcolormap}{
+    rgb255( 0cm)=(  0,  0,255);
+    rgb255( 1cm)=(  0, 93,255);
+    rgb255( 2cm)=(  0,185,255);
+    rgb255( 3cm)=(  0,255,232);
+    rgb255( 4cm)=(  0,255,139);
+    rgb255( 5cm)=(  0,255,139);
+    rgb255( 6cm)=(  0,255, 46);
+    rgb255( 7cm)=( 46,255,  0);
+    rgb255( 8cm)=(139,255,  0);
+    rgb255( 9cm)=(232,255,  0);
+    rgb255(10cm)=(255,185,  0);
+    rgb255(11cm)=(255, 93,  0);
+    rgb255(12cm)=(255,  0,  0);
+  }
+}
+
+\pgfplotsset{
+  colormap={whiteblack}{color(0cm)=(white);color(1cm)=(black)}
+}
+
+% ---------------------------
+% pgfplotsset
+% ---------------------------
+
+%~~~~~ Number format ~~~~~~~~
+
+% call with e.g.: y tick label style={numberformatfixed={3}}
+\pgfplotsset{
+    numberformatfixed/.style 2 args={
+      /pgf/number format/fixed,
+      /pgf/number format/fixed zerofill,% Allow trailing zeros
+      /pgf/number format/precision=#1,   % Nr of decimal digits
+    },
+    numberformatfixed/.default={2}
+}
+
+%~~~~~ Colorbar axis ~~~~~~~~
+
+\pgfplotsset{
+  basecolorbaraxis style/.style={
+    hide axis,
+    scale only axis,
+    colormap/bluered,                         % Colormap preset
+    colorbar sampled,                         % Steps in colorbar
+  }
+}
+
+%~~~~~ Colorbar ~~~~~~~~~~~~~
+
+\pgfplotsset{
+  abaqusdiscrete12colorbar style/.style={
+    separate axis lines,
+    samples=13,                               % Number of steps+1
+  }
+}
+
+\pgfplotsset{
+  abaqusdiscrete256colorbar style/.style={
+    separate axis lines,
+    samples=256,                              % Number of steps+1
+  }
+}
+
+\pgfplotsset{
+  ansysdiscrete9colorbar style/.style={
+    separate axis lines,
+    samples=10,                               % Number of steps+1
+  }
+}
+
+\pgfplotsset{
+  paraviewdiscrete256colorbar style/.style={
+    separate axis lines,
+    samples=256,                              % Number of steps+1
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput
