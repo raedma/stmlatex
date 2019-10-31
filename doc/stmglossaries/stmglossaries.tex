@@ -49,17 +49,22 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[style=iso]{datetime2}
 \usepackage{enumitem}
-\usepackage[morewrites]{stmglossaries}
-% \usepackage{morewrites}
+\usepackage{stmcolors}
+\usepackage{stmglossaries}
 \usepackage{listings}
-\usepackage{xcolor}
 
-\lstset{%
+\lstdefinestyle{texcodestyle}{
   language=[LaTeX]TeX,
-  backgroundcolor=\color{gray!25},
+  backgroundcolor=\color{boxgraycolor},
   basicstyle=\ttfamily,
   breaklines=true,
+}
+
+\DTMnewdatestyle{versiondate}{%
+  \renewcommand{\DTMdisplaydate}[4]{\number##1\number##2\number##3}%
+  \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
 }
 
 \usepackage{hyperref}
@@ -70,7 +75,7 @@
 
 \author{Martin R\"{a}del}
 \title{stmglossaries package description}
-\subtitle{Copyright \copyright{} 2019 DLR FA STM\\v20191027}
+\subtitle{Copyright \copyright{} 2019 DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday}
 \date{\today}
 
 % ---------------------------
@@ -168,6 +173,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -572,22 +581,22 @@ This is a style for variable operators with one left align item column. The colu
 
 \subsection{stmglossaries.sty}
 
-\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossaries.sty}
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossaries.sty}
 
 % \subsection{stmglossariesacronymitems.sty}
 % 
-% \lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariesacronymitems.sty}
+% \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariesacronymitems.sty}
 
 \subsection{stmglossariesacronymstyles.sty}
 
-\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariesacronymstyles.sty}
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariesacronymstyles.sty}
 
 % \subsection{stmglossariessymbolitems.sty}
 % 
-% \lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariessymbolitems.sty}
+% \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariessymbolitems.sty}
 
 \subsection{stmglossariessymbolstyles.sty}
 
-\lstinputlisting[breaklines]{../../tex/latex/stmglossaries/stmglossariessymbolstyles.sty}
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariessymbolstyles.sty}
 
 \end{document}

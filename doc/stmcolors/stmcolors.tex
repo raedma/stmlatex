@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmcolors package
+%
+% Usage
+%  - Compile using 'arara stmcolors.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[style=iso]{datetime2}
+\usepackage{enumitem}
+\usepackage{stmcolors}
+\usepackage{listings}
+\usepackage{tabularx}
+
+\lstdefinestyle{texcodestyle}{
+  language=[LaTeX]TeX,
+  backgroundcolor=\color{boxgraycolor},
+  basicstyle=\ttfamily,
+  breaklines=true,
+}
+
+\DTMnewdatestyle{versiondate}{%
+  \renewcommand{\DTMdisplaydate}[4]{\number##1\number##2\number##3}%
+  \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmcolors package description}
+\subtitle{Copyright \copyright{} 2019 DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the color definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/xcolor?lang=en}{xcolor} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Color definitions}
+
+\begin{tabularx}{\linewidth}{Xl}
+\texttt{backgroundcolor} & \fcolorbox{black}{backgroundcolor}{\phantom{\qquad}}\\
+\texttt{boxgraycolor} & \fcolorbox{black}{boxgraycolor}{\phantom{\qquad}}\\
+\texttt{sketchgraycolor} & \fcolorbox{black}{sketchgraycolor}{\phantom{\qquad}}\\
+\texttt{verbgraycolor} & \fcolorbox{black}{verbgraycolor}{\phantom{\qquad}}\\
+\texttt{cadmiumgreencolor} & \fcolorbox{black}{cadmiumgreencolor}{\phantom{\qquad}}\\
+\texttt{stmmarkupcolorcolor} & \fcolorbox{black}{stmmarkupcolorcolor}{\phantom{\qquad}}
+\end{tabularx}
+
+
+\newpage
+
+\appendix
+
+\newpage
+\section{The code}
+
+\subsection{stmcolors.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmcolors/stmcolors.sty}
+
+\end{document}

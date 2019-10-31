@@ -1,0 +1,4 @@
+!config
+paths:
+- '.'
+- '../../program/arara/.'
