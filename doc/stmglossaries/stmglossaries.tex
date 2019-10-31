@@ -183,7 +183,7 @@ This package provides an expendable set of commonly used acronyms as well as sym
 
 \section{Example}
 
-This is a simple test. It uses an acronym \gls{APU}. The example also has an equation to test the symbols:
+This is a simple test. It uses an acronym \gls{APU}. You can use all the acronyms defined in \autoref{sec:appendix:acronyms:all}. The example also has an equation to test the symbols:
 
 % \begin{equation}  
 % \glssymbol{symb:scalar:load:force} = \glssymbol{symb:scalar:mass}\glssymbol{symb:scalar:acceleration}
@@ -209,21 +209,14 @@ It creates a nice little list of symbols
 
 \glstocfalse
 \printglossary[type=example1list  ,style=stmsymbolstyle  ,nonumberlist]
-% \printglossary[type=scalarlist  ,style=stmsymbolstyle  ,nonumberlist]
-% \printglossary[type=vectorlist  ,style=stmsymbolstyle  ,nonumberlist]
-% \printglossary[type=matrixlist  ,style=stmsymbolstyle  ,nonumberlist]
-% \printglossary[type=statelist   ,style=stmsymbolstyle  ,nonumberlist]
-% \printglossary[type=indexlist   ,style=stmindexstyle   ,nonumberlist]
-% \printglossary[type=exponentlist,style=stmexponentstyle,nonumberlist]
-% \printglossary[type=operatorlist,style=stmoperatorstyle,nonumberlist]
 \glstoctrue
 
-and list of acronyms
-
-\glstocfalse
-\printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
-% \printglossary[style=altlist,title=Glossary]
-\glstoctrue
+% and list of acronyms
+% 
+% \glstocfalse
+% \printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
+% % \printglossary[style=altlist,title=Glossary]
+% \glstoctrue
 
 \section{Contents}
 \label{sec:contents}
@@ -434,12 +427,11 @@ as described in \href{https://ctan.net/macros/latex/contrib/glossaries/glossarie
 
 This is a style for acronyms. It has one item column which is left aligned. The columns are \textit{Abbreviation} and \textit{Description}. Column headings are not printed.
 
-\paragraph{Example}
-
-\glstocfalse
-\printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
-% \printglossary[style=altlist,title=Glossary]
-\glstoctrue
+% \paragraph{Example}
+% 
+% \glstocfalse
+% \printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
+% \glstoctrue
 
 \subsection{Symbol styles}
 \label{sec:usage:styles:symbols}
@@ -535,7 +527,15 @@ This is a style for variable operators with one left align item column. The colu
 
 \appendix
 \section{All acronyms}
+\label{sec:appendix:acronyms:all}
+
+\glstocfalse
+\glsaddall[types={\acronymtype}]
+\printglossary[type=\acronymtype,style=stmacronymlabelstyle,nonumberlist]
+\glstoctrue
+
 \section{All symbols}
+\label{sec:appendix:symbols:all}
 
 \glstocfalse
 % \glsaddall[types={allscalarsymbollist}]

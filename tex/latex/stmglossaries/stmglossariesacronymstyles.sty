@@ -71,16 +71,48 @@
     {\end{longtabu}}%
   % Header line
   \renewcommand*{\glossaryheader}{%
+    %\textbf{Label} & \textbf{Symbol}
+    \tabularnewline%
+    \tabularnewline%
+    \endhead%
+    \endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
   \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2} 
-     %\glstarget{##2}{##2}% Name
+    \glsentryitem{##1}\glstarget{##1}{##2}
       & ##3\glspostdescription ##5% Description
-      \\% end of row
+    \tabularnewline%
+  }
+}
+
+% -----------------
+% Style to show the keys
+% -----------------
+
+\newglossarystyle{stmacronymlabelstyle}{%
+  \renewenvironment{theglossary}%
+    {\begin{longtabu} to \linewidth {lX}}%
+    {\end{longtabu}}%
+  % Header line
+  \renewcommand*{\glossaryheader}{%
+    \textbf{Acronym} & \textbf{Description}
+    \tabularnewline%
+    \tabularnewline%
+    \endhead%
+    \endfoot%
+  }%
+  % indicate what to do at the start of each logical group
+  %\renewcommand*{\glsgroupheading}[1]{}%
+  %\renewcommand*{\glsgroupskip}{}% What to do between groups
+  \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentrycounterlabel{##1} &%
+    %\glsentryitem{##1}\glstarget{##1}{##2} %&%
+    ##3\glspostdescription ##5% Description
+    \tabularnewline%
   }
 }
 
