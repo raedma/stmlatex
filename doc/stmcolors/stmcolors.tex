@@ -44,8 +44,8 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[style=iso]{datetime2}
 \usepackage{enumitem}
+\usepackage{stmdate}
 \usepackage{stmcolors}
 \usepackage{listings}
 \usepackage{tabularx}
@@ -55,11 +55,6 @@
   backgroundcolor=\color{boxgraycolor},
   basicstyle=\ttfamily,
   breaklines=true,
-}
-
-\DTMnewdatestyle{versiondate}{%
-  \renewcommand{\DTMdisplaydate}[4]{\number##1\number##2\number##3}%
-  \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
 }
 
 \usepackage{hyperref}
