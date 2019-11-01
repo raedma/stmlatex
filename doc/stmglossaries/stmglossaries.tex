@@ -36,8 +36,6 @@
 
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% a%rara: biber
-% a%rara: biber
 % arara: makeglossaries
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
@@ -216,6 +214,11 @@ It creates a nice little list of symbols
 % \printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
 % % \printglossary[style=altlist,title=Glossary]
 % \glstoctrue
+
+\section{Requirements}
+\label{sec:requirements}
+
+\texttt{Perl} is required to use the \texttt{arara} \texttt{makeglossaries} rule. Either install \texttt{Perl} or include a path to a binary to the system \texttt{PATH} variable. E.g. a \texttt{Perl} binary is shipped with \texttt{Git} under \texttt{GITINSTALLPATH\textbackslash usr\textbackslash bin\textbackslash}.
 
 \section{Contents}
 \label{sec:contents}
