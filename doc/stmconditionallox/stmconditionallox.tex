@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmconditionallox package
+%
+% Usage
+%  - Compile using 'arara stmconditionallox.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[listof=totoc]{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.auxlock', '*.bbl', '*.bcf', '*.blg', '*.dpth', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{stmdate}
+\usepackage{stmlistings}
+\usepackage[nonewpage]{stmconditionallox}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmconditionallox package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are definitions for conditional lists of float objects for \texttt{stmlatex}. It creates commands that only create lists in case the float object type is really used in the document. It is build upon the \href{https://ctan.org/pkg/totalcount}{totalcount} package.
+\end{abstract}
+
+\tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
+
+\section{Usage}
+
+\subsection{Commands}
+% \subsection{Standard \protect\LaTeX}
+
+There are standard \LaTeX commands to create lists of float objects:
+
+\begin{itemize}
+  \item \verb+\listoffigures+
+  \item \verb+\listoftables+
+\end{itemize}
+
+Additionally it is possible to create a list of code listings with a macro from the \href{https://ctan.org/pkg/listings}{listings} package.
+
+\begin{itemize}
+  \item \verb+\lstlistoflistings+
+\end{itemize}
+
+% \subsection{\protect\texttt{stmconditionallox}}
+
+With
+
+\begin{verbatim}
+\usepackage{stmconditionallox}
+\end{verbatim}
+
+a set of new commands is created:
+
+\begin{itemize}
+  \item \verb+\conditionallistoffigures+
+  \item \verb+\conditionallistoftables+
+  \item \verb+\conditionallistoflistings+
+\end{itemize}
+
+If these are used, the lists are only created, in case the specified float environments are really used in your document. Thus, it allows the creation of a standard preamble.
+
+To properly create the lists, three compilation runs are required.
+
+\subsection{Options}
+
+\paragraph{Option \protect\textit{loadlistings} and \protect\textit{noloadlistingse}}
+
+Set whether to load the \href{https://ctan.org/pkg/listings}{listings} package.
+
+\begin{verbatim}
+\usepackage[noloadlistings]{stmglossaries}
+\end{verbatim}
+
+\texttt{loadlistings} is the default and loads the package. It is used in case \texttt{noloadlistings} is not set explicitly.
+
+In case \texttt{noloadlistings} is set, the command \verb+\conditionallistoflistings+ is not defined.
+
+\paragraph{Option \protect\textit{newpage} and \protect\textit{nonewpage}}
+
+Set whether to create a new page after each list.
+
+\begin{verbatim}
+\usepackage[nonewpage]{stmglossaries}
+\end{verbatim}
+
+\texttt{newpage} is the default and creates a new page. It is used in case \texttt{nonewpage} is not set explicitly.
+
+\section{Example}
+
+This section contains examples.
+
+\subsection{Figures}
+
+This is an example figure.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth,height=0.3\textheight,keepaspectratio]{example-image-a}
+\label{fig:example:figure:1}
+\caption{Example figure}
+\end{figure}
+
+\subsection{Table}
+
+This is an example table.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ll}
+Column 1 & Column 2
+\end{tabular}
+\label{tab:example:table:1}
+\caption{Example table}
+\end{table}
+
+% \subsection{Listing}
+% 
+% \begin{lstlisting}[caption={Example listing}]
+%     Some source code
+% \end{lstlisting}
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{stmconditionallox.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle,nolol]{../../tex/latex/stmconditionallox/stmconditionallox.sty}
+
+\end{document}
