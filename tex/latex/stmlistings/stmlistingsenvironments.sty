@@ -8,7 +8,7 @@
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmlistings}
+%    - \usepackage{stmlistingsenvironments}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,7 +30,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmlistings}[2019/10/27 STMs custom LaTeX listings definitions]
+\ProvidesPackage{stmlistingsenvironments}[2019/10/27 STMs custom LaTeX listings definitions]
 
 % ---------------------------
 % Package
@@ -62,27 +62,13 @@
 % Environments
 % ---------------------------
 
-\@ifpackageloaded{stmlistingsenvironments}{%
-%
-}{%
-  \RequirePackage{stmlistingsenvironments}
-}%
+\lstnewenvironment{code}{%
+  \lstset{style=scriptstyle}
+}{}
 
-% ---------------------------
-% Preferences
-% ---------------------------
-
-% http://tex.stackexchange.com/a/64845/44634
-\makeatletter
-\@ifundefined{KOMAClassName}
-  {% true -> no KOMA class
-    %
-  }%
-  {% false -> KOMA class
-    \newcaptionname{english}{\lstlistlistingname}{List of \lstlistingname s}%
-    \newcaptionname{ngerman}{\lstlistlistingname}{Quelltextverzeichnis}%
-  }%
-\makeatother
+\lstnewenvironment{texcode}{%
+  \lstset{style=texcodestyle}
+}{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
