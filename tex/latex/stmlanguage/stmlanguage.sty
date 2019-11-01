@@ -3,12 +3,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % This is a interface to all stm tikz definitions
-% Based upon the tikz package:
-%   https://ctan.org/pkg/tikz
+% Based upon the babel package:
+%   https://ctan.org/pkg/babel
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmtikz}
+%    - \usepackage{stmlanguage}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,17 +30,11 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmtikz}[2019/10/27 STMs custom LaTeX tikz definitions]
+\ProvidesPackage{stmlanguage}[2019/10/27 STMs custom LaTeX language definitions]
 
 % ---------------------------
 % Package
 % ---------------------------
-
-\@ifpackageloaded{tikz}{%
-%
-}{%
-  \RequirePackage{tikz}
-}%
 
 \@ifpackageloaded{kvoptions}{%
 %
@@ -52,31 +46,15 @@
 % Options
 % ---------------------------
 
-% Externalization
-\newif\ifstmtikz@externalization
-\DeclareVoidOption{externalization}{\stmtikz@externalizationtrue}
-\DeclareVoidOption{noexternalization}{\stmtikz@externalizationfalse}
-\ExecuteOptions{externalization} % default is to load externalization
-
-\DeclareStringOption[ZZZ_TikZ]{outputfolder}
+\DeclareStringOption[english]{language}
 
 \ProcessLocalKeyvalOptions*
 
 % ---------------------------
-% Modules
+% Package
 % ---------------------------
 
-% Libraries
-\RequirePackage{stmtikzlibraries}
-
-% Styles
-\RequirePackage{stmtikzstyles}
-
-% Externalization
-
-\ifstmtikz@externalization
-  \RequirePackage[outputfolder=\stmtikz@outputfolder]{stmtikzexternalization}
-\fi
+\RequirePackage[\stmlanguage@language]{babel}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
