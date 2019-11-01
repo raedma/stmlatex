@@ -63,16 +63,24 @@
 \ProcessLocalKeyvalOptions*
 
 % ---------------------------
-% Settings
+% Libraries
 % ---------------------------
 
 \usepgfplotslibrary{external}
+
+% ---------------------------
+% Settings
+% ---------------------------
+
 \tikzexternalize[%
   mode=convert with system call,%
   shell escape=-enable-write18,%  % Use for MiKTeX
 ]
-%\tikzsetexternalprefix{ZZZ_TikZ/}     % Output folder
-\tikzsetexternalprefix{\stmtikzexternalization@outputfolder/}     % Output folder
+
+% Output folder
+\tikzsetexternalprefix{\stmtikzexternalization@outputfolder/}
+
+% Set
 \tikzset{%
   external/system call={%
     pdflatex \tikzexternalcheckshellescape -halt-on-error %
@@ -81,6 +89,9 @@
     %magick  -density 600 -transparent white "\image.pdf" "\image.png" % for ImageMagick versions >= 7
   }
 }
+
+% By default, do not allow global externalization
+\tikzexternaldisable
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

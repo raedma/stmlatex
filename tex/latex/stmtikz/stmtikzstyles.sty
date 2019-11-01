@@ -107,6 +107,40 @@
   },
 }
 
+\tikzset{%
+  stmmarkuptext/.style={%
+   text=stmmarkupcolor,%
+  }%
+}
+
+% Markup style for rectangles on external figures
+\tikzset{%
+  stmrectangularmarkup/.style={%
+   inner sep=0pt,% necessary for correct positioning of corners
+   draw=stmmarkupcolor,%
+   thick,%
+  }%
+}
+
+% Equal space decoration markers along addplot path
+% http://tex.stackexchange.com/a/232010/44634
+\tikzset{
+  nomorepostactions/.code={\let\tikz@postactions=\pgfutil@empty},
+  stmmark/.style 2 args={decoration={markings,
+    mark= between positions 0 and 1 step (1/11)*\pgfdecoratedpathlength with{%
+        \tikzset{#2,every mark}\tikz@options
+        \pgfuseplotmark{#1}%
+      },  
+    },
+    postaction={decorate},
+    /pgfplots/legend image post style={
+      mark=#1,
+      #2,
+      every path/.append style={nomorepostactions}
+    },
+  },
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

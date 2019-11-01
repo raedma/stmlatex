@@ -52,7 +52,14 @@
 % Options
 % ---------------------------
 
+% Externalization
+\newif\ifstmtikz@externalization
+\DeclareVoidOption{externalization}{\stmtikz@externalizationtrue}
+\DeclareVoidOption{noexternalization}{\stmtikz@externalizationfalse}
+\ExecuteOptions{externalization} % default is to load externalization
+
 \DeclareStringOption[ZZZ_TikZ]{outputfolder}
+
 \ProcessLocalKeyvalOptions*
 
 % ---------------------------
@@ -66,7 +73,11 @@
 \RequirePackage{stmtikzstyles}
 
 % Externalization
-\RequirePackage[outputfolder=\stmtikz@outputfolder]{stmtikzexternalization}
+
+\ifstmtikz@externalization
+  \RequirePackage[outputfolder=\stmtikz@outputfolder]{stmtikzexternalization}
+\fi
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
