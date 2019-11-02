@@ -2,13 +2,13 @@
 % Header                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% This is a interface to all stm pgfplots definitions
+% This file includes unit definitions.
 % Based upon the pgfplots package:
 %   https://ctan.org/pkg/pgfplots
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmplots}
+%    - \usepackage{stmplotslibraries}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,74 +30,21 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmplots}[2019/10/27 STMs custom LaTeX plot definitions]
+\ProvidesPackage{stmplotslibraries}[2019/10/27 STMs custom LaTeX pgfplots library definitions]
 
 % ---------------------------
 % Package
 % ---------------------------
 
 \@ifpackageloaded{pgfplots}{}{\RequirePackage{pgfplots}}%
-\@ifpackageloaded{pgfplotstable}{}{\RequirePackage{pgfplotstable}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 % ---------------------------
-% Options
-% ---------------------------
-
-\SetupKeyvalOptions{%
-  family=stmplots,%
-  prefix=stmplots@,%
-  setkeys=\kvsetkeys,%
-}
-
-% Output folder
-\DeclareStringOption[newest]{compat}
-
 % Libraries
-\DeclareBoolOption[true]{libraries}
-
-% Styles
-\DeclareBoolOption[true]{styles}
-
-% Externalization
-\DeclareBoolOption[true]{externalization}
-
-% Global externalization
-\DeclareBoolOption[false]{globalexternalization}
-
-% Output folder
-\DeclareStringOption[ZZZ_TikZ]{externalizationoutputfolder}
-
-% Process options
-\ProcessKeyvalOptions{stmplots}
-
-% ---------------------------
-% Pgf version
 % ---------------------------
 
-\pgfplotsset{compat=\stmplots@compat}
-
-% ---------------------------
-% Modules
-% ---------------------------
-
-% Libraries
-\ifstmplots@libraries
-  \RequirePackage{stmplotslibraries}
-\fi
-
-% Styles
-\ifstmplots@styles
-  \RequirePackage{stmplotsstyles}
-\fi
-
-% Externalization
-\ifstmplots@externalization
-  \RequirePackage[%
-    outputfolder=\stmplots@externalizationoutputfolder,
-    global={\ifstmplots@globalexternalization true\else false\fi}
-  ]{stmtikzexternalization}
-\fi
+\usepgfplotslibrary{fillbetween}%
+\usepgfplotslibrary{groupplots}%
+\usepgfplotslibrary{patchplots}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

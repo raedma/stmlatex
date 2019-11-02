@@ -1,0 +1,259 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmtikz package
+%
+% Usage
+%  - Compile using 'arara stmtikz.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.auxlock', '*.bbl', '*.bcf', '*.blg', '*.dpth', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{stmdate}
+\usepackage{stmlistings}
+\usepackage[
+  libraries=true,
+  styles=true,
+  externalization=true,
+  globalexternalization=false,
+  externalizationoutputfolder=ZZY_TikZ,
+]{stmplots}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmplots package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the plots definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/pgfplots}{pgfplots} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Usage - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmplots} package}
+
+\subsubsection{Description}
+
+This is an interface package which loads \texttt{pgfplots} and definitions commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmplotslibraries.sty+
+  \item \verb+stmplotsstyles.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{compat}} 
+\label{sec:usage:preamble:wholepackage:options:compat}
+
+This option expects a string input. Possible inputs are \texttt{pgfplots} version numbers, e.g.
+
+\begin{verbatim}
+\usepackage[compat=1.14]{stmplots}
+\end{verbatim}
+
+\texttt{compat=newest} is the default. It is used in case \verb+libraries=$VALUE$+ is not set explicitly.
+
+\paragraph{Option \protect\textit{libraries}} 
+\label{sec:usage:preamble:wholepackage:options:libraries}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the standard libraries commonly required.
+
+\begin{verbatim}
+\usepackage[libraries=true|false]{stmplots}
+\end{verbatim}
+
+\texttt{libraries=true} is the default. It is used in case \texttt{libraries=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined \texttt{pgfplots} styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmplots}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{externalization}} 
+\label{sec:usage:preamble:wholepackage:options:externalization}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the possibilities for the externalization of \texttt{tikzpicture}s.
+
+\begin{verbatim}
+\usepackage[externalization=true|false]{stmplots}
+\end{verbatim}
+
+\texttt{externalization=true} is the default. It is used in case \texttt{externalization=false} is not set explicitly.
+
+See the \texttt{stmtikz} package documentation for details.
+
+\paragraph{Option \protect\textit{externalizationoutputfolder}}
+\label{sec:usage:preamble:wholepackage:options:outputfolder}
+
+This option expects a string input. Do not add a slash at the end of the string.
+
+With this option it is possible to define a output folder for all externalized \texttt{tikzpicture}s in case \nameref{sec:usage:preamble:wholepackage:options:externalization} has the value \texttt{true}. The folder location is set relative to the directory of the main \texttt{tex}-file.
+
+\begin{verbatim}
+\usepackage[externalizationoutputfolder=$FOLDERNAME$]{stmtikz}
+\end{verbatim}
+
+The default is \texttt{externalizationoutputfolder=ZZZ\_TikZ}.
+
+\paragraph{Option \protect\textit{globalexternalization}}
+\label{sec:usage:preamble:wholepackage:options:globalexternalization}
+
+This is a boolean option.  Expected values are either \texttt{true} or \texttt{false}. 
+
+By default externalization is not enabled for \texttt{tikzpicture}s globally, meaning automatically activated for each \texttt{tikzpicture}. It has to be activated explicitely in the document with \texttt{\textbackslash tikzexternalenable}.
+
+It is possible to control this behavior with 
+
+\begin{verbatim}
+\usepackage[globalexternalization=true|false]{stmplots}
+\end{verbatim}
+
+\texttt{globalexternalization=false} is the default. It is used in case \texttt{globalexternalization=true} is not set explicitly.
+
+Global externalization is active until the next \texttt{\textbackslash tikzexternaldisable} in your document.
+
+\subsection{\protect\texttt{stmplotslibraries}}
+\label{sec:usage:preamble:libraries}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:libraries:description}
+
+This package contains standard libraries commonly required in the creation of plots.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:libraries:options}
+
+\subsection{\protect\texttt{stmplotsstyles}}
+\label{sec:usage:preamble:styles}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:styles:description}
+
+This package contains styles commonly required in the creation of plots.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:styles:options}
+
+\section{Test}
+
+This is a test. Code thankfully taken from
+
+\href{http://pgfplots.net/tikz/examples/fill-between-plots/}{http://pgfplots.net/tikz/examples/fill-between-plots/}
+
+\begin{figure}[htbp]
+\centering
+\tikzexternalenable
+\tikzsetnextfilename{ExternalizationTest}
+\begin{tikzpicture}
+
+  \pgfmathdeclarefunction{poly}{0}{\pgfmathparse{-x^3+5*(x^2)-3*x-3}}
+  \begin{axis}[
+    axis y line = left,
+    axis x line = bottom,
+    xtick       = {-1.2,2,4.2},
+    xticklabels = {$a$,$\zeta$,$b$},
+    ytick       = {3},
+    yticklabels = {$f(\zeta)$},
+    samples     = 160,
+    domain      = -1.2:4.2,
+    xmin = -2, xmax = 5,
+    ymin = -5, ymax = 10,
+  ]
+    \addplot[name path=poly, black, thick, mark=none, ] {poly};
+    \addplot[name path=line, gray, no markers, line width=1pt] {3};
+    \addplot fill between[ 
+      of = poly and line, 
+      split, % calculate segments
+      every even segment/.style = {orange!70},
+      every odd segment/.style  = {gray!60}
+    ];
+  \end{axis}
+\end{tikzpicture}
+\tikzexternaldisable
+\end{figure}
+lalal
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{stmplots.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmplots/stmplots.sty}
+
+\newpage
+\subsection{stmplotslibraries.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmplots/stmplotslibraries.sty}
+
+\newpage
+\subsection{stmplotsstyles.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmplots/stmplotsstyles.sty}
+
+\end{document}
