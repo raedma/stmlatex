@@ -37,36 +37,33 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{tikz}{%
-%
-}{%
-  \RequirePackage{tikz}
-}%
-
-\@ifpackageloaded{pgfplots}{%
-%
-}{%
-  \RequirePackage{pgfplots}
-}%
-
-\@ifpackageloaded{kvoptions}{%
-%
-}{%
-  \RequirePackage{kvoptions}
-}%
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 % ---------------------------
 % Options
 % ---------------------------
 
+\SetupKeyvalOptions{%
+  family=stmtikzexternalization,%
+  prefix=stmtikzexternalization@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Externalization
+\DeclareBoolOption[false]{global}
+
+% Output folder
 \DeclareStringOption[ZZZ_TikZ]{outputfolder}
-\ProcessLocalKeyvalOptions*
+
+% Process options
+\ProcessKeyvalOptions{stmtikzexternalization}
 
 % ---------------------------
 % Libraries
 % ---------------------------
 
-\usepgfplotslibrary{external}
+\usetikzlibrary{external}
 
 % ---------------------------
 % Settings
@@ -91,7 +88,11 @@
 }
 
 % By default, do not allow global externalization
-\tikzexternaldisable
+\ifstmtikzexternalization@global
+  \tikzexternalenable
+\else
+  \tikzexternaldisable
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

@@ -44,9 +44,16 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{enumitem}
 \usepackage{stmdate}
 \usepackage{stmlistings}
-\usepackage[outputfolder=ZZY_TikZ]{stmtikz}
+\usepackage[
+  libraries=true,
+  styles=true,
+  externalization=true,
+  globalexternalization=false,
+  externalizationoutputfolder=ZZY_TikZ,
+]{stmtikz}
 
 \usepackage{hyperref}
 
@@ -73,9 +80,172 @@ These are the tikz definitions for \texttt{stmlatex}. It is build upon the \href
 
 \tableofcontents
 
+\section{Usage - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmtikz} package}
+
+\subsubsection{Description}
+
+This is an interface package which loads \texttt{tikz} and definitions commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmtikzlibraries.sty+
+  \item \verb+stmtikzstyles.sty+
+  \item \verb+stmtikzexternalization.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{libraries}} 
+\label{sec:usage:preamble:wholepackage:options:libraries}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the standard libraries commonly required.
+
+\begin{verbatim}
+\usepackage[libraries=true|false]{stmtikz}
+\end{verbatim}
+
+\texttt{libraries=true} is the default. It is used in case \texttt{libraries=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined \texttt{tikz} styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmtikz}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{externalization}} 
+\label{sec:usage:preamble:wholepackage:options:externalization}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the possibilities for the externalization of \texttt{tikzpicture}s.
+
+\begin{verbatim}
+\usepackage[externalization=true|false]{stmtikz}
+\end{verbatim}
+
+\texttt{externalization=true} is the default. It is used in case \texttt{externalization=false} is not set explicitly.
+
+By default, global externalization is not set by the package. Thus it is required to use \texttt{\textbackslash tikzexternalenable} before the first picture, which is to be created with this feature. See \nameref{sec:usage:preamble:wholepackage:options:globalexternalization} for a possibility to allow a global externalization of throughout the document.
+
+\paragraph{Option \protect\textit{externalizationoutputfolder}}
+\label{sec:usage:preamble:wholepackage:options:outputfolder}
+
+This option expects a string input. Do not add a slash at the end of the string.
+
+With this option it is possible to define a output folder for all externalized \texttt{tikzpicture}s in case \nameref{sec:usage:preamble:wholepackage:options:externalization} has the value \texttt{true}. The folder location is set relative to the directory of the main \texttt{tex}-file.
+
+\begin{verbatim}
+\usepackage[externalizationoutputfolder=$FOLDERNAME$]{stmtikz}
+\end{verbatim}
+
+The default is \texttt{externalizationoutputfolder=ZZZ\_TikZ}.
+
+\paragraph{Option \protect\textit{globalexternalization}}
+\label{sec:usage:preamble:wholepackage:options:globalexternalization}
+
+This is a boolean option.  Expected values are either \texttt{true} or \texttt{false}. 
+
+By default externalization is not enabled for \texttt{tikzpicture}s globally, meaning automatically activated for each \texttt{tikzpicture}. It has to be activated explicitely in the document with \texttt{\textbackslash tikzexternalenable}.
+
+It is possible to control this behavior with 
+
+\begin{verbatim}
+\usepackage[globalexternalization=true|false]{stmtikz}
+\end{verbatim}
+
+\texttt{globalexternalization=false} is the default. It is used in case \texttt{globalexternalization=true} is not set explicitly.
+
+Global externalization is active until the next \texttt{\textbackslash tikzexternaldisable} in your document.
+
+\subsection{\protect\texttt{stmtikzlibraries}}
+\label{sec:usage:preamble:libraries}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:libraries:description}
+
+This package contains standard libraries commonly required in the creation of \texttt{tikzpicture}s.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:libraries:options}
+
+\subsection{\protect\texttt{stmtikzstyles}}
+\label{sec:usage:preamble:styles}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:styles:description}
+
+This package contains styles commonly required in the creation of \texttt{tikzpicture}s.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:styles:options}
+
+\subsection{\protect\texttt{stmtikzexternalization}}
+\label{sec:usage:preamble:externalization}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:externalization:description}
+
+This package enables the externalization of \texttt{tikzpicture}s.
+
+It requires shell escape. Enabling shell escape is achieved by using the \verb+-shell-escape+ command line option when executing \LaTeX or pdf\LaTeX, e.g.
+
+\begin{verbatim}
+pdflatex -shell-escape stmtikz.tex
+\end{verbatim}
+
+or with \verb+arara+
+
+\begin{verbatim}
+arara: pdflatex: {shell: yes}
+\end{verbatim}
+
+\subsubsection{Options}
+\label{sec:usage:preamble:externalization:options}
+
+\paragraph{Option \protect\textit{outputfolder}}
+\label{sec:usage:preamble:externalization:options:outputfolder}
+
+This option expects a string input. Do not add a slash at the end of the string.
+
+With this option it is possible to define a output folder for all externalized \texttt{tikzpicture}s. The folder location is set relative to the directory of the main \texttt{tex}-file.
+
+\begin{verbatim}
+\usepackage[outputfolder=$FOLDERNAME$]{stmtikzexternalization}
+\end{verbatim}
+
+The default is \texttt{outputfolder=ZZZ\_TikZ}.
+
+\paragraph{Option \protect\textit{globalexternalization}}
+\label{sec:usage:preamble:wholepackage:options:globalexternalization}
+
+This is a boolean option.  Expected values are either \texttt{true} or \texttt{false}. 
+
+By default externalization is not enabled for \texttt{tikzpicture}s globally, meaning automatically activated for each \texttt{tikzpicture}. It has to be activated explicitely in the document with \texttt{\textbackslash tikzexternalenable}.
+
+It is possible to control this behavior with 
+
+\begin{verbatim}
+\usepackage[globalexternalization=true|false]{stmtikzexternalization}
+\end{verbatim}
+
+\texttt{globalexternalization=false} is the default. It is used in case \texttt{globalexternalization=true} is not set explicitly.
+
+Global externalization is active until the next \texttt{\textbackslash tikzexternaldisable} in your document.
+
 \section{Externalization}
 
-\begin{figure}
+This is a test for the externalization of a \texttt{tikzpicture}.
+
+\begin{figure}[htbp]
 \centering
 \tikzexternalenable
 \tikzsetnextfilename{ExternalizationTest}
@@ -93,7 +263,6 @@ These are the tikz definitions for \texttt{stmlatex}. It is build upon the \href
 \end{tikzpicture}
 \tikzexternaldisable
 \end{figure}
-
 
 \newpage
 \appendix

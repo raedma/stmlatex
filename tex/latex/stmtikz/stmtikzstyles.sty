@@ -36,11 +36,8 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{tikz}{%
-%
-}{%
-  \RequirePackage{tikz}
-}%
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
+\@ifpackageloaded{stmcolors}{}{\RequirePackage{stmcolors}}%
 
 % ---------------------------
 % Pgfkeys

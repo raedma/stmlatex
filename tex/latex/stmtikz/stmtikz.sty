@@ -36,46 +36,57 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{tikz}{%
-%
-}{%
-  \RequirePackage{tikz}
-}%
-
-\@ifpackageloaded{kvoptions}{%
-%
-}{%
-  \RequirePackage{kvoptions}
-}%
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 % ---------------------------
 % Options
 % ---------------------------
 
+\SetupKeyvalOptions{%
+  family=stmtikz,%
+  prefix=stmtikz@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Libraries
+\DeclareBoolOption[true]{libraries}
+
+% Styles
+\DeclareBoolOption[true]{styles}
+
 % Externalization
-\newif\ifstmtikz@externalization
-\DeclareVoidOption{externalization}{\stmtikz@externalizationtrue}
-\DeclareVoidOption{noexternalization}{\stmtikz@externalizationfalse}
-\ExecuteOptions{externalization} % default is to load externalization
+\DeclareBoolOption[true]{externalization}
 
-\DeclareStringOption[ZZZ_TikZ]{outputfolder}
+% Global externalization
+\DeclareBoolOption[false]{globalexternalization}
 
-\ProcessLocalKeyvalOptions*
+% Output folder
+\DeclareStringOption[ZZZ_TikZ]{externalizationoutputfolder}
+
+% Process options
+\ProcessKeyvalOptions{stmtikz}
 
 % ---------------------------
 % Modules
 % ---------------------------
 
 % Libraries
-\RequirePackage{stmtikzlibraries}
+\ifstmtikz@libraries
+  \RequirePackage{stmtikzlibraries}
+\fi
 
 % Styles
-\RequirePackage{stmtikzstyles}
+\ifstmtikz@styles
+  \RequirePackage{stmtikzstyles}
+\fi
 
 % Externalization
-
 \ifstmtikz@externalization
-  \RequirePackage[outputfolder=\stmtikz@outputfolder]{stmtikzexternalization}
+  \RequirePackage[%
+    outputfolder=\stmtikz@externalizationoutputfolder,
+    global={\ifstmtikz@globalexternalization true\else false\fi}
+  ]{stmtikzexternalization}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

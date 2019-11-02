@@ -36,11 +36,7 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{tikz}{%
-%
-}{%
-  \RequirePackage{tikz}
-}%
+\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
 
 % ---------------------------
 % Libraries
