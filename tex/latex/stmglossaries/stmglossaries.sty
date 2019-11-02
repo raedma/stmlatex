@@ -39,7 +39,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmglossaries}[2019/10/27 STMs custom LaTeX glossaries definitions]
+\ProvidesPackage{stmglossaries}[2019/11/03 STMs custom LaTeX glossaries definitions]
 
 % If not loaded in advance, load the glossaries package with some default options
 \@ifpackageloaded{glossaries}{%
@@ -52,31 +52,40 @@
   ]{glossaries}%
 }%
 
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
 %------------------
 % Options
 %------------------
 
-% Load morewrites
-\newif\ifstmglossaries@morewrites
-\DeclareOption{morewrites}{\stmglossaries@morewritestrue}
-\DeclareOption{nomorewrites}{\stmglossaries@morewritesfalse}
-\ExecuteOptions{morewrites} % default is to load morewrites
+\SetupKeyvalOptions{%
+  family=stmglossaries,%
+  prefix=stmglossaries@,%
+  setkeys=\kvsetkeys,%
+}
 
-% Do not load the styles
-% Default behaviour is to load the styles to really have a benefit
-% https://tex.stackexchange.com/a/135255/44634
-% Load the default
-\newif\ifstmglossaries@loadstyles
-\DeclareOption{loadstyles}{\stmglossaries@loadstylestrue}
-\DeclareOption{noloadstyles}{\stmglossaries@loadstylesfalse}
-\ExecuteOptions{loadstyles} % default is to load the styles
+% Acronyms
+\DeclareBoolOption[true]{acronyms}
 
-\ProcessOptions\relax
+% Symbols
+\DeclareBoolOption[true]{symbols}
 
 % Load morewrites
-\@ifpackageloaded{morewrites}{%
-%
-}{%
+\DeclareBoolOption[true]{morewrites}
+
+% Load styles
+\DeclareBoolOption[true]{styles}
+
+% Process options
+\ProcessKeyvalOptions{stmglossaries}
+
+% ---------------------------
+% Modules
+% ---------------------------
+
+% Load morewrites
+\@ifpackageloaded{morewrites}{}{%
   \ifstmglossaries@morewrites
     \RequirePackage{morewrites}
   \fi
@@ -84,30 +93,34 @@
 
 
 % Load the acronyms
-\@ifpackageloaded{stmglossariesacronymitems}{%
-%
-}{%
-  %\RequirePackage{stmglossariesacronymitems}%
-  \ifstmglossaries@loadstyles
-    %\RequirePackage[loadacronymstyles]{stmglossariesacronymitems}
-    \RequirePackage{stmglossariesacronymitems}
-  \else
-    \RequirePackage[noloadacronymstyles]{stmglossariesacronymitems}
-  \fi
-}%
+\ifstmglossaries@acronyms
+  \@ifpackageloaded{stmglossariesacronymitems}{%
+  %
+  }{%
+    %\RequirePackage{stmglossariesacronymitems}%
+    \ifstmglossaries@styles
+      %\RequirePackage[loadacronymstyles]{stmglossariesacronymitems}
+      \RequirePackage{stmglossariesacronymitems}
+    \else
+      \RequirePackage[noloadacronymstyles]{stmglossariesacronymitems}
+    \fi
+  }%
+\fi
 
 % Load the symbols
-\@ifpackageloaded{stmglossariessymbolitems}{%
-%
-}{%
-  %\RequirePackage{stmglossariessymbolitems}%
-  \ifstmglossaries@loadstyles
-    %\RequirePackage[loadsymbolstyles]{stmglossariessymbolitems}
-    \RequirePackage{stmglossariessymbolitems}
-  \else
-    \RequirePackage[noloadsymbolstyles]{stmglossariessymbolitems}
-  \fi
-}%
+\ifstmglossaries@symbols
+  \@ifpackageloaded{stmglossariessymbolitems}{%
+  %
+  }{%
+    %\RequirePackage{stmglossariessymbolitems}%
+    \ifstmglossaries@styles
+      %\RequirePackage[loadsymbolstyles]{stmglossariessymbolitems}
+      \RequirePackage{stmglossariessymbolitems}
+    \else
+      \RequirePackage[noloadsymbolstyles]{stmglossariessymbolitems}
+    \fi
+  }%
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

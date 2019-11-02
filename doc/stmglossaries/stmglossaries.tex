@@ -50,7 +50,12 @@
 % \usepackage[style=iso]{datetime2}
 \usepackage{enumitem}
 \usepackage{stmdate}
-\usepackage{stmglossaries}
+\usepackage[
+  acronyms=true,
+  symbols=true,
+  morewrites=true,
+  styles=true,
+]{stmglossaries}
 \usepackage{stmlistings}
 
 \usepackage{hyperref}
@@ -263,21 +268,49 @@ to your preamble. In case you have not loaded \textit{glossaries} with your own 
 \subsubsection{Options}
 \label{sec:usage:preamble:wholepackage:options}
 
-\paragraph{Option \protect\textit{loadstyles} and \protect\textit{noloadstyles}}
-\label{sec:usage:preamble:wholepackage:options:loadstyle}
+\paragraph{Option \protect\textit{acronyms}}
+\label{sec:usage:preamble:wholepackage:options:acronyms}
 
-These options are only available for loading the whole package, with
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the acronym definitions.
 
 \begin{verbatim}
-\usepackage[noloadstyles]{stmglossaries}
+\usepackage[acronyms=true]{stmglossaries}
 \end{verbatim}
 
-\texttt{loadstyles} is the default and loads the styles. It is used in case \texttt{noloadstyles} is not set explicitly.
+\texttt{acronyms=true} is the default and loads the acronyms. It is used in case \texttt{acronyms=false} is not set explicitly.
 
-\paragraph{Option \protect\textit{morewrites} and \protect\textit{nomorewrites}}
+\paragraph{Option \protect\textit{symbols}}
+\label{sec:usage:preamble:wholepackage:options:symbols}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the symbol definitions.
+
+\begin{verbatim}
+\usepackage[symbols=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{symbols=true} is the default and loads the symbols. It is used in case \texttt{symbols=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}}
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions.
+
+\begin{verbatim}
+\usepackage[styles=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{styles=true} is the default and loads the styles. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{morewrites}}
 \label{sec:usage:preamble:wholepackage:options:morewrites}
 
-\texttt{morewrites} is the default and loads the \href{https://ctan.org/pkg/morewrites?lang=en}{morewrites} package. It is used in case \texttt{nomorewrites} is not set explicitly.
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the \href{https://ctan.org/pkg/morewrites?lang=en}{morewrites} package.
+
+\begin{verbatim}
+\usepackage[morewrites=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{morewrites=true} is the default. It is used in case \texttt{nomorewrites} is not set explicitly.
 
 \subsection{Load the acronyms package}
 \label{sec:usage:preamble:acronymspackage}
