@@ -93,10 +93,12 @@
 
 % Externalization
 \ifstmplots@externalization
-  \RequirePackage[%
-    outputfolder=\stmplots@externalizationoutputfolder,
-    global={\ifstmplots@globalexternalization true\else false\fi}
-  ]{stmtikzexternalization}
+  \@ifpackageloaded{stmtikzexternalization}{}{
+    \RequirePackage[%
+      outputfolder=\stmplots@externalizationoutputfolder,%
+      global={\ifstmplots@globalexternalization true\else false\fi}%
+    ]{stmtikzexternalization}
+  }
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
