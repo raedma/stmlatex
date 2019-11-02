@@ -83,10 +83,12 @@
 
 % Externalization
 \ifstmtikz@externalization
-  \RequirePackage[%
-    outputfolder=\stmtikz@externalizationoutputfolder,
-    global={\ifstmtikz@globalexternalization true\else false\fi}
-  ]{stmtikzexternalization}
+  \@ifpackageloaded{stmtikzexternalization}{}{
+    \RequirePackage[%
+      outputfolder=\stmtikz@externalizationoutputfolder,
+      global={\ifstmtikz@globalexternalization true\else false\fi}
+    ]{stmtikzexternalization}
+  }
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
