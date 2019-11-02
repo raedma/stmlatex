@@ -325,22 +325,15 @@ to your preamble. In case you have not loaded \textit{glossaries} with your own 
 
 \subsubsection{Options}
 
-\paragraph{Option \protect\textit{loadacronymstyles} and \protect\textit{noloadacronymstyles}}
+\paragraph{Option \protect\textit{styles}}
 
-Load or do not load the style definitions from \texttt{stmglossariesacronymstyles} with
-
-\begin{verbatim}
-\usepackage[loadacronymstyles]{stmglossariesacronymitems}
-\usepackage{stmglossariesacronymitems}
-\end{verbatim}
-
-or
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariesacronymstyles}.
 
 \begin{verbatim}
-\usepackage[noloadacronymstyles]{stmglossariesacronymitems}
+\usepackage[styles=true]{stmglossariesacronymitems}
 \end{verbatim}
 
-\texttt{loadacronymstyles} is the default and loads the styles. It is used in case \texttt{noloadacronymstyles} is not set explicitly. So the 
+\texttt{styles=true} is the default and loads the styles. It is used in case \texttt{styles=false} is not set explicitly.
 
 \subsection{Load the symbols package}
 \label{sec:usage:preamble:symbolspackage}
@@ -355,23 +348,15 @@ to your preamble. In case you have not loaded \textit{glossaries} with your own 
 
 \subsubsection{Options}
 
-\paragraph{Option \protect\textit{loadsymbolstyles} and \protect\textit{noloadsymbolstyles}}
+\paragraph{Option \protect\textit{styles}}
 
-Load or do not load the style definitions from \texttt{stmglossariessymbolstyles} with
-
-\begin{verbatim}
-\usepackage[loadsymbolstyles]{stmglossariessymbolitems}
-\usepackage{stmglossariessymbolitems}
-\end{verbatim}
-
-or
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariessymbolstyles}.
 
 \begin{verbatim}
-\usepackage[noloadsymbolstyles]{stmglossariessymbolitems}
+\usepackage[styles=true]{stmglossariessymbolitems}
 \end{verbatim}
 
-\texttt{loadacronymstyles} is the default and creates the styles. It is used in case \texttt{noloadacronymstyles} is not set explicitly.
-
+\texttt{styles=true} is the default and creates the styles. It is used in case \texttt{styles=false} is not set explicitly.
 
 \section{Usage - in the document}
 \label{sec:usage:document}

@@ -73,41 +73,34 @@
   ]{glossaries}%
 }%
 
-\@ifpackageloaded{amsfonts}{%
-%
-}{%
-  \RequirePackage{amsfonts}%
-}%
+\@ifpackageloaded{amsfonts}{}{\RequirePackage{amsfonts}}%
+\@ifpackageloaded{multicol}{}{\RequirePackage{multicol}}%
+\@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}%
 
-\@ifpackageloaded{multicol}{%
-%
-}{%
-  \RequirePackage{multicol}%
-}%
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
-\@ifpackageloaded{graphicx}{% for scalebox
-%
-}{%
-  \RequirePackage{graphicx}%
-}%
-
-%------------------
+% ---------------------------
 % Options
-%------------------
+% ---------------------------
 
-% Do not load the styles
-% Default behaviour is to load the styles to really have a benefit
-% https://tex.stackexchange.com/a/135255/44634
-% Load the default
-\newif\ifstmglossaries@loadsymbolstyles
-\DeclareOption{loadsymbolstyles}{\stmglossaries@loadsymbolstylestrue}
-\DeclareOption{noloadsymbolstyles}{\stmglossaries@loadsymbolstylesfalse}
+\SetupKeyvalOptions{%
+  family=stmglossariessymbolitems,%
+  prefix=stmglossariessymbolitems@,%
+  setkeys=\kvsetkeys,%
+}
 
-\ExecuteOptions{loadsymbolstyles} % default is to load the styles
+% Load styles
+\DeclareBoolOption[true]{styles}
 
-\ProcessOptions\relax
+% Process options
+\ProcessKeyvalOptions{stmglossariessymbolitems}
 
-\ifstmglossaries@loadsymbolstyles
+% ---------------------------
+% Modules
+% ---------------------------
+
+\ifstmglossariessymbolitems@styles
   \RequirePackage{stmglossariessymbolstyles}
 \fi
 

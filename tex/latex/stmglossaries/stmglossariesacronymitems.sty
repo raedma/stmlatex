@@ -53,23 +53,30 @@
   ]{glossaries}%
 }%
 
-%------------------
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% ---------------------------
 % Options
-%------------------
+% ---------------------------
 
-% Do not load the styles
-% Default behaviour is to load the styles to really have a benefit
-% https://tex.stackexchange.com/a/135255/44634
-% Load the default
-\newif\ifstmglossaries@loadacronymstyles
-\DeclareOption{loadacronymstyles}{\stmglossaries@loadacronymstylestrue}
-\DeclareOption{noloadacronymstyles}{\stmglossaries@loadacronymstylesfalse}
+\SetupKeyvalOptions{%
+  family=stmglossariesacronymitems,%
+  prefix=stmglossariesacronymitems@,%
+  setkeys=\kvsetkeys,%
+}
 
-\ExecuteOptions{loadacronymstyles} % default is to load the styles
+% Load styles
+\DeclareBoolOption[true]{styles}
 
-\ProcessOptions\relax
+% Process options
+\ProcessKeyvalOptions{stmglossariesacronymitems}
 
-\ifstmglossaries@loadacronymstyles
+% ---------------------------
+% Modules
+% ---------------------------
+
+\ifstmglossariesacronymitems@styles
   \RequirePackage{stmglossariesacronymstyles}
 \fi
 

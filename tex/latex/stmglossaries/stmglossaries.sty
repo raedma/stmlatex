@@ -55,9 +55,9 @@
 % For options
 \@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
-%------------------
+% ---------------------------
 % Options
-%------------------
+% ---------------------------
 
 \SetupKeyvalOptions{%
   family=stmglossaries,%
@@ -94,30 +94,22 @@
 
 % Load the acronyms
 \ifstmglossaries@acronyms
-  \@ifpackageloaded{stmglossariesacronymitems}{%
-  %
-  }{%
-    %\RequirePackage{stmglossariesacronymitems}%
+  \@ifpackageloaded{stmglossariesacronymitems}{}{%
     \ifstmglossaries@styles
-      %\RequirePackage[loadacronymstyles]{stmglossariesacronymitems}
-      \RequirePackage{stmglossariesacronymitems}
+      \RequirePackage[styles=true]{stmglossariesacronymitems}
     \else
-      \RequirePackage[noloadacronymstyles]{stmglossariesacronymitems}
+      \RequirePackage[styles=false]{stmglossariesacronymitems}
     \fi
   }%
 \fi
 
 % Load the symbols
 \ifstmglossaries@symbols
-  \@ifpackageloaded{stmglossariessymbolitems}{%
-  %
-  }{%
-    %\RequirePackage{stmglossariessymbolitems}%
+  \@ifpackageloaded{stmglossariessymbolitems}{}{%
     \ifstmglossaries@styles
-      %\RequirePackage[loadsymbolstyles]{stmglossariessymbolitems}
-      \RequirePackage{stmglossariessymbolitems}
+      \RequirePackage[styles=true]{stmglossariessymbolitems}
     \else
-      \RequirePackage[noloadsymbolstyles]{stmglossariessymbolitems}
+      \RequirePackage[styles=false]{stmglossariessymbolitems}
     \fi
   }%
 \fi
