@@ -264,6 +264,32 @@ This is a test for the externalization of a \texttt{tikzpicture}.
 \tikzexternaldisable
 \end{figure}
 
+\section{Known issues}
+
+\begin{description}[leftmargin=\parindent,labelindent=\parindent,style=nextline]
+% 
+\item[\texttt{misplaced \textbackslash printindex} error.]\mbox{}\\[-2.0\baselineskip]%Externalization in combination with the \texttt{imakeidx} package. 
+  \begin{itemize}[noitemsep]
+    \item There is an issue with the externalization of \texttt{tikzpicture}s in case the \texttt{imakeidx} package is used.
+    \item There are two possibilities:
+    \begin{enumerate}
+      \item Load the \texttt{imakeidx} before any call to \texttt{stmtikzexternalization}
+\begin{verbatim}
+\usepackage{imakeidx}
+\usepackage[externalization=true]{stmtikz}
+\end{verbatim}
+      \item Load the package without externalization and load the feature after the call to  \texttt{imakeidx}
+\begin{verbatim}
+\usepackage[externalization=false]{stmtikz}
+\usepackage{imakeidx}
+\usepackage{stmtikzexternalization}
+\end{verbatim}
+    \end{enumerate}
+
+  \end{itemize}
+%
+\end{description}
+
 \newpage
 \appendix
 
