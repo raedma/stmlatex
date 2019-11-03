@@ -38,11 +38,14 @@
 
 % Load amsmath to defined math operators
 \@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
+\@ifpackageloaded{amssymb}{}{\RequirePackage{amssymb}}%
+\@ifpackageloaded{graphicx}{}{\RequirePackage{graphicx}}%
 
 % ---------------------------
 % Modules
 % ---------------------------
 
+% Oeprators
 \@ifundefined{dev}{\DeclareMathOperator{\dev}{dev}}{}
 \@ifundefined{divergenceoperator}{\DeclareMathOperator{\divergenceoperator}{div}}{}
 \@ifundefined{erf}{\DeclareMathOperator{\erf}{erf}}{}
@@ -61,6 +64,23 @@
 
 % shorter minus sign
 \@ifundefined{minus}{\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}}{}
+
+% Symbols for static equilibrium conditions:
+\newcommand*\curveplus{%
+  \mathbin{\rotatebox[origin=c]{90}{$\m@th\curvearrowleft$}+}%
+}
+
+\newcommand*\rightplus{%
+  \mathpalette\@rightplus\relax%
+}
+  
+\newcommand*\@rightplus[1]{%
+  \mathbin{\vcenter{\hbox{$\m@th\overset{#1+}{\to}$}}}%
+}
+
+\newcommand*\upplus{%
+  \mathbin{+\mathord\uparrow}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmmath package
+%
+% Usage
+%  - Compile using 'arara stmmath.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{stmdate}
+\usepackage{stmmath}
+\usepackage{stmlistings}
+\usepackage{tabularx}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmmath package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the math definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/amsmath}{amsmath} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Commands}
+
+\subsection{Operators}
+
+\begin{tabularx}{\linewidth}{Xc}
+\verb+\dev+ & $\dev$\\
+\verb+\dif+ & $\dif$\\
+\verb+\divergenceoperator+ & $\divergenceoperator$\\
+\verb+\erf+ & $\erf$\\
+\verb+\sign+ & $\sign$\\
+\verb+\sph+ & $\sph$\\
+\verb+\spur+ & $\spur$\\
+\verb+\Grad+ & $\Grad$\\
+\verb+\grad+ & $\grad$
+\end{tabularx}
+
+\subsection{Symbols}
+
+\begin{tabularx}{\linewidth}{Xc}
+\verb+\minus+ & $\minus$\\
+\verb+\curveplus+ & $\curveplus$\\
+\verb+\rightplus+ & $\rightplus$\\
+\verb+\upplus+ & $\upplus$
+\end{tabularx}
+
+\section{Environments}
+
+\newpage
+
+\appendix
+
+\newpage
+\section{The code}
+
+\subsection{stmmath.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmmath/stmmath.sty}
+
+\end{document}
