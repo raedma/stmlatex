@@ -1,0 +1,198 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmdate package
+%
+% Usage
+%  - Compile using 'arara stmdate.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.auxlock', '*.bbl', '*.bcf', '*.blg', '*.dpth', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[%
+  commands=true,%
+  styles=true,%
+]{stmdate}
+\usepackage{stmlistings}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmdate package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the date definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/datetime2}{datetime2} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmdate} package}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads date styles and commands commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmdatestyles.sty+
+  \item \verb+stmdatecommands.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined date styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmdate}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{commands}} 
+\label{sec:usage:preamble:wholepackage:options:commands}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of specific date commands.
+
+\begin{verbatim}
+\usepackage[commands=true|false]{stmdate}
+\end{verbatim}
+
+\texttt{commands=true} is the default. It is used in case \texttt{commands=false} is not set explicitly.
+
+\subsection{\protect\texttt{stmdatestyles}}
+\label{sec:usage:preamble:styles}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:styles:description}
+
+This package contains styles for displaying dates in different formats. These can be used by commands from the underlying \href{https://ctan.org/pkg/datetime2}{datetime2} package, e.g. with the style definitions from \autoref{sec:usage:preamble:styles:styles}
+
+\begin{verbatim}
+\DTMsetdatestyle{$STYLENAME$}\DTMtoday
+\end{verbatim}
+
+or use the convenience commands from \autoref{sec:usage:preamble:commands}.
+
+\subsubsection{Styles}
+\label{sec:usage:preamble:styles:styles}
+
+These are the date styles and the respective output.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ll}
+\texttt{versiondatestyle} & \formatdate[versiondatestyle]{\DTMToday}
+\end{tabular}
+\end{table}
+
+\subsection{\protect\texttt{stmdatecommands}}
+\label{sec:usage:preamble:commands}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:commands:description}
+
+These are commands to manipulate dates and their display.
+
+\subsubsection{Command \protect\texttt{\textbackslash formatdate}}
+\label{sec:usage:preamble:commands:description}
+
+\paragraph{Examples}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ll}
+\verb+\formatdate[versiondatestyle]{\DTMToday}+ & \formatdate[versiondatestyle]{\DTMToday}\\
+\verb+\formatdate{\today}+ & \formatdate{\today}\\
+\verb+\formatdate[versiondatestyle]{\today}+ & \formatdate[versiondatestyle]{\today}\\
+\verb+\formatdate{2019}[2][3]+ & \formatdate{2019}[2][3]\\
+\verb+\formatdate[versiondatestyle]{2019}[2][3]+ & \formatdate[versiondatestyle]{2019}[2][3]\\
+\verb+\formatdate[versiondatestyle]{2019}[11][3]+ & \formatdate[versiondatestyle]{2019}[11][3]\\
+\verb+\formatdate{2019}[2]+ & \formatdate{2019}[2]\\
+\verb+\formatdate[versiondatestyle]{2019}[2]+ & \formatdate[versiondatestyle]{2019}[2]\\
+\verb+\formatdate{2019}[2][]+ & \formatdate{2019}[2][]\\
+\verb+\formatdate[versiondatestyle]{2019}[2][]+ & \formatdate[versiondatestyle]{2019}[2][]\\
+\verb+\formatdate{2019}[][]+ & \formatdate{2019}[][]\\
+\verb+\formatdate[versiondatestyle]{2019}[][]+ & \formatdate[versiondatestyle]{2019}[][]
+\end{tabular}
+\end{table}
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{stmdate.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmdate/stmdate.sty}
+
+\newpage
+\subsection{stmdatecommands.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmdate/stmdatecommands.sty}
+
+\newpage
+\subsection{stmdatestyles.sty}
+
+\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmdate/stmdatestyles.sty}
+
+\end{document}

@@ -30,47 +30,44 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmdate}[2019/10/27 STMs custom LaTeX date definitions]
+\ProvidesPackage{stmdatecommands}[2019/10/27 STMs custom LaTeX date commands definitions]
 
 % ---------------------------
 % Package
 % ---------------------------
 
 \@ifpackageloaded{datetime2}{}{\RequirePackage[style=iso]{datetime2}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+\@ifpackageloaded{stmdatestyles}{}{\RequirePackage{stmdatestyles}}%
+\@ifpackageloaded{xparse}{}{\RequirePackage{xparse}}%
+\@ifpackageloaded{ifmtarg}{}{\RequirePackage{ifmtarg}}%
 
 % ---------------------------
-% Options
+% Commands
 % ---------------------------
 
-\SetupKeyvalOptions{%
-  family=stmdate,%
-  prefix=stmdate@,%
-  setkeys=\kvsetkeys,%
+% https://tex.stackexchange.com/a/33753
+\DeclareDocumentCommand{\formatdate}{%
+  O{versiondatestyle}%style - optional, default in brackets
+  m% date/year
+  o% month - optional
+  o% day - optional
+}{%
+  \DTMsetdatestyle{#1} % The first (optional) argument is the style
+  \IfNoValueTF{#3}% There is just one argument defined after the style - the date
+    {%
+      \@ifmtarg{#2}{}{#2}%
+    }%
+    {%
+      \DTMdate{%
+        \@ifmtarg{#2}{1}{#2}
+        -%
+        \IfNoValueTF{#3}{1}{\@ifmtarg{#3}{1}{#3}}%
+        -%
+        \IfNoValueTF{#4}{1}{\@ifmtarg{#4}{1}{#4}}%
+      }%
+    }%
 }
 
-% Styles
-\DeclareBoolOption[true]{commands}
-
-% Styles
-\DeclareBoolOption[true]{styles}
-
-% Process options
-\ProcessKeyvalOptions{stmdate}
-
-% ---------------------------
-% Modules
-% ---------------------------
-
-% Commands
-\ifstmdate@commands
-  \RequirePackage{stmdatecommands}
-\fi
-
-% Styles
-\ifstmdate@styles
-  \RequirePackage{stmdatestyles}
-\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
