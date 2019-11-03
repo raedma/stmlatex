@@ -75,6 +75,13 @@
   }%
 }
 
+% Default arrow tip
+\tikzset{
+  stmdefaultarrow/.style={                           % Define arrow style
+    >=Stealth,                                % >=latex
+  }
+}
+
 % A cross for markings in plots
 % https://tex.stackexchange.com/a/124064
 \tikzset{%
@@ -106,7 +113,7 @@
 
 \tikzset{%
   stmmarkuptext/.style={%
-   text=stmmarkupcolor,%
+    text=stmmarkupcolor,%
   }%
 }
 

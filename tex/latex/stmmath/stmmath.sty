@@ -1,0 +1,70 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is a interface to all stm tikz definitions
+% Based upon the amsmath package:
+%   https://ctan.org/pkg/amsmath
+%
+% Usage
+%  - Premble:
+%    - \usepackage{stmmath}
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmmath}[2019/10/27 STMs custom LaTeX math definitions]
+
+% ---------------------------
+% Package
+% ---------------------------
+
+% Load amsmath to defined math operators
+\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
+
+% ---------------------------
+% Modules
+% ---------------------------
+
+\@ifundefined{dev}{\DeclareMathOperator{\dev}{dev}}{}
+\@ifundefined{divergenceoperator}{\DeclareMathOperator{\divergenceoperator}{div}}{}
+\@ifundefined{erf}{\DeclareMathOperator{\erf}{erf}}{}
+\@ifundefined{sign}{\DeclareMathOperator{\sign}{sign}}{}
+\@ifundefined{sph}{\DeclareMathOperator{\sph}{sph}}{}
+\@ifundefined{spur}{\DeclareMathOperator{\spur}{Tr}}{}
+\@ifundefined{Grad}{\DeclareMathOperator{\Grad}{Grad}}{}% englisch gradient w.r.t material coordinates
+\@ifundefined{grad}{\DeclareMathOperator{\grad}{grad}}{}% englisch gradient w.r.t spatial coordinates
+
+% ---------------------------
+% Newcommands
+% ---------------------------
+
+% Upright dif-symbol
+\@ifundefined{dif}{\newcommand*\dif{\mathop{}\!\mathrm{d}}}{}
+
+% shorter minus sign
+\@ifundefined{minus}{\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput

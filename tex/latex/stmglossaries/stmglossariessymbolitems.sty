@@ -112,28 +112,7 @@
 % Define required commands         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Load amsmath to defined math operators
-\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
-
-% \div
-\@ifundefined{dev}{\DeclareMathOperator{\dev}{dev}}{}
-\@ifundefined{divergenceoperator}{\DeclareMathOperator{\divergenceoperator}{div}}{}
-\@ifundefined{erf}{\DeclareMathOperator{\erf}{erf}}{}
-\@ifundefined{sign}{\DeclareMathOperator{\sign}{sign}}{}
-\@ifundefined{sph}{\DeclareMathOperator{\sph}{sph}}{}
-\@ifundefined{spur}{\DeclareMathOperator{\spur}{Tr}}{}
-\@ifundefined{Grad}{\DeclareMathOperator{\Grad}{Grad}}{}% englisch gradient w.r.t material coordinates
-\@ifundefined{grad}{\DeclareMathOperator{\grad}{grad}}{}% englisch gradient w.r.t spatial coordinates
-
-% ---------------------------
-% Newcommands
-% ---------------------------
-
-% Upright dif-symbol
-\@ifundefined{dif}{\newcommand*\dif{\mathop{}\!\mathrm{d}}}{}
-
-% shorter minus sign
-\@ifundefined{minus}{\newcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}}{}
+\@ifpackageloaded{stmmath}{}{\RequirePackage{stmmath}}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conventions                      %
