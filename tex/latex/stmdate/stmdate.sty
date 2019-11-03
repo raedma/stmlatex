@@ -47,7 +47,8 @@
 % ---------------------------
 
 \DTMnewdatestyle{versiondate}{%
-  \renewcommand{\DTMdisplaydate}[4]{\number##1\number##2\number##3}%
+  %\renewcommand{\DTMdisplaydate}[4]{\number##1\number##2\number##3}%
+  \renewcommand{\DTMdisplaydate}[4]{\number##1\DTMtwodigits##2\DTMtwodigits##3}%
   \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
 }
 

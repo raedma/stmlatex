@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmmath package
+%
+% Usage
+%  - Compile using 'arara stmmath.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{stmcolors}
+\usepackage{stmdate}
+\usepackage{stmmath}
+\usepackage{stmlistings}
+
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{tabularx}
+\usepackage{xspace}
+
+\usepackage{hyperref}
+
+%\newcommand{\package}[2]{\subsection*{#1}\unskip(by #2)\par\medskip\noindent\ignorespaces}
+\newcommand{\package}[1]{\subsection*{#1}\par\medskip\noindent\ignorespaces}
+\newcommand{\stmlatex}{STM\LaTeX\xspace}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{\stmlatex}
+\subtitle{%
+Overview and Installation Guide\\
+Copyright \copyright{} \the\year{} DLR FA STM\\v\DTMsetdatestyle{versiondate}\DTMtoday\\
+{\bigskip\small\normalfont Thankfully inspired by the RM-\LaTeX package guide.}
+}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Titlepage
+% ---------------------------
+\maketitle
+
+% Abstract
+% ---------------------------
+
+\begin{abstract}
+\stmlatex is a template collection for \LaTeX{} documents. All features and templates are created due to personal interest and are subject to change. All packages are tested using MiKTeX 2.9. However, they are considered as \enquote{as-is} and without any warranty. For questions, suggestion and feedback, please contact the author of the particular package.
+
+\begin{center}
+\color{red}
+\bfseries
+\stmlatex requires an up to date \LaTeX{} installation.
+\end{center}
+\end{abstract}
+
+% TOC
+% ---------------------------
+
+\tableofcontents
+
+% Content
+% ---------------------------
+
+\section{An Overview}
+
+The following templates and tools are available in \stmlatex. Further information on each package can be found in the package documentation.
+
+\package{stmcolors}
+Color definitions.
+
+\package{stmconditionallox}
+Conditional lists of float environments.
+
+\package{stmdate}
+Date definitions.
+
+\package{stmglossaries}
+Acronyms and symbol definitions.
+
+\package{stmlanguage}
+Language definitions.
+
+\package{stmlistings}
+Listings definitions.
+
+\package{stmmath}
+Math definitions.
+
+\package{stmplots}
+Plot definitions.
+
+\package{stmtikz}
+Drawing definitions.
+
+\package{stmunits}
+Units definitions.
+
+\section{Installation}
+
+The \stmlatex package can be downloaded or cloned from \url{https://github.com/raedma/stmlatex}. The installation procedure for the \stmlatex package on different operating systems is explained in the following.
+
+% Windows
+\subsection{Windows: MiKTeX}
+
+In order to correctly install \stmlatex on a Windows system with MikTeX the following steps have to be performed. 
+
+\begin{enumerate}
+  \item Copy \stmlatex to any desired path, e.\,g. to \texttt{D:\textbackslash My-LaTeX-Templates\textbackslash STMLaTeX\textbackslash}. It is important that you do not change the directory structure inside the package.
+  \item Open the MikTeX Console GUI and add the \stmlatex package root path to the MikTeX root directory list. Currently, \texttt{Settings} $\rightarrow$ \texttt{Directories} $\rightarrow$ \texttt{Add} (Plus symbol). Click OK.
+\end{enumerate}
+
+% Linux
+\subsection{Linux: TeXLive}
+
+For an installation with TeXLive a user specific installation and an installation for all users is possible. Both possibilities are explained in the following subsections.
+
+% Installation by an User
+\subsubsection{Installation by an User}
+\begin{enumerate}		
+  \item Unpack the files into the user's \texttt{texmf/} directory. It is important that you do not change the directory structure.
+  \item Update the filename database by executing \texttt{mktexlsr}.
+  \item If you use Debian, you have to update the config files by running \texttt{update-updmap}.
+  \item Final you have to update the font maps. This is be done by calling \texttt{updmap}.
+\end{enumerate}
+
+% Installation for all Users
+\subsubsection{Installation for all Users}
+Please note: if yout want to install the \stmlatex package for all users, administrator rights are necessary.
+\begin{enumerate}
+  \item Unpack the files to \texttt{/usr/local/share/texmf/}.
+  \item Update the filename database by executing \texttt{sudo mktexlsr}.
+  \item If you use Debian, you have to update the config files by \texttt{sudo update-updmap}.
+  \item Final you have to update the font maps by executing \texttt{sudo updmap-sys}.
+\end{enumerate}
+
+% Getting started
+\section{Getting started}
+
+All files below \texttt{doc/} are self-running examples.
+
+\end{document}
