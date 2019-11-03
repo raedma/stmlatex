@@ -8,7 +8,7 @@
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmlistingsstyles}
+%    - \usepackage{stmlistingscommands}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,45 +30,19 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmlistingsstyles}[2019/10/27 STMs custom LaTeX listings style definitions]
+\ProvidesPackage{stmlistingscommands}[2019/10/27 STMs custom LaTeX listings definitions]
 
 % ---------------------------
 % Package
 % ---------------------------
 
-\@ifpackageloaded{listings}{}{\RequirePackage{listings}}%
-\@ifpackageloaded{stmcolors}{}{\RequirePackage{stmcolors}}%
+%\@ifpackageloaded{listings}{}{\RequirePackage{listings}}%
 
 % ---------------------------
-% Styles
+% Commands
 % ---------------------------
 
-\lstdefinestyle{basestyle}{
-  backgroundcolor=\color{boxgraycolor},
-  basicstyle=\ttfamily,
-}
-
-\lstdefinestyle{inlinecodestyle}{
-  backgroundcolor=\color{boxgraycolor},
-  basicstyle=\ttfamily,
-}
-
-\lstdefinestyle{scriptstyle}{
-  style=basestyle,
-  escapechar=\%,% char to escape out of listings and back to LaTeX
-}
-
-\lstdefinestyle{texcodestyle}{
-  language=[LaTeX]TeX,
-  style=basestyle,
-  breaklines=true,
-}
-
-\lstdefinestyle{inlinetexcodestyle}{
-  language=[LaTeX]TeX,
-  style=basestyle,
-  upquote=true,% Important for copy-paste
-}
+\newcommand*{\lstcomment}[1]{\hfill\makebox[5.25cm][l]{#1}}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

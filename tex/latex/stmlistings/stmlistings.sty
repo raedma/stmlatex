@@ -36,37 +36,50 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{listings}{%
-%
-}{%
-  \RequirePackage{listings}
-}%
-
-\@ifpackageloaded{stmcolors}{%
-%
-}{%
-  \RequirePackage{stmcolors}
-}%
+\@ifpackageloaded{listings}{}{\RequirePackage{listings}}%
+\@ifpackageloaded{stmcolors}{}{\RequirePackage{stmcolors}}%
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 % ---------------------------
+% Options
+% ---------------------------
+
+\SetupKeyvalOptions{%
+  family=stmlistings,%
+  prefix=stmlistings@,%
+  setkeys=\kvsetkeys,%
+}
+
 % Styles
-% ---------------------------
+\DeclareBoolOption[true]{styles}
 
-\@ifpackageloaded{stmlistingsstyles}{%
-%
-}{%
-  \RequirePackage{stmlistingsstyles}
-}%
-
-% ---------------------------
 % Environments
+\DeclareBoolOption[true]{environments}
+
+% Commands
+\DeclareBoolOption[true]{commands}
+
+% Process options
+\ProcessKeyvalOptions{stmlistings}
+
+% ---------------------------
+% Modules
 % ---------------------------
 
-\@ifpackageloaded{stmlistingsenvironments}{%
-%
-}{%
-  \RequirePackage{stmlistingsenvironments}
-}%
+% Styles
+\ifstmlistings@styles
+  \@ifpackageloaded{stmlistingsstyles}{}{\RequirePackage{stmlistingsstyles}}%
+\fi
+
+% Environments
+\ifstmlistings@environments
+  \@ifpackageloaded{stmlistingsenvironments}{}{\RequirePackage{stmlistingsenvironments}}%
+\fi
+
+% Commands
+\ifstmlistings@commands
+  \@ifpackageloaded{stmlistingscommands}{}{\RequirePackage{stmlistingscommands}}%
+\fi
 
 % ---------------------------
 % Preferences
