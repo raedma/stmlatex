@@ -85,11 +85,11 @@
 
 \newglossarystyle{stmacronymlabelstyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lX}}%
+    {\begin{longtabu} to \linewidth {lcX}}%
     {\end{longtabu}}%
   % Header line
   \renewcommand*{\glossaryheader}{%
-    \textbf{Acronym} & \textbf{Description}
+    \textbf{Label} & \textbf{Acronym} & \textbf{Description}
     \tabularnewline%
     \tabularnewline%
     \endhead%
@@ -101,7 +101,7 @@
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
   \renewcommand*{\glossaryentryfield}[5]{%
     \glsentrycounterlabel{##1} &%
-    %\glsentryitem{##1}\glstarget{##1}{##2} %&%
+    \glsentryitem{##1}\glstarget{##1}{##2}&%
     ##3\glspostdescription ##5% Description
     \tabularnewline%
   }
