@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % This file includes the common LaTeX
-% acronym definitions
+% symbol definitions
 % for structural mechanics
 %
 % It can be used independently if only
@@ -60,48 +60,19 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmglossariessymbolitems}[2019/10/27 STMs custom LaTeX acronym definitions]
+\ProvidesPackage{stmglossariessymbolsitems}[2019/10/27 STMs custom LaTeX symbol definitions]
 
 % If not loaded in advance, load the glossaries package with some default options
-\@ifpackageloaded{glossaries}{%
-%
-}{%
-  \RequirePackage[%
-    acronym,   % create a list of acronyms
-    nomain,    % do not use the main glossary
-    toc,       % add glossary titles to table of contents
-  ]{glossaries}%
-}%
+\@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
 
+%
 \@ifpackageloaded{amsfonts}{}{\RequirePackage{amsfonts}}%
-\@ifpackageloaded{multicol}{}{\RequirePackage{multicol}}%
 
 % For options
 \@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
-% ---------------------------
-% Options
-% ---------------------------
-
-\SetupKeyvalOptions{%
-  family=stmglossariessymbolitems,%
-  prefix=stmglossariessymbolitems@,%
-  setkeys=\kvsetkeys,%
-}
-
-% Load styles
-\DeclareBoolOption[true]{styles}
-
-% Process options
-\ProcessKeyvalOptions{stmglossariessymbolitems}
-
-% ---------------------------
-% Modules
-% ---------------------------
-
-\ifstmglossariessymbolitems@styles
-  \RequirePackage{stmglossariessymbolstyles}
-\fi
+% For math symbols
+\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Functionality                    %
@@ -125,7 +96,6 @@
 % Own glossaries                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \newglossary[slg1]{coordinatesystemlist}{syi1}{syg1}{Coordinate systems}
 \newglossary[slg1]{scalarlist}{syi1}{syg1}{Scalars}
 \newglossary[slg2]{vectorlist}{syi2}{syg2}{Vectors}
 \newglossary[slg3]{matrixlist}{syi3}{syg3}{Matrices \& Tensors}
@@ -133,6 +103,8 @@
 \newglossary[slg5]{indexlist}{syi5}{syg5}{Indices}
 \newglossary[slg6]{exponentlist}{syi6}{syg6}{Exponents}
 \newglossary[slg7]{operatorlist}{syi7}{syg7}{Operators}
+\newglossary[slg8]{operatorhelperlist}{syi8}{syg8}{DO NOT PRINT}
+\newglossary[slg9]{compatibilitylist}{syi9}{syg9}{DO NOT PRINT}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Commands                         %
@@ -148,51 +120,8 @@
 \newcommand{\romandoublestatesymbol}[1]{\underline{\mathbb{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definitions                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Symbols                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Coordinate systems
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-% -----------------
-% Roman
-% -----------------
-
-% \newglossaryentry{symb:coordinate:123}{%
-%   symbol      ={\ensuremath{1$,$2$,$3}},%
-%   name        ={},%
-%   description ={Cartesian material coordinate system},%
-%   user1       ={},%
-%   type        =coordinatesystemlist,%
-%   sort        =rl123,%
-% }
-
-% \newglossaryentry{symb:coordinate:xyz}{%
-%   symbol      ={\ensuremath{x$,$y$,$z}},%
-%   name        ={},%
-%   description ={Cartesian coordinate system},%
-%   user1       ={},%
-%   type        =coordinatesystemlist,%
-%   sort        =rlxyz,%
-% }
-
-% -----------------
-% Greek
-% -----------------
-
-% \newglossaryentry{symb:coordinate:zetaetaxi}{%
-  % symbol      ={\ensuremath{\xi$,$\eta$,$\zeta}},%
-  % name        ={},%
-  % description ={Natural element coordinate system},%
-  % user1       ={},%
-  % type        =coordinatesystemlist,%
-  % sort        =glzetaetaxi,%
-% }
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Scalars
@@ -1643,6 +1572,32 @@
 % -----------------
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Operator helpers
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newglossaryentry{symb:operator:norm:left}{%
+  symbol      ={\ensuremath{\protect\lVert}},%
+  name        ={},%
+  description ={},%
+  user1       ={},%
+  user2       ={},%
+  user3       ={},%
+  type        =operatorhelperlist,%
+  sort        =onormleft,%
+}
+
+\newglossaryentry{symb:operator:norm:right}{%
+  symbol      ={\ensuremath{\protect\rVert}},%
+  name        ={},%
+  description ={},%
+  user1       ={},%
+  user2       ={},%
+  user3       ={},%
+  type        =operatorhelperlist,%
+  sort        =onormright,%
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Operators
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1697,11 +1652,11 @@
 }
 
 \newglossaryentry{symb:operator:mean}{%
-  symbol      ={\ensuremath{\bar{\left(\phantom{a}\right)}}},%
+  symbol      ={\ensuremath{\overline{\left(\phantom{a}\right)}}},%
   name        ={},%
   description ={Mean value},%
   user1       ={},%
-  user2       ={\ensuremath{\protect\bar{\protect\left(\protect\phantom{a}\protect\right)}}},%
+  user2       ={\ensuremath{\protect\overline{\protect\left(\protect\phantom{a}\protect\right)}}},%
   user3       ={},%
   type        =operatorlist,%
   sort        =omean,%
@@ -1719,12 +1674,15 @@
 }
 
 \newglossaryentry{symb:operator:norm}{%
-  symbol      ={\ensuremath{\left|\phantom{a}\right|}},%
+  %symbol      ={\ensuremath{\lVert\phantom{a}\rVert}},%
+  symbol      ={\ensuremath{\norm{\phantom{a}}}},%
   name        ={},%
   description ={Norm, all norms are taken to be the 2-norm},%
-  user1       ={\ensuremath{\protect\lVert}},%
+  %user1       ={\ensuremath{\protect\lVert}},%
+  user1       ={\ensuremath{\protect\glssymbol{symb:operator:norm:left}}},%
   user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
-  user3       ={\ensuremath{\protect\rVert}},%
+  %user3       ={\ensuremath{\protect\rVert}},%
+  user3       ={\ensuremath{\protect\glssymbol{symb:operator:norm:right}}},%
   type        =operatorlist,%
   sort        =onorm,%
 }
@@ -1751,46 +1709,43 @@
   sort        =ocsysmaterial,%
 }
 
-\newglossaryentry{symb:operator:dif}{%
+\newglossaryentry{symb:operator:differential:Leibnitz}{%
   symbol      ={\ensuremath{\dif}},%
   name        ={},%
-  description ={Derivative},%
-  %user1       ={},%
-  user1       ={$\dif$},%
-  %user2       ={},%
+  description ={Differential operator, Leibnitz notation},%
+  user1       ={\ensuremath{\dif}},%
   user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
   user3       ={},%
   type        =operatorlist,%
-  sort        =odif,%
+  sort        =odifferentialLeibnitz,%
 }
 
-\newglossaryentry{symb:operator:dif:partial}{%
-  symbol      ={\ensuremath{\partial\left(\phantom{a}\right)}},%
+\newglossaryentry{symb:operator:differential:Lagrange}{%
+  symbol      ={\ensuremath{'}},%
   name        ={},%
-  description ={Partial differential operator},%
-  user1       ={\ensuremath{\partial}},%
-  user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
-  user3       ={},%
-  type        =operatorlist,%
-  sort        =odifpartial,%
-}
-
-\newglossaryentry{symb:operator:dif:short}{%
-  %symbol      ={\ensuremath{\left(\phantom{a}\right)_{,\left(x/y/z\right)}}},%
-  symbol      ={\ensuremath{\left(\phantom{a}\right)_{,x}}},%
-  name        ={},%
-  description ={Spatial derivative with respect to coordinate \ensuremath{x}},%
+  description ={Differential operator, Lagrange notation},%
   user1       ={},%
   user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
-  user3       ={\ensuremath{_{,x}}},%
+  user3       ={$'$},%
   type        =operatorlist,%
-  sort        =odifdx,%
+  sort        =odifferentialLagrange,%
 }
 
-\newglossaryentry{symb:operator:dif:short:time}{%
+\newglossaryentry{symb:operator:differential:Euler}{%
+  symbol      ={\ensuremath{D}},%
+  name        ={},%
+  description ={Differential operator, Euler notation},%
+  user1       ={D},%
+  user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
+  user3       ={},%
+  type        =operatorlist,%
+  sort        =odifferentialEuler,%
+}
+
+\newglossaryentry{symb:operator:differential:Newton}{%
   symbol      ={\ensuremath{\dot{\left(\phantom{a}\right)}}},%
   name        ={},%
-  description ={Derivative with respect to time \glssymbol{symb:scalar:time}},%
+  description ={Derivative with respect to time \glssymbol{symb:scalar:time}, Newton notation},%
   user1       ={},%
   user2       ={\ensuremath{\protect\dot{\protect\left(\protect\phantom{a}\protect\right)}}},%
   user3       ={},%
@@ -1798,7 +1753,7 @@
   sort        =odifdt,%
 }
 
-\newglossaryentry{symb:operator:dif:short:time2}{%
+\newglossaryentry{symb:operator:differential:Newton:2}{%
   symbol      ={\ensuremath{\ddot{\left(\phantom{a}\right)}}},%
   name        ={},%
   description ={2\textsuperscript{nd} derivative with respect to time \glssymbol{symb:scalar:time}},%
@@ -1809,13 +1764,33 @@
   sort        =odifdt2,%
 }
 
-\newglossaryentry{symb:operator:div}{%
+\newglossaryentry{symb:operator:differential:partial}{%
+  symbol      ={\ensuremath{\partial\left(\phantom{a}\right)}},%
+  name        ={},%
+  description ={Partial differential operator},%
+  user1       ={\ensuremath{\partial}},%
+  user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
+  user3       ={},%
+  type        =operatorlist,%
+  sort        =odifpartial,%
+}
+
+\newglossaryentry{symb:operator:differential:partial:short}{%
+  symbol      ={\ensuremath{\left(\phantom{a}\right)_{,x}}},%
+  name        ={},%
+  description ={Spatial derivative with respect to coordinate \ensuremath{x}},%
+  user1       ={},%
+  user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
+  user3       ={\ensuremath{_{,x}}},%
+  type        =operatorlist,%
+  sort        =odifdx,%
+}
+
+\newglossaryentry{symb:operator:divergence}{%
   symbol      ={\ensuremath{\divergenceoperator}},%
   name        ={},%
   description ={Divergence},%
-  %user1       ={},%
   user1       ={$\divergenceoperator$},%
-  %user2       ={},%
   user2       ={\ensuremath{\protect\left(\protect\phantom{a}\protect\right)}},%
   user3       ={},%
   type        =operatorlist,%
@@ -1823,7 +1798,7 @@
 }
 
 \newglossaryentry{symb:operator:matrix:inverse}{%
-  symbol      ={\ensuremath{\left(\phantom{a}\right)^{\minus1}}},%
+  symbol      ={\ensuremath{\minus1}},%
   name        ={},%
   description ={Inverse matrix},%
   user1       ={},%
@@ -1834,7 +1809,8 @@
 }
 
 \newglossaryentry{symb:operator:matrix:transpose}{%
-  symbol      ={\ensuremath{\left(\phantom{a}\right)^T}},%
+  %symbol      ={\ensuremath{\left(\phantom{a}\right)^T}},%
+  symbol      ={\ensuremath{T}},%
   name        ={},%
   description ={Transpose matrix},%
   user1       ={},%
@@ -1842,6 +1818,58 @@
   user3       ={\ensuremath{^T}},%
   type        =operatorlist,%
   sort        =omatrixtranspose,%
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Compatibility
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newglossaryentry{symb:operator:dif}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:differential:Leibnitz}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odif,%
+}
+
+\newglossaryentry{symb:operator:dif:partial}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:differential:partial}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odifpartial,%
+}
+
+\newglossaryentry{symb:operator:dif:short}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:differential:partial:Newton}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odifdx,%
+}
+
+\newglossaryentry{symb:operator:dif:short:time}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:differential:Newton}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odifdt,%
+}
+
+\newglossaryentry{symb:operator:dif:short:time:2}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:differential:Newton:2}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odifdt2,%
+}
+
+\newglossaryentry{symb:operator:div}{%
+  symbol      ={\ensuremath{\glssymbol{symb:operator:divergence}}},%
+  name        ={},%
+  description ={},%
+  type        =compatibilitylist,%
+  sort        =odiv,%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

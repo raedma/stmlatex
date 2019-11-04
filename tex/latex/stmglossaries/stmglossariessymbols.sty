@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % This file includes the common LaTeX
-% glossaries definitions
+% symbols definitions
 % (acronyms, glossaries, symbols)
 % for structural mechanics
 % Based upon the glossaries package:
@@ -39,7 +39,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmglossaries}[2019/11/03 STMs custom LaTeX glossaries definitions]
+\ProvidesPackage{stmglossariessymbols}[2019/11/03 STMs custom LaTeX symbol definitions]
 
 % If not loaded in advance, load the glossaries package with some default options
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
@@ -52,18 +52,12 @@
 % ---------------------------
 
 \SetupKeyvalOptions{%
-  family=stmglossaries,%
-  prefix=stmglossaries@,%
+  family=stmglossariessymbols,%
+  prefix=stmglossariessymbols@,%
   setkeys=\kvsetkeys,%
 }
 
-% Acronyms
-\DeclareBoolOption[true]{acronyms}
-
-% Symbols
-\DeclareBoolOption[true]{symbols}
-
-% Load items
+% Load styles
 \DeclareBoolOption[true]{items}
 
 % Load styles
@@ -72,43 +66,26 @@
 % Load commands
 \DeclareBoolOption[true]{commands}
 
-% Load morewrites
-\DeclareBoolOption[true]{morewrites}
-
 % Process options
-\ProcessKeyvalOptions{stmglossaries}
+\ProcessKeyvalOptions{stmglossariessymbols}
 
 % ---------------------------
 % Modules
 % ---------------------------
 
-% Load morewrites
-\@ifpackageloaded{morewrites}{}{%
-  \ifstmglossaries@morewrites
-    \RequirePackage{morewrites}
-  \fi
-}%
-
-
-% Load the acronyms
-\ifstmglossaries@acronyms
-  \@ifpackageloaded{stmglossariesacronyms}{}{%
-    \RequirePackage[%
-      items={\ifstmglossaries@items true\else false\fi},%
-      styles={\ifstmglossaries@styles true\else false\fi},%
-    ]{stmglossariesacronyms}
-  }%
+% Load the items
+\ifstmglossariessymbols@items
+  \@ifpackageloaded{stmglossariessymbolsitems}{}{\RequirePackage{stmglossariessymbolsitems}}
 \fi
 
-% Load the symbols
-\ifstmglossaries@symbols
-  \@ifpackageloaded{stmglossariessymbols}{}{%
-    \RequirePackage[%
-      items={\ifstmglossaries@items true\else false\fi},%
-      styles={\ifstmglossaries@styles true\else false\fi},%
-      commands={\ifstmglossaries@commands true\else false\fi},%
-    ]{stmglossariessymbols}
-  }%
+% Load the styles
+\ifstmglossariessymbols@styles
+  \@ifpackageloaded{stmglossariessymbolsstyles}{}{\RequirePackage{stmglossariessymbolsstyles}}
+\fi
+
+% Load the commands
+\ifstmglossariessymbols@commands
+  \@ifpackageloaded{stmglossariessymbolscommands}{}{\RequirePackage{stmglossariessymbolscommands}}
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

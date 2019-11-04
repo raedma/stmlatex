@@ -58,6 +58,7 @@
 ]{stmglossaries}
 \usepackage{stmlistings}
 
+\usepackage{tabularx}
 \usepackage{hyperref}
 
 % ---------------------------
@@ -233,26 +234,55 @@ There are multiple packages included:
 \begin{itemize}[noitemsep]
   %\setlength\itemsep{0.25ex}
   \item \texttt{stmglossaries.sty}
-  \item \texttt{stmglossariesacronymitems.sty}
-  \item \texttt{stmglossariesacronymstyles.sty}
-  \item \texttt{stmglossariessymbolitems.sty}
-  \item \texttt{stmglossariessymbolstyles.sty}
+  \item \texttt{stmglossariesbase.sty}
+  \item \texttt{stmglossariesacronyms.sty}
+  \item \texttt{stmglossariesacronymsitems.sty}
+  \item \texttt{stmglossariesacronymsstyles.sty}
+  \item \texttt{stmglossariessymbols.sty}
+  \item \texttt{stmglossariessymbolsitems.sty}
+  \item \texttt{stmglossariessymbolsstyles.sty}
+  \item \texttt{stmglossariessymbolscommands.sty}
 \end{itemize}
 
-\texttt{stmglossariesacronymitems.sty} contains all acronym definitions. These can be used by the \texttt{\textbackslash gls}-like commands of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.1}{section 6.1 of the \texttt{glossaries} documentation}.
+\texttt{stmglossaries.sty} is a wrapper around the definitions for \texttt{acronyms} and \texttt{symbols} and has options to load both.
 
-\texttt{stmglossariesacronymstyles} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=\acronymtype,style=STYLENAME]+. See \autoref{sec:usage:styles:acronyms} for details.
+\texttt{stmglossariesbase.sty} loads the underlying base package.
 
-\texttt{stmglossariessymbolitems.sty} contains all symbol definitions. These can be used by the \texttt{\textbackslash glssymbol} command of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.2}{section 6.2 of the \texttt{glossaries} documentation}.
+\subsection{Acronyms}
+\label{sec:contents:acronyms}
 
-\texttt{stmglossariessymbolstyles} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=scalarlist,style=STYLENAME]+. See \autoref{sec:usage:styles:symbols} for details.
+\texttt{stmglossariesacronyms.sty} is the control package for acronyms. It can be used to control the acronym package modules.
 
-\texttt{stmglossaries.sty} is a wrapper around the definitions for \texttt{acronyms} and \texttt{symbols} and loads both.
+\texttt{stmglossariesacronymsitems.sty} contains all acronym definitions. These can be used by the \texttt{\textbackslash gls}-like commands of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.1}{section 6.1 of the \texttt{glossaries} documentation}.
+
+\texttt{stmglossariesacronymsstyles.sty} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=\acronymtype,style=STYLENAME]+. See \autoref{sec:usage:styles:acronyms} for details.
+
+\subsection{Symbols}
+\label{sec:contents:symbols}
+
+\texttt{stmglossariessymbols.sty} is the control package for symbols. It can be used to control the symbol package modules.
+
+\texttt{stmglossariessymbolsitems.sty} contains all symbol definitions. These can be used by the \texttt{\textbackslash glssymbol} command of \texttt{glossaries}, see \href{http://ftp.fau.de/ctan/macros/latex/contrib/glossaries/glossaries-user.pdf#section.6.2}{section 6.2 of the \texttt{glossaries} documentation}.
+
+\texttt{stmglossariessymbolsstyles.sty} contains implementations for the \texttt{style} option in a call to \verb+\printglossary[type=scalarlist,style=STYLENAME]+. See \autoref{sec:usage:styles:symbols} for details.
+
+\texttt{stmglossariessymbolscommands.sty} contains utility commands to facilitate the use of symbols and operators.
 
 \section{Usage - in the preamble}
 \label{sec:usage:preamble}
 
 There are different options to load acronyms, symbols or the whole thing. Additionally, the package offers some predefined styles to set your symbols in a nice way.
+
+\subsection{Base package}
+\label{sec:usage:preamble:base}
+
+\texttt{stmglossariesbase} loads the underlying base package. It must not be loaded explicitly by the user. All other packages check if the package was already loaded with
+
+\begin{verbatim}
+\usepackage{stmglossariesbase}
+\end{verbatim}
+
+In case you or another package have not loaded \textit{stmglossariesbase} with own options beforehand, the package will load the underlying base package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
 
 \subsection{Load the whole package - acronyms and symbols}
 \label{sec:usage:preamble:wholepackage}
@@ -263,7 +293,7 @@ This way, the acronym as well as the symbol items are loaded. Load the package b
 \usepackage{stmglossaries}
 \end{verbatim}
 
-to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+to your preamble.
 
 \subsubsection{Options}
 \label{sec:usage:preamble:wholepackage:options}
@@ -290,6 +320,17 @@ This is a boolean option. Expected values are either \texttt{true} or \texttt{fa
 
 \texttt{symbols=true} is the default and loads the symbols. It is used in case \texttt{symbols=false} is not set explicitly.
 
+\paragraph{Option \protect\textit{items}}
+\label{sec:usage:preamble:wholepackage:options:items}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the item definitions.
+
+\begin{verbatim}
+\usepackage[items=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{items=true} is the default and loads the styles. It is used in case \texttt{items=false} is not set explicitly.
+
 \paragraph{Option \protect\textit{styles}}
 \label{sec:usage:preamble:wholepackage:options:styles}
 
@@ -297,6 +338,17 @@ This is a boolean option. Expected values are either \texttt{true} or \texttt{fa
 
 \begin{verbatim}
 \usepackage[styles=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{styles=true} is the default and loads the styles. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{commands}}
+\label{sec:usage:preamble:wholepackage:options:commands}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the additional command definitions.
+
+\begin{verbatim}
+\usepackage[commands=true]{stmglossaries}
 \end{verbatim}
 
 \texttt{styles=true} is the default and loads the styles. It is used in case \texttt{styles=false} is not set explicitly.
@@ -321,42 +373,72 @@ This way, the acronyms are loaded. Load the package individually by adding
 \usepackage{stmglossariesacronymitems}
 \end{verbatim}
 
-to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+to your preamble.
 
 \subsubsection{Options}
 
-\paragraph{Option \protect\textit{styles}}
+\paragraph{Option \protect\textit{items}}
 
-This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariesacronymstyles}.
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the item definitions from \texttt{stmglossariesacronymsitems}.
 
 \begin{verbatim}
-\usepackage[styles=true]{stmglossariesacronymitems}
+\usepackage[items=true]{stmglossariesacronyms}
 \end{verbatim}
 
-\texttt{styles=true} is the default and loads the styles. It is used in case \texttt{styles=false} is not set explicitly.
+\texttt{items=true} is the default. It is used in case \texttt{items=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariesacronymsstyles}.
+
+\begin{verbatim}
+\usepackage[styles=true]{stmglossariesacronyms}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
 
 \subsection{Load the symbols package}
 \label{sec:usage:preamble:symbolspackage}
 
-This way, the acronyms are loaded. Load the package individually by adding
+This way, the symbols are loaded. Load the package individually by adding
 
 \begin{verbatim}
-\usepackage{stmglossariessymbolitems}
+\usepackage{stmglossariessymbols}
 \end{verbatim}
 
 to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
 
 \subsubsection{Options}
 
-\paragraph{Option \protect\textit{styles}}
+\paragraph{Option \protect\textit{items}}
 
-This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariessymbolstyles}.
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the item definitions from \texttt{stmglossariessymbolsitems}.
 
 \begin{verbatim}
-\usepackage[styles=true]{stmglossariessymbolitems}
+\usepackage[items=true]{stmglossariessymbols}
 \end{verbatim}
 
-\texttt{styles=true} is the default and creates the styles. It is used in case \texttt{styles=false} is not set explicitly.
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the style definitions from \texttt{stmglossariessymbolsstyles}.
+
+\begin{verbatim}
+\usepackage[styles=true]{stmglossariessymbols}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{commands}}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the command definitions from \texttt{stmglossariessymbolscommands}.
+
+\begin{verbatim}
+\usepackage[commands=true]{stmglossariessymbols}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
 
 \section{Usage - in the document}
 \label{sec:usage:document}
@@ -374,24 +456,6 @@ For a description of acronym styles, see \autoref{sec:usage:styles:acronyms}.
 
 \subsection{Symbols}
 \label{sec:usage:document:symbols}
-
-\subsubsection{Commands}
-\label{sec:usage:document:symbols:commands}
-
-There might be a time where you very locally want to define a symbol without adding it to the global list of symbol. Despite that, you want to make sure that the symbol, e.g. for a vector, a matrix or a state, uses the correct notation style.
-
-Therefore, \texttt{stmglossariessymbolitems} defines a couple of useful styling commands
-
-\begin{labeling}{\textbackslash romandoublestatesymbol}
-\item [\textbackslash romanscalarsymbol] A roman scalar symbol
-\item [\textbackslash greekscalarsymbol] A greek scalar symbol
-\item [\textbackslash romanvectorsymbol] A roman vector symbol
-\item [\textbackslash greekvectorsymbol] A greek vector symbol
-\item [\textbackslash romanmatrixsymbol] A roman matrix symbol
-\item [\textbackslash scalarstatesymbol] A greek matrix symbol
-\item [\textbackslash romanvectorstatesymbol] A roman vector state symbol
-\item [\textbackslash romandoublestatesymbol] A roman double state symbol
-\end{labeling}
 
 \subsubsection{Lists}
 \label{sec:usage:symbols:document:lists}
@@ -436,6 +500,46 @@ In case you want to combine the predefined lists and print a single combined lis
 \end{verbatim}
 
 as described in \href{https://ctan.net/macros/latex/contrib/glossaries/glossaries-user.pdf#section.16.1}{section 16.1 of the \texttt{glossaries} documentation}.
+
+\subsubsection{Commands}
+\label{sec:usage:document:symbols:commands}
+
+\paragraph{Styling}
+
+There might be a time where you very locally want to define a symbol without adding it to the global list of symbol. Despite that, you want to make sure that the symbol, e.g. for a vector, a matrix or a state, uses the correct notation style.
+
+Therefore, \texttt{stmglossariessymbolscommands} defines a couple of useful styling commands
+
+\begin{labeling}{\textbackslash romandoublestatesymbol}
+\item [\textbackslash romanscalarsymbol] A roman scalar symbol
+\item [\textbackslash greekscalarsymbol] A greek scalar symbol
+\item [\textbackslash romanvectorsymbol] A roman vector symbol
+\item [\textbackslash greekvectorsymbol] A greek vector symbol
+\item [\textbackslash romanmatrixsymbol] A roman matrix symbol
+\item [\textbackslash scalarstatesymbol] A greek matrix symbol
+\item [\textbackslash romanvectorstatesymbol] A roman vector state symbol
+\item [\textbackslash romandoublestatesymbol] A roman double state symbol
+\end{labeling}
+
+\paragraph{Utility}
+
+\texttt{stmglossariessymbolscommands} defines a couple of useful utility commands to facilitate access to symbols and operators. These automatically add the operator symbol to the respective list.
+
+\begin{table}[htbp]
+\begin{tabularx}{\linewidth}{lXc}
+%\verb+\norm{\left(\phantom{a}\right)}+ & 2-norm & $\norm{\left(\phantom{a}\right)}$
+\verb+\csyslocal{a}+ &  & $\csyslocal{a}$ \\
+\verb+\csysmaterial{a}+ &  & $\csysmaterial{a}$ \\
+\verb+\difference{a}+ &  & $\difference{a}$ \\
+\verb+\mean{a}+ &  & $\mean{a}$ \\
+\verb+\norm{a}+ & 2-norm & $\norm{a}$ \\
+\verb+\transpose{a}+ &  & $\transpose{a}$ \\
+\verb+\inverse{a}+ &  & $\inverse{a}$ \\
+\verb+\timederivativeshort{a}+ &  & $\timederivativeshort{a}$ \\
+\verb+\timederivativeshorttwo{a}+ &  & $\timederivativeshorttwo{a}$\\
+\verb+\partialderivativeshort{a}{b}+ & & $\partialderivativeshort{a}{b}$
+\end{tabularx}
+\end{table}
 
 \section{Styles}
 \label{sec:usage:styles}
@@ -594,22 +698,66 @@ This is a style for variable operators with one left align item column. The colu
 
 \subsection{stmglossaries.sty}
 
-\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossaries.sty}
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossaries.sty}
+
+\subsection{stmglossariesbase.sty}
+
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariesbase.sty}
+
+\subsection{stmglossariesacronyms.sty}
+
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariesacronyms.sty}
 
 % \subsection{stmglossariesacronymitems.sty}
 % 
 % \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariesacronymitems.sty}
 
-\subsection{stmglossariesacronymstyles.sty}
+\subsection{stmglossariesacronymsstyles.sty}
 
-\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariesacronymstyles.sty}
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariesacronymsstyles.sty}
 
 % \subsection{stmglossariessymbolitems.sty}
 % 
 % \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariessymbolitems.sty}
 
+\subsection{stmglossariessymbols.sty}
+
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariessymbols.sty}
+
+\subsection{stmglossariessymbolscommands.sty}
+
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariessymbolscommands.sty}
+
 \subsection{stmglossariessymbolstyles.sty}
 
-\lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariessymbolstyles.sty}
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmglossaries/stmglossariessymbolsstyles.sty}
 
 \end{document}
