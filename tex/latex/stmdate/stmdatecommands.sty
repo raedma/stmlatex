@@ -52,7 +52,7 @@
   o% month - optional
   o% day - optional
 }{%
-  \DTMsetdatestyle{#1} % The first (optional) argument is the style
+  \DTMsetdatestyle{#1}% The first (optional) argument is the style
   \IfNoValueTF{#3}% There is just one argument defined after the style - the date
     {%
       \@ifmtarg{#2}{}{#2}%
