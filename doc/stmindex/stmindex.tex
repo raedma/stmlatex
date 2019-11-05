@@ -1,0 +1,341 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmdate package
+%
+% Usage
+%  - Compile using 'arara stmdate.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass{scrartcl}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+%!arara: makeglossaries
+%!arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+%!arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.auxlock', '*.bbl', '*.bcf', '*.blg', '*.dpth', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{stmdate}
+\usepackage[%
+  standard=true,% Load a single standard index
+  name=Testindex,%
+  title={Test\ index},%
+  columns=3,
+  %nonewpage=true,%
+]{stmindex}
+\usepackage{stmlistings}
+
+\usepackage{hyperref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmindex package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+% ---------------------------
+% Index setup
+% ---------------------------
+
+%\indexsetup{%
+%  level=\section*,%
+%  toclevel=section,%
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is an interface to facilitate the creation of a single index for \texttt{stmlatex}-based documents. It is build upon the \href{https://ctan.org/pkg/imakeidx}{imakeidx}\stmindex{imakeidx} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{About}
+\stmindex{About}
+
+Using \texttt{stmindex} it is possible to create a single index for a document very conveniently. When you want to add items to the default index, it is not necessary to specify the index name each time. This is also possible with the basic version of \verb+\index+, however, this makes it easier in case you at some point need another index.
+
+It is assumed that for a large part of documents a single index is sufficient. However, \texttt{stmlatex} can also be used as a blueprint to create other indices.
+
+\section{Usage}% - in the preamble}
+\stmindex{Usage}
+
+\subsection{Preamble}
+
+\subsubsection{Load the package}
+
+Load the package by adding
+
+\begin{verbatim}
+\usepackage[<options>]{stmindex}
+\end{verbatim}
+
+to your document preamble. For a list of options, see \autoref{sec:usage:preamble:options}.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:options}
+\stmindex{Options}
+
+\paragraph{Option \protect\textit{standard}} 
+\label{sec:usage:preamble:options:standard}
+\stmindex{Options!standard}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the standard index.
+
+\begin{verbatim}
+\usepackage[standard=true|false]{stmindex}
+\end{verbatim}
+
+\texttt{standard=true} is the default. It is used in case \texttt{standard=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{name}} 
+\label{sec:usage:preamble:options:name}
+\stmindex{Options!name}
+
+This is a string option. It controls the name of the standard index files. It only has an affect in case option \texttt{standard=true}.
+
+\begin{verbatim}
+\usepackage[name=Testindex]{stmindex}
+\end{verbatim}
+
+The default is \textit{Keywords}.
+
+\paragraph{Option \protect\textit{title}} 
+\label{sec:usage:preamble:options:title}
+\stmindex{Options!title}
+
+This is a string option. It controls the title of the standard index in the document. It only has an affect in case option \texttt{standard=true}.
+
+\begin{verbatim}
+\usepackage[title={Test\ index}]{stmindex}
+\end{verbatim}
+
+The default is \textit{Keywords}. Spaces have to be put by spacing commands explicitly.
+
+\paragraph{Option \protect\textit{intoc}} 
+\label{sec:usage:preamble:options:intoc}
+\stmindex{Options!intoc}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to add the standard index to the table of contents. It only has an affect in case option \texttt{standard=true}.
+
+\begin{verbatim}
+\usepackage[intoc=true|false]{stmindex}
+\end{verbatim}
+
+\texttt{intoc=true} is the default. It is used in case \texttt{intoc=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{columns}} 
+\label{sec:usage:preamble:options:columns}
+\stmindex{Options!columns}
+
+This is a integer option. It controls the number of columns used in the index.  It only has an affect in case option \texttt{standard=true}.
+
+\begin{verbatim}
+\usepackage[columns=3]{stmindex}
+\end{verbatim}
+
+The default is \textit{3}.
+
+\subsubsection{Indexsetup}
+\stmindex{indexsetup}
+
+Use the \verb+\indexsetup+ command from \texttt{imakeidx}\stmindex{imakeidx} in the preamble to tune the behavior of your index, e.g. the level, e.g.
+
+\begin{verbatim}
+\indexsetup{%
+  level=\section*,%
+  toclevel=section,%
+}
+\end{verbatim}
+
+in a class with where \verb+\chapter+ is the highest level, but you want the index as part of an appendix chapter as a section.
+
+\subsection{In the document}
+
+\texttt{stmindex} introduces a convenient shortcut command to print the standard index in case the option \texttt{standard=true}. Use \verb+\printstmindex+ at the location of your choosing inside the document to print the standard index.
+
+In case multiple indices are used, the standard \texttt{imakeidx} commands apply for printing an index.
+
+\section{Known issues}
+\stmindex{Issues}
+
+There seems to be a problem with the combination of \texttt{imakeidx} and the externalization of \texttt{tikz} pictures as from \texttt{stmtikz}. Externalization must be activated after the call to \texttt{imakeidx} to make it work. See \url{https://tex.stackexchange.com/q/393697}.
+
+% \subsection{Load the whole \protect\texttt{stmdate} package}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:wholepackage:description}
+
+% This is an interface package which loads date styles and commands commonly required throughout document creation.
+
+% By default the package loads
+
+% \begin{itemize}[noitemsep]
+  % \item \verb+stmdatestyles.sty+
+  % \item \verb+stmdatecommands.sty+
+% \end{itemize}
+
+% See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:wholepackage:options}
+
+% \paragraph{Option \protect\textit{styles}} 
+% \label{sec:usage:preamble:wholepackage:options:styles}
+
+% This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined date styles.
+
+% \begin{verbatim}
+% \usepackage[styles=true|false]{stmdate}
+% \end{verbatim}
+
+% \texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+% \paragraph{Option \protect\textit{commands}} 
+% \label{sec:usage:preamble:wholepackage:options:commands}
+
+% This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of specific date commands.
+
+% \begin{verbatim}
+% \usepackage[commands=true|false]{stmdate}
+% \end{verbatim}
+
+% \texttt{commands=true} is the default. It is used in case \texttt{commands=false} is not set explicitly.
+
+% \subsection{\protect\texttt{stmdatestyles}}
+% \label{sec:usage:preamble:styles}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:styles:description}
+
+% This package contains styles for displaying dates in different formats. These can be used by commands from the underlying \href{https://ctan.org/pkg/datetime2}{datetime2} package, e.g. with the style definitions from \autoref{sec:usage:preamble:styles:styles}
+
+% \begin{verbatim}
+% \DTMsetdatestyle{$STYLENAME$}\DTMtoday
+% \end{verbatim}
+
+% or use the convenience commands from \autoref{sec:usage:preamble:commands}.
+
+% \subsubsection{Styles}
+% \label{sec:usage:preamble:styles:styles}
+
+% These are the date styles and the respective output.
+
+% \begin{table}[htbp]
+% \centering
+% \begin{tabular}{ll}
+% \texttt{versiondatestyle} & \formatdate[versiondatestyle]{\DTMToday}
+% \end{tabular}
+% \end{table}
+
+% \subsection{\protect\texttt{stmdatecommands}}
+% \label{sec:usage:preamble:commands}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:commands:description}
+
+% These are commands to manipulate dates and their display.
+
+% \subsubsection{Command \protect\texttt{\textbackslash formatdate}}
+% \label{sec:usage:preamble:commands:description}
+
+% \paragraph{Examples}
+
+% \begin{table}[htbp]
+% \centering
+% \begin{tabular}{ll}
+% \verb+\formatdate[versiondatestyle]{\DTMToday}+ & \formatdate[versiondatestyle]{\DTMToday}\\
+% \verb+\formatdate{\today}+ & \formatdate{\today}\\
+% \verb+\formatdate[versiondatestyle]{\today}+ & \formatdate[versiondatestyle]{\today}\\
+% \verb+\formatdate{2019}[2][3]+ & \formatdate{2019}[2][3]\\
+% \verb+\formatdate[versiondatestyle]{2019}[2][3]+ & \formatdate[versiondatestyle]{2019}[2][3]\\
+% \verb+\formatdate[versiondatestyle]{2019}[11][3]+ & \formatdate[versiondatestyle]{2019}[11][3]\\
+% \verb+\formatdate{2019}[2]+ & \formatdate{2019}[2]\\
+% \verb+\formatdate[versiondatestyle]{2019}[2]+ & \formatdate[versiondatestyle]{2019}[2]\\
+% \verb+\formatdate{2019}[2][]+ & \formatdate{2019}[2][]\\
+% \verb+\formatdate[versiondatestyle]{2019}[2][]+ & \formatdate[versiondatestyle]{2019}[2][]\\
+% \verb+\formatdate{2019}[][]+ & \formatdate{2019}[][]\\
+% \verb+\formatdate[versiondatestyle]{2019}[][]+ & \formatdate[versiondatestyle]{2019}[][]
+% \end{tabular}
+% \end{table}ection{Load the whole \protect\texttt{stmdate} package}
+
+
+
+
+\printstmindex
+
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{stmindex.sty}
+
+\lstinputlisting[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+]{../../tex/latex/stmindex/stmindex.sty}
+
+% \newpage
+% \subsection{stmdatecommands.sty}
+
+% \lstinputlisting[
+  % breaklines,%
+  % style=texcodestyle,%
+  % numbers=left,%
+% ]{../../tex/latex/stmdate/stmdatecommands.sty}
+
+% \newpage
+% \subsection{stmdatestyles.sty}
+
+% \lstinputlisting[
+  % breaklines,%
+  % style=texcodestyle,%
+  % numbers=left,%
+% ]{../../tex/latex/stmdate/stmdatestyles.sty}
+
+\end{document}

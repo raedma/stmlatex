@@ -1,0 +1,78 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This file includes an interface to
+% indices for a LaTeX document
+% Based upon the imakeidx package:
+%   https://ctan.org/pkg/imakeidx
+%
+% Usage
+%  - Premble:
+%    - \usepackage{imakeidx}
+%    - \makeglossaries
+%  - Document: e.g. (Adapt to your type of glossary item)
+%    - \printindex[type=\acronymtype] or
+%    - \printglossary[type=\acronymtype,nonumberlist]
+%  - Compilation: e.g. (Adapt to your type of glossary item)
+%    - makeindex -s [MYTEXFILENAME].ist -o [MYTEXFILENAME].acr [MYTEXFILENAME].acn
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmindexbase}[2019/11/03 STMs custom LaTeX index basics]
+
+% For options
+%\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% ---------------------------
+% Options
+% ---------------------------
+
+\SetupKeyvalOptions{%
+  family=stmindexbase,%
+  prefix=stmindexbase@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Put index in toc
+%\DeclareBoolOption[false]{nonewpage}
+
+% Process options
+%\ProcessKeyvalOptions{stmindexbase}
+
+% ---------------------------
+% Base
+% ---------------------------
+
+% If not loaded in advance, load the glossaries package with some default options
+\@ifpackageloaded{imakeidx}{}{%
+  \RequirePackage%[%
+    %\ifstmindexbase@nonewpage nonewpage\fi
+  %]
+  {imakeidx}%
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput
