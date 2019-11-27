@@ -93,7 +93,7 @@
 % any other options are passed to the base class
 \DeclareDefaultOption{%
   \ifthenelse{\equal{\stmtextbase@type}{article}}{%
-    \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+    \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
       \PassOptionsToClass{\CurrentOption}{article}%
     }{}%
     \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -106,7 +106,7 @@
 }
 \DeclareDefaultOption{%
   \ifthenelse{\equal{\stmtextbase@type}{report}}{%
-    \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+    \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
       \PassOptionsToClass{\CurrentOption}{report}%
     }{}%
     \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -119,7 +119,7 @@
 }
 \DeclareDefaultOption{%
   \ifthenelse{\equal{\stmtextbase@type}{book}}{%
-    \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+    \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
       \PassOptionsToClass{\CurrentOption}{book}%
     }{}%
     \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -141,7 +141,7 @@
 % Load scrreprt class
 
 \ifthenelse{\equal{\stmtextbase@type}{article}}{%
-  \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+  \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
     \LoadClass{article}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -152,7 +152,7 @@
   }{}%
 }{}%
 \ifthenelse{\equal{\stmtextbase@type}{report}}{%
-  \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+  \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
     \LoadClass{report}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -163,7 +163,7 @@
   }{}%
 }{}%
 \ifthenelse{\equal{\stmtextbase@type}{book}}{%
-  \ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+  \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
     \LoadClass{book}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
@@ -179,7 +179,7 @@
 % ---------------------------
 
 % Commands for the standard document classes
-\ifthenelse{\equal{\stmtextbase@layout}{normal}}{%
+\ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
 
   \@ifundefined{subtitle}{    \def\subtitle#1{\gdef\@subtitle{#1} }%
                               \def\@subtitle{}}{}%
@@ -196,7 +196,7 @@
 
 % Commands from RM-LaTeX that other classes need to understand
 \ifthenelse{%
-  \equal{\stmtextbase@layout}{normal} \OR%
+  \equal{\stmtextbase@layout}{standard} \OR%
   \equal{\stmtextbase@layout}{koma}%
 }{%
 
