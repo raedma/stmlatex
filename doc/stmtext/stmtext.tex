@@ -1,0 +1,280 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmtext
+% document class
+%
+% Usage
+%  - Compile using 'arara stmtext.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  %type=report,%
+  %type=book,%
+  %layout=dlr,%
+  layout=koma,%
+  %layout=normal,%
+  12pt,%
+  page=false,%
+  %institute=FA-STM,%
+  %site=BS,%
+  hyperref=true,%
+  cleveref=true,
+  conditionallox=true,
+  conditionalloxnewpage=true,
+  date=true,%
+  index=true,%
+  listings=true%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+%\usepackage{stmhyperrefsetup}
+\usepackage{booktabs}
+\usepackage{longtable,tabu}
+\usepackage{xspace}
+
+% ---------------------------
+% Commands
+% ---------------------------
+
+\newcommand{\rmlatexname}{RM-LaTeX\xspace}
+\newcommand{\rmlatexurl}{RM-LaTeX\xspace}
+
+\newcommand{\packagelink}[1]{\href{https://github.com/raedma/stmlatex/blob/master/doc/#1/#1.pdf}{\texttt{#1}}}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmtext class description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+% Document-class dependent infos for titlepage
+\telnumber   {2048}
+\faxnumber   {2232}
+\email       {martin.raedel@dlr.de}
+% \reportno    {DLR-IB-FA-BS-2018-23}
+% \coauthor    {Christian Willberg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\texttt{stmtext} is a wrapper documentclass around a selection of existing class layouts for \LaTeX. Additionally, it allows quick access to the modules of \texttt{stmlatex}.
+\end{abstract}
+
+\secondpage
+
+\tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
+
+\setcounter{currentlevel}{\basetoclevelnr}
+\levelstay{About}
+\label{sec:about}
+\stmindex{About}
+
+\texttt{stmtext} is supposed to be an easy-to-use interface to several other document classes with the additional use of the modules of \texttt{stmlatex}. The class addresses users who want to use certain features without initially worrying about their implementation. However, there will most certainly come a point in the learning curve of a \LaTeX{} user where this documentclass becomes insufficient. That's what's wanted. Maybe, until this point, the class has helped to bring some possibilities of \LaTeX{} closer. 
+
+The complete class and module system can be found at
+
+\href{https://github.com/raedma/stmlatex}{https://github.com/raedma/stmlatex}
+
+% \Cref{sec:options} describes the class options.
+
+\setcounter{currentlevel}{\basetoclevelnr}
+\levelstay{Options}
+\label{sec:options}
+\stmindex{Options}
+
+This section describes the class options. All options are key-value-options, meaning they are set using the definition \texttt{KEY=VALUE}. It must be noted that these options can not represent the full features of the module packages. In case more advanced options are required make sure to have a look at the individual package descriptions and consider loading them individually. Maybe you find what you need.
+
+\leveldown{Overview}
+
+\paragraph{Boolean options}
+
+These options can only have the values \texttt{true} or \texttt{false}.
+
+% \begingroup
+% \renewcommand*{\arraystretch}{1.1}
+\begin{table}[htbp]
+  \caption{Boolean class options}
+  \label{tab:options:boolean}
+  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  \toprule
+  %Name & Default & Description\\
+  \multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
+  \midrule
+  attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
+  cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
+  color          \stmindex{Options!color}          & true  & Load the \packagelink{stmcolors} package\\
+  conditionallox \stmindex{Options!conditionallox} & true  & Load the \packagelink{stmconditionallox} package\\
+  conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
+  date           \stmindex{Options!date}           & false & Load the \packagelink{stmdate} package\\
+  glossaries     \stmindex{Options!glossaries}     & false & Load the \packagelink{stmglossaries} package\\
+  index          \stmindex{Options!index}          & false & Load the \packagelink{stmindex} package\\
+  hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
+  listings       \stmindex{Options!listings}       & false & Load the \packagelink{stmlistings} package\\
+  math           \stmindex{Options!math}           & false & Load the \packagelink{stmmath} package\\
+  plots          \stmindex{Options!plots}          & false & Load the \packagelink{stmplots} package\\
+  tikz           \stmindex{Options!tikz}           & false & Load the \packagelink{stmtikz} package\\
+  units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
+  \bottomrule
+  \end{longtabu}%
+\end{table}
+% \endgroup
+
+\paragraph{String options}
+
+These options have strings as values. Possible arguments are listed. The default is underlined.
+
+\begin{table}[htbp]
+  \caption{String class options}
+  \label{tab:options:string}
+  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  \toprule
+  %Name & Default & Description\\
+  \multicolumn{1}{c}{Key} & \multicolumn{1}{c}{Values} & \multicolumn{1}{c}{Description}\\
+  \midrule
+  language \stmindex{Options!language} & german|\underline{english}      & Document language, Load the \texttt{stmlanguage} package with this option \\
+  layout   \stmindex{Options!layout}   & normal|dlr|\underline{koma}     & Document layout\\
+  type     \stmindex{Options!type}     & article|\underline{report}|book & Base document type\\
+  \bottomrule
+  \end{longtabu}%
+\end{table}
+
+The following options are only available for \texttt{layout=dlr} which uses the \rmlatexname based document classes.
+
+\begin{table}[htbp]
+  \caption{Additional string class options for \protect\texttt{layout=dlr}}
+  \label{tab:options:string:dlr}
+  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  \toprule
+  %Name & Default & Description\\
+  \multicolumn{1}{c}{Key} & \multicolumn{1}{c}{Values} & \multicolumn{1}{c}{Description}\\
+  \midrule
+  institute \stmindex{Options!institute} & \underline{FA-STM}     & See the \rmlatexname documentation for alternatives\\
+  site      \stmindex{Options!site}      & \underline{BS}         & See the \rmlatexname documentation for alternatives\\
+  \bottomrule
+  \end{longtabu}%
+\end{table}
+
+\levelstay{Option \protect\texttt{attachfile}}
+\stmindex{Options!attachfile}
+
+
+\levelstay{Option \protect\texttt{cleverref}}
+\stmindex{Options!cleverref}
+
+\levelstay{Option \protect\texttt{color}}
+\stmindex{Options!color}
+
+\levelstay{Option \protect\texttt{conditionallox}}
+\stmindex{Options!conditionallox}
+
+conditionallox: Compile 3 times
+
+\levelstay{Option \protect\texttt{conditionalloxnewpage}}
+\stmindex{Options!conditionalloxnewpage}
+
+\levelstay{Option \protect\texttt{date}}
+\stmindex{Options!date}
+
+\levelstay{Option \protect\texttt{glossaries}}
+\stmindex{Options!glossaries}
+
+\levelstay{Option \protect\texttt{index}}
+\stmindex{Options!index}
+
+\levelstay{Option \protect\texttt{institute}}
+\stmindex{Options!institute}
+
+\levelstay{Option \protect\texttt{hyperref}}
+\stmindex{Options!hyperref}
+
+https://tex.stackexchange.com/a/26592
+
+\levelstay{Option \protect\texttt{language}}
+\stmindex{Options!language}
+
+\levelstay{Option \protect\texttt{layout}}
+\stmindex{Options!layout}
+
+\levelstay{Option \protect\texttt{listings}}
+\stmindex{Options!listings}
+
+\levelstay{Option \protect\texttt{math}}
+\stmindex{Options!math}
+
+\levelstay{Option \protect\texttt{plots}}
+\stmindex{Options!plots}
+
+\levelstay{Option \protect\texttt{site}}
+\stmindex{Options!site}
+
+\levelstay{Option \protect\texttt{tikz}}
+\stmindex{Options!tikz}
+
+\levelstay{Option \protect\texttt{type}}
+\stmindex{Options!type}
+
+\levelstay{Option \protect\texttt{units}}
+\stmindex{Options!units}
+
+\printstmindex
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{stmtext.cls}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmtext/stmtext.cls}
+
+\end{document}
