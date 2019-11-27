@@ -35,7 +35,7 @@
   %type=book,%
   %layout=dlr,%
   layout=koma,%
-  %layout=normal,%
+  %layout=standard,%
   12pt,%
   page=false,%
   %institute=FA-STM,%
@@ -180,7 +180,7 @@ These options have strings as values. Possible arguments are listed. The default
   \multicolumn{1}{c}{Key} & \multicolumn{1}{c}{Values} & \multicolumn{1}{c}{Description}\\
   \midrule
   language \stmindex{Options!language} & german|\underline{english}      & Document language, Load the \texttt{stmlanguage} package with this option \\
-  layout   \stmindex{Options!layout}   & normal|dlr|\underline{koma}     & Document layout\\
+  layout   \stmindex{Options!layout}   & standard|dlr|\underline{koma}     & Document layout\\
   type     \stmindex{Options!type}     & article|\underline{report}|book & Base document type\\
   \bottomrule
   \end{longtabu}%
@@ -263,6 +263,15 @@ https://tex.stackexchange.com/a/26592
 
 \levelstay{Option \protect\texttt{units}}
 \stmindex{Options!units}
+
+\setcounter{currentlevel}{\basetoclevelnr}
+\levelstay{Usage}
+\label{sec:usage}
+\stmindex{Usage}
+
+\leveldown{\protect\texttt{type}-independent document structure}
+
+\href{https://ctan.org/tex-archive/macros/latex/contrib/coseoul}{coseoul} package
 
 \printstmindex
 
