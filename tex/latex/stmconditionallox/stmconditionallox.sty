@@ -37,20 +37,41 @@
 \ProvidesPackage{stmconditionallox}[2019/10/27 STMs custom LaTeX conditional list of definitions]
 
 % ---------------------------
+% Package
+% ---------------------------
+
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% ---------------------------
 % Options
 % ---------------------------
 
-\newif\ifstmconditionallox@loadlistings
-\DeclareOption{loadlistings}{\stmconditionallox@loadlistingstrue}
-\DeclareOption{noloadlistings}{\stmconditionallox@loadlistingsfalse}
-\ExecuteOptions{loadlistings} % default is to load listings
+% \newif\ifstmconditionallox@loadlistings
+% \DeclareOption{loadlistings}{\stmconditionallox@loadlistingstrue}
+% \DeclareOption{noloadlistings}{\stmconditionallox@loadlistingsfalse}
+% \ExecuteOptions{loadlistings} % default is to load listings
 
-\newif\ifstmconditionallox@newpage
-\DeclareOption{newpage}{\stmconditionallox@newpagetrue}
-\DeclareOption{nonewpage}{\stmconditionallox@newpagefalse}
-\ExecuteOptions{newpage} % default is to create new page
+% \newif\ifstmconditionallox@newpage
+% \DeclareOption{newpage}{\stmconditionallox@newpagetrue}
+% \DeclareOption{nonewpage}{\stmconditionallox@newpagefalse}
+% \ExecuteOptions{newpage} % default is to create new page
 
-\ProcessOptions\relax
+%\ProcessOptions\relax
+
+\SetupKeyvalOptions{%
+  family=stmconditionallox,%
+  prefix=stmconditionallox@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Load listing package for conditional list of listings
+\DeclareBoolOption[true]{loadlistings}
+
+% New page for LoX
+\DeclareBoolOption[true]{newpage}
+
+% Process options
+\ProcessKeyvalOptions{stmconditionallox}
 
 % ---------------------------
 % Package

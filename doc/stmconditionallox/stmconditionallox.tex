@@ -48,7 +48,7 @@
 \usepackage{graphicx}
 \usepackage{stmdate}
 \usepackage{stmlistings}
-\usepackage[nonewpage]{stmconditionallox}
+\usepackage[newpage=false]{stmconditionallox}
 
 \usepackage{hyperref}
 
@@ -119,27 +119,27 @@ To properly create the lists, three compilation runs are required.
 
 \subsection{Options}
 
-\paragraph{Option \protect\textit{loadlistings} and \protect\textit{noloadlistingse}}
+\paragraph{Option \protect\textit{loadlistings}}
 
 Set whether to load the \href{https://ctan.org/pkg/listings}{listings} package.
 
 \begin{verbatim}
-\usepackage[noloadlistings]{stmglossaries}
+\usepackage[loadlistings=true]{stmglossaries}
 \end{verbatim}
 
-\texttt{loadlistings} is the default and loads the package. It is used in case \texttt{noloadlistings} is not set explicitly.
+\texttt{loadlistings=true} is the default and loads the package. It is used in case \texttt{loadlistings=false} is not set explicitly.
 
-In case \texttt{noloadlistings} is set, the command \verb+\conditionallistoflistings+ is not defined.
+In case \texttt{loadlistings=false} is set, the command \verb+\conditionallistoflistings+ is not defined.
 
-\paragraph{Option \protect\textit{newpage} and \protect\textit{nonewpage}}
+\paragraph{Option \protect\textit{newpage}}
 
 Set whether to create a new page after each list.
 
 \begin{verbatim}
-\usepackage[nonewpage]{stmglossaries}
+\usepackage[newpage=true]{stmglossaries}
 \end{verbatim}
 
-\texttt{newpage} is the default and creates a new page. It is used in case \texttt{nonewpage} is not set explicitly.
+\texttt{newpage=true} is the default and creates a new page. It is used in case \texttt{newpage=false} is not set explicitly.
 
 \section{Example}
 
