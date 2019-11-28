@@ -28,7 +28,17 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  hyperref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=false,%
+  date=true,%
+  %glossaries=true,%
+  index=true,%
+  listings=true%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -36,10 +46,12 @@
 
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: makeglossaries
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*', 'stmglossaries-*.tex' ], recursive: yes }
 
 % ---------------------------
 % Packages
@@ -49,17 +61,27 @@
 \usepackage[utf8]{inputenc}
 % \usepackage[style=iso]{datetime2}
 \usepackage{enumitem}
-\usepackage{stmdate}
+% \usepackage{stmdate}
 \usepackage[
   acronyms=true,
   symbols=true,
   morewrites=true,
   styles=true,
 ]{stmglossaries}
-\usepackage{stmlistings}
 
+\usepackage{booktabs}
+\usepackage{longtable,tabu}
+\usepackage{ltxtable}
 \usepackage{tabularx}
 \usepackage{hyperref}
+
+% ---------------------------
+% Commands
+% ---------------------------
+
+% Subdirectory name for ltxtables
+\newcommand{\tabledirname}{ZZZ_Table}
+\newcommand{\tabledir}{\tabledirname/}
 
 % ---------------------------
 % Doc info
@@ -146,26 +168,6 @@
   sort        =onabla,%
 }
 
-% \glsaddall%unused[types={scalarlist}]
-% \glsaddall[types=scalarlist]
-% \glsaddallunused[scalarlist]
-% 
-% \newglossary[slg10]{allscalarsymbollist}{syi10}{syg10}{Scalars}
-% \loadglsentries[allscalarsymbollist]{../../tex/latex/stmglossaries/stmglossariessymbolitemdefs.sty}
-% \forallglsentries[scalarlist]{\lfoo}{\glsmoveentry{\lfoo}{allscalarsymbollist}}
-% \forallglsentries[vectorlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
-% \forallglsentries[matrixlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
-% \forallglsentries[statelist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
-
-% \glsunsetall[scalarlist]
-% \glsreset{scalarlist}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Make glossaries                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeglossaries
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,6 +185,10 @@ This package provides an expendable set of commonly used acronyms as well as sym
 \end{abstract}
 
 \tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
 
 \section{Example}
 
@@ -224,29 +230,64 @@ It creates a nice little list of symbols
 \section{Requirements}
 \label{sec:requirements}
 
-\texttt{Perl} is required to use the \texttt{arara} \texttt{makeglossaries} rule. Either install \texttt{Perl} or include a path to a binary to the system \texttt{PATH} variable. E.g. a \texttt{Perl} binary is shipped with \texttt{Git} under \texttt{GITINSTALLPATH\textbackslash usr\textbackslash bin\textbackslash}.
+\texttt{Perl}\stmindex{Perl} is required to use the \texttt{arara} \texttt{makeglossaries}\stmindex{makeglossaries} rule. Either install \texttt{Perl} or include a path to a binary to the system \texttt{PATH} variable. E.g. a \texttt{Perl} binary is shipped with \texttt{Git} under \texttt{GITINSTALLPATH\textbackslash usr\textbackslash bin\textbackslash}.
 
 \section{Contents}
 \label{sec:contents}
 
 There are multiple packages included:
 
-\begin{itemize}[noitemsep]
-  %\setlength\itemsep{0.25ex}
-  \item \texttt{stmglossaries.sty}
-  \item \texttt{stmglossariesbase.sty}
-  \item \texttt{stmglossariesacronyms.sty}
-  \item \texttt{stmglossariesacronymsitems.sty}
-  \item \texttt{stmglossariesacronymsstyles.sty}
-  \item \texttt{stmglossariessymbols.sty}
-  \item \texttt{stmglossariessymbolsitems.sty}
-  \item \texttt{stmglossariessymbolsstyles.sty}
-  \item \texttt{stmglossariessymbolscommands.sty}
-\end{itemize}
+\begin{filecontents}{\tabledir\jobname-packages.tex}
+\begin{longtable}{@{}>{\ttfamily}lX@{}}
+% Captions
+\caption{Package description}\\
+\label{tab:contents:packages}\\
+% ---------------------------
+% Header & Footer
+% ---------------------------
+%
+% Header
+% -----------------
+% 1st head
+\toprule
+\multicolumn{1}{c}{Package} & \multicolumn{1}{c}{Description}\\
+\midrule
+\endfirsthead
+% Last head
+\multicolumn{2}{@{}l}{\ldots continued}\\
+\toprule
+\multicolumn{1}{c}{Package} & \multicolumn{1}{c}{Description}\\
+\midrule
+\endhead
+%
+% Footer
+% -----------------
+% n-th foot
+\bottomrule
+\multicolumn{2}{r@{}}{continued \ldots}\\
+\endfoot
+% last foot
+\bottomrule
+\endlastfoot
+% ---------------------------
+% Content
+% ---------------------------
+stmglossaries                & Wrapper around the definitions for \texttt{acronyms} and \texttt{symbols} with options to load both\\
+stmglossariesbase            & Loads the underlying base package\\
+stmglossariesacronyms        & Main package for acronyms\\
+stmglossariesacronymsitems   & Acronym definitions\\
+stmglossariesacronymsstyles  & Styles for printing acronym lists\\
+stmglossariescommands        & Utility and shortcut commands\\
+stmglossariessymbols         & Main package for symbols\\
+stmglossariessymbolsitems    & Symbol definitions\\
+stmglossariessymbolsstyles   & Styles for printing symbol lists\\
+stmglossariessymbolscommands & Utility commands for symbols\\
+\end{longtable}
+\end{filecontents}
 
-\texttt{stmglossaries.sty} is a wrapper around the definitions for \texttt{acronyms} and \texttt{symbols} and has options to load both.
-
-\texttt{stmglossariesbase.sty} loads the underlying base package.
+\begingroup
+\LTXtable{\linewidth}{\tabledir\jobname-packages.tex}
+\endgroup
 
 \subsection{Acronyms}
 \label{sec:contents:acronyms}
@@ -362,7 +403,19 @@ This is a boolean option. Expected values are either \texttt{true} or \texttt{fa
 \usepackage[morewrites=true]{stmglossaries}
 \end{verbatim}
 
-\texttt{morewrites=true} is the default. It is used in case \texttt{nomorewrites} is not set explicitly.
+\texttt{morewrites=true} is the default. It is used in case \texttt{morewrites=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{makeglossaries}}
+\label{sec:usage:preamble:wholepackage:options:makeglossaries}
+\stmindex{makeglossaries}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to execute the \texttt{\textbackslash makeglossaries} command at an appropriate location.
+
+\begin{verbatim}
+\usepackage[makeglossaries=true]{stmglossaries}
+\end{verbatim}
+
+\texttt{makeglossaries=true} is the default. It is used in case \texttt{makeglossaries=false} is not set explicitly.
 
 \subsection{Load the acronyms package}
 \label{sec:usage:preamble:acronymspackage}
@@ -374,6 +427,8 @@ This way, the acronyms are loaded. Load the package individually by adding
 \end{verbatim}
 
 to your preamble.
+
+In case you load the package individually, you have to add \texttt{\textbackslash makeglossaries}\stmindex{makeglossaries} at a convenient location in your preamble.
 
 \subsubsection{Options}
 
@@ -407,6 +462,8 @@ This way, the symbols are loaded. Load the package individually by adding
 \end{verbatim}
 
 to your preamble. In case you have not loaded \textit{glossaries} with your own options beforehand, the package will load the package with the options \texttt{acronym}, \texttt{nomain} and \texttt{toc}.
+
+In case you load the package individually, you have to add \texttt{\textbackslash makeglossaries}\stmindex{makeglossaries} at a convenient location in your preamble.
 
 \subsubsection{Options}
 
@@ -454,6 +511,12 @@ Print the list of acronyms with the style \textit{stmacronymstyle} and without n
 
 For a description of acronym styles, see \autoref{sec:usage:styles:acronyms}.
 
+A shortcut command using the default style is available:
+
+\begin{verbatim}
+\printstmacronyms
+\end{verbatim}
+
 \subsection{Symbols}
 \label{sec:usage:document:symbols}
 
@@ -481,7 +544,6 @@ In case you want to combine the predefined lists and print a single combined lis
 \documentclass{...}
 
 \usepackage{stmglossaries}
-%\usepackage{stmglossariessymbolitems}
 
 \newglossary[slg1]{symbollist}{syi1}{syg1}{Nomenclature}
 \forallglsentries[scalarlist]{\lfoo}{\glsmoveentry{\lfoo}{symbollist}}
@@ -540,6 +602,26 @@ Therefore, \texttt{stmglossariessymbolscommands} defines a couple of useful styl
 \verb+\partialderivativeshort{a}{b}+ & & $\partialderivativeshort{a}{b}$
 \end{tabularx}
 \end{table}
+
+\paragraph{Printing}
+
+There are several shortcut commands available for printing the different glossary lists using the respective default style:
+
+\begin{verbatim}
+\printstmscalarglossary
+\printstmvectorglossary
+\printstmmatrixglossary
+\printstmstateglossary
+\printstmindexglossary
+\printstmexponentglossary
+\printstmoperatorglossary
+\end{verbatim}
+
+In case you want the whole thing at once, use
+
+\begin{verbatim}
+\printallstmglossaries
+\end{verbatim}
 
 \section{Styles}
 \label{sec:usage:styles}
@@ -652,6 +734,10 @@ This is a style for variable operators with one left align item column. The colu
 
 \newpage
 
+\printstmindex
+
+\newpage
+
 \appendix
 \section{All acronyms}
 \label{sec:appendix:acronyms:all}
@@ -666,7 +752,6 @@ This is a style for variable operators with one left align item column. The colu
 \label{sec:appendix:symbols:all}
 
 \glstocfalse
-% \glsaddall[types={allscalarsymbollist}]
 \glsaddall[types={scalarlist}]
 \glsaddall[types={vectorlist}]
 \glsaddall[types={matrixlist}]
@@ -675,14 +760,6 @@ This is a style for variable operators with one left align item column. The colu
 \glsaddall[types={exponentlist}]
 \glsaddall[types={operatorlist}]
 
-% \glsreset{symb:scalar:scalarromannull}
-% \glsreset{symb:scalar:scalargreeknull}
-% \glsreset{symb:state:scalar:stateromannull}
-% \glsreset{symb:state:vector:stateromannull}
-
-% \glsaddallunused{scalarlist}
-% \glsaddallunused[types={allscalarsymbollist}]
-% \printglossary[type=allscalarsymbollist  ,style=stmsymbollabelstyle  ,nonumberlist]
 \printglossary[type=scalarlist  ,style=stmsymbollabelstyle,nonumberlist]
 \printglossary[type=vectorlist  ,style=stmsymbollabelstyle,nonumberlist]
 \printglossary[type=matrixlist  ,style=stmsymbollabelstyle,nonumberlist]
@@ -714,19 +791,17 @@ This is a style for variable operators with one left align item column. The colu
   style=texpackagedocstyle,%
 ]{../../tex/latex/stmglossaries/stmglossariesacronyms.sty}
 
-% \subsection{stmglossariesacronymitems.sty}
-% 
-% \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariesacronymitems.sty}
-
 \subsection{stmglossariesacronymsstyles.sty}
 
 \lstinputlisting[
   style=texpackagedocstyle,%
 ]{../../tex/latex/stmglossaries/stmglossariesacronymsstyles.sty}
 
-% \subsection{stmglossariessymbolitems.sty}
-% 
-% \lstinputlisting[breaklines,style=texcodestyle]{../../tex/latex/stmglossaries/stmglossariessymbolitems.sty}
+\subsection{stmglossariescommands.sty}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmglossaries/stmglossariescommands.sty}
 
 \subsection{stmglossariessymbols.sty}
 

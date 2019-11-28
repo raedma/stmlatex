@@ -75,6 +75,9 @@
 % Load morewrites
 \DeclareBoolOption[true]{morewrites}
 
+% Load morewrites
+\DeclareBoolOption[true]{makeglossaries}
+
 % Process options
 \ProcessKeyvalOptions{stmglossaries}
 
@@ -84,9 +87,9 @@
 
 % Load morewrites
 \@ifpackageloaded{morewrites}{}{%
-  \ifstmglossaries@morewrites
-    \RequirePackage{morewrites}
-  \fi
+  \ifstmglossaries@morewrites%
+    \RequirePackage{morewrites}%
+  \fi%
 }%
 
 % Load the acronyms
@@ -95,7 +98,7 @@
     \RequirePackage[%
       items={\ifstmglossaries@items true\else false\fi},%
       styles={\ifstmglossaries@styles true\else false\fi},%
-    ]{stmglossariesacronyms}
+    ]{stmglossariesacronyms}%
   }%
 \fi
 
@@ -106,8 +109,29 @@
       items={\ifstmglossaries@items true\else false\fi},%
       styles={\ifstmglossaries@styles true\else false\fi},%
       commands={\ifstmglossaries@commands true\else false\fi},%
-    ]{stmglossariessymbols}
+    ]{stmglossariessymbols}%
   }%
+\fi
+
+% Load the print commands
+\@ifpackageloaded{stmglossariescommands}{}{%
+  \ifstmglossaries@commands%
+    \RequirePackage{stmglossariescommands}%
+  \fi
+}%
+
+% ---------------------------
+% Makeglossaries command
+% ---------------------------
+
+\ifstmglossaries@makeglossaries
+  \@ifpackageloaded{etoolbox}{}{%
+    \RequirePackage{etoolbox}
+  }
+
+  \AtEndPreamble{%
+    \makeglossaries%
+  }
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
