@@ -36,15 +36,16 @@
   %layout=dlr,%
   layout=koma,%
   %layout=standard,%
-  12pt,%
+  %12pt,%
   page=false,%
   %institute=FA-STM,%
   %site=BS,%
   hyperref=true,%
-  cleveref=true,
-  conditionallox=true,
-  conditionalloxnewpage=true,
+  cleveref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=true,%
   date=true,%
+  glossaries=true,%
   index=true,%
   listings=true%
 ]{stmtext}
@@ -56,7 +57,10 @@
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+% arara: makeglossaries
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*', 'stmtext-*.tex' ], recursive: yes }
 
 % ---------------------------
 % Packages
@@ -65,6 +69,7 @@
 %\usepackage{stmhyperrefsetup}
 \usepackage{booktabs}
 \usepackage{longtable,tabu}
+\usepackage{ltxtable}
 \usepackage{xspace}
 
 % ---------------------------
@@ -74,7 +79,12 @@
 \newcommand{\rmlatexname}{RM-LaTeX\xspace}
 \newcommand{\rmlatexurl}{https://gitlab.dlr.de/innersource/latex-templates}
 
-\newcommand{\packagelink}[1]{\href{https://github.com/raedma/stmlatex/blob/master/doc/#1/#1.pdf}{\texttt{#1}}}
+\newcommand{\stmlatexpackagelink}[1]{\href{https://github.com/raedma/stmlatex/blob/master/doc/#1/#1.pdf}{\texttt{#1}}}
+\newcommand{\ctanpackagelink}[1]{\href{https://ctan.org/pkg/#1}{\texttt{#1}}}
+
+% Subdirectory name for ltxtables
+\newcommand{\tabledirname}{ZZZ_Table}
+\newcommand{\tabledir}{\tabledirname/}
 
 % ---------------------------
 % Doc info
@@ -119,6 +129,8 @@
 
 \texttt{stmtext} is supposed to be an easy-to-use interface to several other document classes with the additional use of the modules of \texttt{stmlatex}. The class addresses users who want to use certain features without initially worrying about their implementation. However, there will most certainly come a point in the learning curve of a \LaTeX{} user where this documentclass becomes insufficient. That's what's wanted. Maybe, until this point, the class has helped to bring some possibilities of \LaTeX{} closer. 
 
+The goal is to make \LaTeX{} functionalities available to the user. It is not intended to make any changes to the document layout, despite loading the underlying document classes. The rest of the layout can be freely changed by the user.
+
 The complete class and module system can be found at
 
 \href{https://github.com/raedma/stmlatex}{https://github.com/raedma/stmlatex}
@@ -139,33 +151,89 @@ This section describes the class options. All options are key-value-options, mea
 These options can only have the values \texttt{true} or \texttt{false}.
 
 % \begingroup
-% \renewcommand*{\arraystretch}{1.1}
-\begin{table}[htbp]
-  \caption{Boolean class options}
-  \label{tab:options:boolean}
-  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
-  \toprule
-  %Name & Default & Description\\
-  \multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
-  \midrule
-  attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
-  cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
-  color          \stmindex{Options!color}          & true  & Load the \packagelink{stmcolors} package\\
-  conditionallox \stmindex{Options!conditionallox} & true  & Load the \packagelink{stmconditionallox} package\\
-  conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
-  date           \stmindex{Options!date}           & false & Load the \packagelink{stmdate} package\\
-  glossaries     \stmindex{Options!glossaries}     & false & Load the \packagelink{stmglossaries} package\\
-  index          \stmindex{Options!index}          & false & Load the \packagelink{stmindex} package\\
-  hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
-  listings       \stmindex{Options!listings}       & false & Load the \packagelink{stmlistings} package\\
-  math           \stmindex{Options!math}           & false & Load the \packagelink{stmmath} package\\
-  plots          \stmindex{Options!plots}          & false & Load the \packagelink{stmplots} package\\
-  tikz           \stmindex{Options!tikz}           & false & Load the \packagelink{stmtikz} package\\
-  units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
-  \bottomrule
-  \end{longtabu}%
-\end{table}
+% % \renewcommand*{\arraystretch}{1.1}
+% \begin{table}[htbp]
+%   \caption{Boolean class options}
+%   \label{tab:options:boolean}
+%   \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+%   \toprule
+%   %Name & Default & Description\\
+%   \multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
+%   \midrule
+%   attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
+%   cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
+%   color          \stmindex{Options!color}          & true  & Load the \stmlatexpackagelink{stmcolors} package\\
+%   conditionallox \stmindex{Options!conditionallox} & true  & Load the \stmlatexpackagelink{stmconditionallox} package\\
+%   conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
+%   date           \stmindex{Options!date}           & false & Load the \stmlatexpackagelink{stmdate} package\\
+%   glossaries     \stmindex{Options!glossaries}     & false & Load the \stmlatexpackagelink{stmglossaries} package\\
+%   index          \stmindex{Options!index}          & false & Load the \stmlatexpackagelink{stmindex} package\\
+%   hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
+%   listings       \stmindex{Options!listings}       & false & Load the \stmlatexpackagelink{stmlistings} package\\
+%   math           \stmindex{Options!math}           & false & Load the \stmlatexpackagelink{stmmath} package\\
+%   plots          \stmindex{Options!plots}          & false & Load the \stmlatexpackagelink{stmplots} package\\
+%   tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
+%   units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
+%   \bottomrule
+%   \end{longtabu}%
+% \end{table}
 % \endgroup
+
+\begin{filecontents}{\tabledir\jobname-optionsbool.tex}
+\begin{longtable}{@{}>{\ttfamily}l>{\ttfamily}cX@{}}
+% Captions
+\caption{Boolean class options}\\
+\label{tab:options:boolean}\\
+% ---------------------------
+% Header & Footer
+% ---------------------------
+%
+% Header
+% -----------------
+% 1st head
+\toprule
+\multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
+\midrule
+\endfirsthead
+% Last head
+\multicolumn{3}{@{}l}{\ldots continued}\\
+\toprule
+\multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
+\midrule
+\endhead
+%
+% Footer
+% -----------------
+% n-th foot
+\bottomrule
+\multicolumn{3}{r@{}}{continued \ldots}\\
+\endfoot
+% last foot
+\bottomrule
+\endlastfoot
+% ---------------------------
+% Content
+% ---------------------------
+attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
+cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
+color          \stmindex{Options!color}          & true  & Load the \stmlatexpackagelink{stmcolors} package\\
+conditionallox \stmindex{Options!conditionallox} & true  & Load the \stmlatexpackagelink{stmconditionallox} package\\
+conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
+date           \stmindex{Options!date}           & false & Load the \stmlatexpackagelink{stmdate} package\\
+glossaries     \stmindex{Options!glossaries}     & false & Load the \stmlatexpackagelink{stmglossaries} package\\
+index          \stmindex{Options!index}          & false & Load the \stmlatexpackagelink{stmindex} package\\
+hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
+listings       \stmindex{Options!listings}       & false & Load the \stmlatexpackagelink{stmlistings} package\\
+math           \stmindex{Options!math}           & false & Load the \stmlatexpackagelink{stmmath} package\\
+plots          \stmindex{Options!plots}          & false & Load the \stmlatexpackagelink{stmplots} package\\
+tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
+units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
+\end{longtable}
+\end{filecontents}
+
+\begingroup
+\LTXtable{\linewidth}{\tabledir\jobname-optionsbool.tex}
+\endgroup
 
 \paragraph{String options}
 
@@ -203,11 +271,16 @@ The following options are only available for \texttt{layout=dlr} which uses the 
 \end{table}
 
 \levelstay{Option \protect\texttt{attachfile}}
+\label{sec:options:attachfile}
 \stmindex{Options!attachfile}
 
+The package \ctanpackagelink{attachfile} is one of the packages that has to be loaded at a specific relative position to \ctanpackagelink{hyperref}. Thus, this option is only relevant in case the \nameref{sec:options:hyperref} from \cref{sec:options:hyperref} is used.
 
-\levelstay{Option \protect\texttt{cleverref}}
-\stmindex{Options!cleverref}
+\levelstay{Option \protect\texttt{cleveref}}
+\label{sec:options:cleveref}
+\stmindex{Options!cleveref}
+
+The package \ctanpackagelink{cleveref} is one of the packages that has to be loaded at a specific relative position to \ctanpackagelink{hyperref}. Thus, this option is only relevant in case the \nameref{sec:options:hyperref} from \cref{sec:options:hyperref} is used.
 
 \levelstay{Option \protect\texttt{color}}
 \stmindex{Options!color}
@@ -215,7 +288,7 @@ The following options are only available for \texttt{layout=dlr} which uses the 
 \levelstay{Option \protect\texttt{conditionallox}}
 \stmindex{Options!conditionallox}
 
-conditionallox: Compile 3 times
+In case the option \texttt{conditionallox} is used, the document has to be compiled at least three times.
 
 \levelstay{Option \protect\texttt{conditionalloxnewpage}}
 \stmindex{Options!conditionalloxnewpage}
@@ -226,6 +299,44 @@ conditionallox: Compile 3 times
 \levelstay{Option \protect\texttt{glossaries}}
 \stmindex{Options!glossaries}
 
+Setting \texttt{glossaries=true} loads the \stmlatexpackagelink{stmglossaries}. Thus, the user is able to use the glossary entries from the package as described in the package documentation.
+
+In case the \ctanpackagelink{arara} package is used for the build automation of the \LaTeX{} document, add
+\begin{lstlisting}[
+  style=texcodestyle
+]
+arara: makeglossaries
+\end{lstlisting}
+
+in the build automation part of your preamble. That way, the glossaries are automatically compiled during your document creation.
+
+For the glossaries to show up in your document, simply place the commands to print the glossary entries of your choice at the location in your document where you want them to show up, e.g.
+
+\begin{lstlisting}[
+  style=texcodestyle
+]
+\printstmacronyms
+
+\printstmscalarglossary
+\printstmvectorglossary
+\printstmmatrixglossary
+\printstmstateglossary
+\printstmindexglossary
+\printstmexponentglossary
+\printstmoperatorglossary
+\end{lstlisting}
+
+or
+
+\begin{lstlisting}[
+  style=texcodestyle
+]
+\printstmacronyms
+\printallstmglossaries
+\end{lstlisting}
+
+In case no entries are defined, the lists are simply omitted in your document.%\gls{acr:DOI}.
+
 \levelstay{Option \protect\texttt{index}}
 \stmindex{Options!index}
 
@@ -233,6 +344,7 @@ conditionallox: Compile 3 times
 \stmindex{Options!institute}
 
 \levelstay{Option \protect\texttt{hyperref}}
+\label{sec:options:hyperref}
 \stmindex{Options!hyperref}
 
 https://tex.stackexchange.com/a/26592
@@ -241,6 +353,7 @@ https://tex.stackexchange.com/a/26592
 \stmindex{Options!language}
 
 \levelstay{Option \protect\texttt{layout}}
+\label{sec:options:layout}
 \stmindex{Options!layout}
 
 \levelstay{Option \protect\texttt{listings}}
@@ -259,10 +372,15 @@ https://tex.stackexchange.com/a/26592
 \stmindex{Options!tikz}
 
 \levelstay{Option \protect\texttt{type}}
+\label{sec:options:type}
 \stmindex{Options!type}
 
 \levelstay{Option \protect\texttt{units}}
 \stmindex{Options!units}
+
+\levelstay{Other options}
+
+All other options are passed to the underlying document class. Thus, it has to be made sure that the underlying document class understands these options. At this point, switching the argument in the \nameref{sec:options:layout} may lead to problems in case the options is specific to a document class.
 
 \setcounter{currentlevel}{\basetoclevelnr}
 \levelstay{Usage}
@@ -272,6 +390,8 @@ https://tex.stackexchange.com/a/26592
 \leveldown{\protect\texttt{type}-independent document structure}
 
 \href{https://ctan.org/tex-archive/macros/latex/contrib/coseoul}{coseoul} package
+
+\printstmacronyms
 
 \printstmindex
 
