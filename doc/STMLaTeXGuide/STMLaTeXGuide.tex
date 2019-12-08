@@ -28,7 +28,22 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  page=false,%
+  hyperref=true,%
+  cleveref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=true,%
+  date=true,%
+  glossaries=true,%
+  index=true,%
+  math=true,%
+  listings=true%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -45,15 +60,10 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{stmcolors}
-\usepackage{stmdate}
-\usepackage{stmmath}
-\usepackage{stmlistings}
 
 \usepackage[autostyle=true,german=quotes]{csquotes}
 \usepackage{tabularx}
 \usepackage{xspace}
-
-\usepackage{hyperref}
 
 %\newcommand{\package}[2]{\subsection*{#1}\unskip(by #2)\par\medskip\noindent\ignorespaces}
 \newcommand{\package}[1]{\subsection*{#1}\par\medskip\noindent\ignorespaces}
@@ -119,6 +129,12 @@ Date definitions.
 \package{stmglossaries}
 Acronyms and symbol definitions.
 
+\package{stmhyperref}
+Definitions for hypertext.
+
+\package{stmindex}
+Index definitions.
+
 \package{stmlanguage}
 Language definitions.
 
@@ -130,6 +146,9 @@ Math definitions.
 
 \package{stmplots}
 Plot definitions.
+
+\package{stmtext}
+Documentclass for structural mechanics document preparation.
 
 \package{stmtikz}
 Drawing definitions.

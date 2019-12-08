@@ -28,7 +28,14 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  listings=true,%
+  math=true,%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -44,12 +51,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{stmdate}
-\usepackage{stmmath}
-\usepackage{stmlistings}
 \usepackage{tabularx}
-
-\usepackage{hyperref}
 
 % ---------------------------
 % Doc info

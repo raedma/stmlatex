@@ -8,7 +8,7 @@
 %
 % Usage
 %  - Premble:
-%    - \usepackage{hyperrefsetup}
+%    - \usepackage{stmhyperrefbase}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,14 +30,14 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmhyperrefsetup}[2019/10/27 STMs hyperref setup definitions]
+\ProvidesPackage{stmhyperrefbase}[2019/10/27 STMs base hyperref package]
 
 % ---------------------------
 % Package
 % ---------------------------
 
 \@ifpackageloaded{hyperref}{
-  %\PackageWarning{stmhyperrefsetup}{Hyperref package was already loaded!}
+  %\PackageWarning{stmhyperrefbase}{Hyperref package was already loaded!}
 }{%
   % These options must be set at the time of \usepackage and can not be set using \hypersetup
   \PassOptionsToPackage{%
@@ -47,22 +47,6 @@
   %
   \RequirePackage{hyperref}
 }%
-
-% ---------------------------
-% Setup
-% ---------------------------
-
-\hypersetup{%
-  colorlinks    = true,%  Color text instead of boxes
-  linkcolor     = black,% Color of internal links
-  citecolor     = black,% Color of citations
-  urlcolor      = blue,%  Color of external urls
-  pdfstartview  = Fit,%
-  pdfmenubar    = true,%
-  pdftoolbar    = true,%
-  bookmarksopen = false,%
-  %bookmarksopenlevel = 1,%
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

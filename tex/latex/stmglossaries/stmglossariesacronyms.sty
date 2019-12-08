@@ -4,7 +4,6 @@
 % 
 % This file includes the common LaTeX
 % acronyms definitions
-% (acronyms, glossaries, acronyms)
 % for structural mechanics
 % Based upon the glossaries package:
 %   https://ctan.org/pkg/glossaries
@@ -44,12 +43,12 @@
 % If not loaded in advance, load the glossaries package with some default options
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
 % ---------------------------
 % Options
 % ---------------------------
+
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 \SetupKeyvalOptions{%
   family=stmglossariesacronyms,%
@@ -58,10 +57,19 @@
 }
 
 % Load styles
+\DeclareBoolOption[true]{commands}
+
+% Load styles
 \DeclareBoolOption[true]{items}
 
 % Load styles
 \DeclareBoolOption[true]{styles}
+
+% Automatically add the corresponding glossary entry to the acronym
+\DeclareBoolOption[false]{autoaddglossaryentry}
+
+% Add a link from the acronym to the glossary entry
+\DeclareBoolOption[false]{linktoglossary}
 
 % Process options
 \ProcessKeyvalOptions{stmglossariesacronyms}
@@ -71,13 +79,25 @@
 % ---------------------------
 
 % Load the items
-\ifstmglossariesacronyms@items
-  \@ifpackageloaded{stmglossariesacronymsitems}{}{\RequirePackage{stmglossariesacronymsitems}}
-\fi
+\ifstmglossariesacronyms@items%
+  \@ifpackageloaded{stmglossariesacronymsitems}{}{%
+    \RequirePackage[%
+      autoaddglossaryentry={\ifstmglossariesacronyms@autoaddglossaryentry true\else false\fi},%
+      linktoglossary={\ifstmglossariesacronyms@linktoglossary true\else false\fi},%
+    ]{stmglossariesacronymsitems}%
+  }%
+\fi%
 
 % Load the styles
 \ifstmglossariesacronyms@styles
   \@ifpackageloaded{stmglossariesacronymsstyles}{}{\RequirePackage{stmglossariesacronymsstyles}}
+\fi
+
+% Load the print commands
+\ifstmglossariesacronyms@commands%
+  \@ifpackageloaded{stmglossariesacronymscommands}{}{%
+    \RequirePackage{stmglossariesacronymscommands}%
+  }%
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -41,15 +41,12 @@
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
 \ProvidesPackage{stmglossaries}[2019/11/03 STMs custom LaTeX glossaries definitions]
 
-% If not loaded in advance, load the glossaries package with some default options
-\@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
-
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
 % ---------------------------
 % Options
 % ---------------------------
+
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 \SetupKeyvalOptions{%
   family=stmglossaries,%
@@ -59,6 +56,9 @@
 
 % Acronyms
 \DeclareBoolOption[true]{acronyms}
+
+% Acronyms
+\DeclareBoolOption[false]{glossary}
 
 % Symbols
 \DeclareBoolOption[true]{symbols}
@@ -78,11 +78,25 @@
 % Load morewrites
 \DeclareBoolOption[true]{makeglossaries}
 
+% Automatically add the corresponding glossary entry to the acronym
+\DeclareBoolOption[false]{autoaddglossaryentrytoacronym}
+
+% Add a link from the acronym to the glossary entry
+\DeclareBoolOption[false]{linkacronymtoglossary}
+
 % Process options
 \ProcessKeyvalOptions{stmglossaries}
 
 % ---------------------------
-% Modules
+% Load the base package
+% ---------------------------
+
+% If not loaded in advance, load the glossaries package with some default options
+\@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
+
+% ---------------------------
+% Modules 1
+% newglossary can only be used before makeglossaries
 % ---------------------------
 
 % Load morewrites
@@ -92,33 +106,16 @@
   \fi%
 }%
 
-% Load the acronyms
-\ifstmglossaries@acronyms
-  \@ifpackageloaded{stmglossariesacronyms}{}{%
-    \RequirePackage[%
-      items={\ifstmglossaries@items true\else false\fi},%
-      styles={\ifstmglossaries@styles true\else false\fi},%
-    ]{stmglossariesacronyms}%
-  }%
-\fi
-
 % Load the symbols
 \ifstmglossaries@symbols
   \@ifpackageloaded{stmglossariessymbols}{}{%
     \RequirePackage[%
+      commands={\ifstmglossaries@commands true\else false\fi},%
       items={\ifstmglossaries@items true\else false\fi},%
       styles={\ifstmglossaries@styles true\else false\fi},%
-      commands={\ifstmglossaries@commands true\else false\fi},%
     ]{stmglossariessymbols}%
   }%
 \fi
-
-% Load the print commands
-\@ifpackageloaded{stmglossariescommands}{}{%
-  \ifstmglossaries@commands%
-    \RequirePackage{stmglossariescommands}%
-  \fi
-}%
 
 % ---------------------------
 % Makeglossaries command
@@ -129,9 +126,38 @@
     \RequirePackage{etoolbox}
   }
 
+  % May not be at \AtEndPreamble in case the original implementation of "see" key in glossaryentry definition is used.
   \AtEndPreamble{%
     \makeglossaries%
   }
+\fi
+
+% ---------------------------
+% Modules 2
+% ---------------------------
+
+% Load the glossary
+\ifstmglossaries@glossary
+  \@ifpackageloaded{stmglossariesglossary}{}{%
+    \RequirePackage[%
+      commands={\ifstmglossaries@commands true\else false\fi},%
+      items={\ifstmglossaries@items true\else false\fi},%
+      styles={\ifstmglossaries@styles true\else false\fi},%
+    ]{stmglossariesglossary}%
+  }%
+\fi
+
+% Load the acronyms
+\ifstmglossaries@acronyms
+  \@ifpackageloaded{stmglossariesacronyms}{}{%
+    \RequirePackage[%
+      commands={\ifstmglossaries@commands true\else false\fi},%
+      items={\ifstmglossaries@items true\else false\fi},%
+      styles={\ifstmglossaries@styles true\else false\fi},%
+      autoaddglossaryentry={\ifstmglossaries@autoaddglossaryentrytoacronym true\else false\fi},%
+      linktoglossary={\ifstmglossaries@linkacronymtoglossary true\else false\fi},%
+    ]{stmglossariesacronyms}%
+  }%
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -45,6 +45,51 @@
 % If not loaded in advance, load the glossaries package with some default options
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
 
+%
+\@ifpackageloaded{etoolbox}{}{\RequirePackage{etoolbox}}%
+
+% ---------------------------
+% Options
+% ---------------------------
+
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+\SetupKeyvalOptions{%
+  family=stmglossariesacronymsitems,%
+  prefix=stmglossariesacronymsitems@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Automatically add the corresponding glossary entry to the acronym
+\DeclareBoolOption[false]{autoaddglossaryentry}
+
+% Add a link from the acronym to the glossary entry
+\DeclareBoolOption[false]{linktoglossary}
+
+% Process options
+\ProcessKeyvalOptions{stmglossariesacronymsitems}
+
+% ---------------------------
+% Option handling
+% ---------------------------
+
+% If link to glossary we must autoadd
+\ifbool{stmglossariesacronymsitems@linktoglossary}{
+  \stmglossariesacronymsitems@autoaddglossaryentrytrue
+}{}
+
+% If we want to cross-link to the glossary, we need to load the entries
+\ifbool{stmglossariesacronymsitems@autoaddglossaryentry}{
+  \@ifpackageloaded{stmglossariesglossaryitems}{}{\RequirePackage{stmglossariesglossaryitems}}%
+}{}
+
+% ---------------------------
+% Commands
+% ---------------------------
+
+\newcommand{\seeglossarylinktext}{, \textit{\glossaryname}:}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Functionality                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,7 +98,16 @@
 \newacronym{acr:ACO}{ACO}{ant colony optimisation}
 \newacronym{acr:AFP}{AFP}{automated fibre placement}
 \newacronym{acr:ALM}{ALM}{additive layer manufacturing}
-\newacronym{acr:API}{API}{application programming interface}
+\newacronym[%
+  first={%
+    application programming interface (API)%
+    \ifbool{stmglossariesacronymsitems@autoaddglossaryentry}{\glsadd{glo:API}}{}%
+  },%
+  %,\ifbool{stmglossariesacronymsitems@linktoglossary}{see={[Glossary:]{glo:API}}}{}
+]{acr:API}{API}{%
+  application programming interface%
+  \ifbool{stmglossariesacronymsitems@linktoglossary}{\seeglossarylinktext{}\gls{glo:API}}{}
+}
 \newacronym{acr:APU}{APU}{auxiliary power unit}
 \newacronym{acr:ASTM}{ASTM}{American society for testing and materials}
 
@@ -79,6 +133,7 @@
 \newacronym[plural=CFRPs,firstplural=carbon fibre reinforced plastics]{acr:CFRP}{CFRP}{carbon fibre reinforced plastic}
 \newacronym{acr:CLT}{CLT}{classical laminate theory}
 \newacronym[plural=CMs,firstplural=continuum mechanics]{acr:CM}{CM}{continuum mechanic}
+\newacronym{acr:CME}{CME}{coefficient of moisture expansion}
 \newacronym{acr:CSM}{CSM}{computational structural mechanics}
 \newacronym{acr:CT}{CT}{computed tomography}
 \newacronym{acr:CTE}{CTE}{coefficient of thermal expansion}
@@ -114,6 +169,7 @@
 \newacronym{acr:FE}{FE}{finite element}
 \newacronym{acr:FEM}{FEM}{finite element method}
 \newacronym{acr:FFT}{FFT}{fast Fourier transform}
+\newacronym{acr:FOM}{FOM}{figure of merit}
 \newacronym{acr:FML}{FML}{fibre metal laminate}
 \newacronym{acr:FMU}{FMU}{functional mock-up unit}
 \newacronym{acr:FSDT}{FSDT}{first-order shear deformation theory}

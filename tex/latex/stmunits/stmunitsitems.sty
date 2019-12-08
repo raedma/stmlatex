@@ -36,53 +36,36 @@
 % Package
 % ---------------------------
 
-\@ifpackageloaded{siunitx}{}{\RequirePackage{siunitx}}%
+\@ifpackageloaded{stmunitsbase}{}{\RequirePackage{stmunitsbase}}%
 
 % ---------------------------
-% Options
+% New units
 % ---------------------------
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+% Length
+\DeclareSIUnit\foot{ft}
+\DeclareSIUnit\inch{in}
 
-% Option group
-\SetupKeyvalOptions{%
-  family=stmunits,%
-  prefix=stmunits@,%
-  setkeys=\kvsetkeys,%
-}
+% Temperature
+\DeclareSIUnit\degreeFahrenheit{^{\circ}F}
+\DeclareSIUnit\degreeRankine{^{\circ}R}
 
-% Items
-\DeclareBoolOption[true]{items}
+% Force
+\DeclareSIUnit\dyn{dyn}
+\DeclareSIUnit\poundforce{lbf}
 
-% Load styles
-\DeclareBoolOption[true]{styles}
+% Pressure
+\DeclareSIUnit\barye{Ba}
+\DeclareSIUnit\psi{psi}
 
-% Apply style name
-\DeclareStringOption[stmdefault]{style}
+% Density
+\DeclareSIUnit\slug{slug}
 
-% Process options
-\ProcessKeyvalOptions{stmunits}
+% Energy
+\DeclareSIUnit\erg{erg}
 
-% ---------------------------
-% Modules
-% ---------------------------
-
-% Load the styles
-\ifstmunits@styles
-  \@ifpackageloaded{stmunitsstyles}{}{%
-    \RequirePackage[
-      style=\stmunits@style
-    ]{stmunitsstyles}%
-  }%
-\fi
-
-% Load the items
-\ifstmunits@items
-  \@ifpackageloaded{stmunitsitems}{}{%
-    \RequirePackage{stmunitsitems}%
-  }%
-\fi
+% Promille
+\DeclareSIUnit[number-unit-product = \,]{\promille}{\textperthousand}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

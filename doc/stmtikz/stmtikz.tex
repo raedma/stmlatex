@@ -28,7 +28,14 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  listings=true,%
+  tikz=false,%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -45,8 +52,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
-\usepackage{stmdate}
-\usepackage{stmlistings}
 \usepackage[
   libraries=true,
   styles=true,
@@ -54,8 +59,6 @@
   globalexternalization=false,
   externalizationoutputfolder=ZZY_TikZ,
 ]{stmtikz}
-
-\usepackage{hyperref}
 
 % ---------------------------
 % Doc info

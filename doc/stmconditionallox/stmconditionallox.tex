@@ -28,7 +28,17 @@
 % Documentclass
 % ---------------------------
 
-\documentclass[listof=totoc]{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  hyperref=true,%
+  conditionallox=false,%
+  %conditionalloxnewpage=false,%
+  date=true,%
+  %glossaries=true,%
+  %index=true,%
+  listings=true%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -46,11 +56,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{stmdate}
-\usepackage{stmlistings}
-\usepackage[newpage=false]{stmconditionallox}
 
-\usepackage{hyperref}
+\usepackage[newpage=false]{stmconditionallox}
 
 % ---------------------------
 % Doc info
@@ -97,15 +104,11 @@ Additionally it is possible to create a list of code listings with a macro from 
   \item \verb+\lstlistoflistings+
 \end{itemize}
 
+The latter is currently only tested for the \texttt{stmlistings} package, which is based on \texttt{listings}. Please check the functionality carefully in case another package, e.g. \texttt{minted} is used.
+
 % \subsection{\protect\texttt{stmconditionallox}}
 
-With
-
-\begin{verbatim}
-\usepackage{stmconditionallox}
-\end{verbatim}
-
-a set of new commands is created:
+By using this package a set of new commands is created:
 
 \begin{itemize}
   \item \verb+\conditionallistoffigures+

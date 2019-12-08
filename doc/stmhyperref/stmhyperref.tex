@@ -1,0 +1,285 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmhyperref package
+%
+% Usage
+%  - Compile using 'arara stmhyperref.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  %hyperref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=false,%
+  date=true,%
+  %glossaries=true,%
+  index=true,%
+  listings=true%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: makeglossaries
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage[
+  styles=true,
+  style=stmdefault,
+]{stmhyperref}
+
+\usepackage{cleveref}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmhyperref package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This package takes care of handling cross-referencing in \LaTeX{} documents with hypertext links. It loads the underlying base package and offers a modular collection of styles for the representation of hyperlinks. It is build upon the \href{https://ctan.org/pkg/hyperref}{hyperref} package.
+\end{abstract}
+
+\tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmhyperref} package}
+\label{sec:usage:preamble:wholepackage}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads the base package and the style choice.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmhyperrefbase.sty+
+  \item \verb+stmhyperrefpdfopts.sty+
+  \item \verb+stmhyperrefstyles.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmhyperref}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{style}} 
+\label{sec:usage:preamble:wholepackage:options:style}
+
+This option value is the equivalent to \cref{sec:usage:preamble:styles:options:style} and is passed through to the underlying package.
+
+\paragraph{Option \protect\textit{pdfopts}} 
+\label{sec:usage:preamble:wholepackage:options:pdfopts}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined pdf view option sets.
+
+\begin{verbatim}
+\usepackage[pdfopts=true|false]{stmhyperref}
+\end{verbatim}
+
+\texttt{pdfopts=true} is the default. It is used in case \texttt{pdfopts=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{pdfopt}} 
+\label{sec:usage:preamble:wholepackage:options:pdfopt}
+
+This option value is the equivalent to \cref{sec:usage:preamble:pdfopts:options} and is passed through to the underlying package.
+
+\subsection{\protect\texttt{stmhyperrefbase}}
+\label{sec:usage:preamble:base}
+
+This package loads the underlying base package with some default options that can only be set during initialization.
+
+\subsection{\protect\texttt{stmhyperrefstyles}}
+\label{sec:usage:preamble:styles}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:styles:description}
+
+This package contains styles for the optical behaviour of internal and external links. Internal links are those inside the document, e.g. references and citations. External links are those to URL's.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:styles:options}
+
+\paragraph{Option \protect\textit{style}} 
+\label{sec:usage:preamble:styles:options:style}
+
+This is a string option. A list of possible values is shown in \cref{sec:styles}.
+
+\begin{verbatim}
+\usepackage[style=stmdefault]{stmhyperrefstyles}
+\end{verbatim}
+
+\texttt{style=stmdefault} is the default. It is used in case no other style is set explicitly.
+
+\subsection{\protect\texttt{stmhyperrefpdfopts}}
+\label{sec:usage:preamble:pdfopts}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:pdfopts:description}
+
+This package contains definitions how to display the resulting document at opening in the viewer.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:pdfopts:options}
+
+This is a string option. A list of possible values is listed in \cref{sec:pdfopts}.
+
+\begin{verbatim}
+\usepackage[pdfopt=stmdefault]{stmhyperrefpdfopts}
+\end{verbatim}
+
+\texttt{style=stmdefault} is the default. It is used in case no other style is set explicitly. A list of possible values is shown in \autoref{sec:pdfopts}.
+
+\section{Styles}
+\label{sec:styles}
+
+There are different predefined styles available to format your hypertext.
+
+\subsection{\protect\texttt{default}}
+\label{sec:styles:default}
+
+This loads the default style from the underlying base package and does not apply individual styles.
+
+\subsection{\protect\texttt{stmdefault}}
+\label{sec:styles:stmdefault}
+
+This loads the color definitions for links, citations and URL's from the \texttt{stmcolor} package and applies them.
+
+\subsection{\protect\texttt{colorlinkexternalblueinternalblack}}
+\label{sec:styles:colorlinkexternalblueinternalblack}
+
+Please take the style information directly from \cref{sec:code:styles}.
+
+\subsection{\protect\texttt{colorlinkallblack}}
+\label{sec:styles:colorlinkallblack}
+
+Please take the style information directly from \cref{sec:code:styles}.
+
+\subsection{\protect\texttt{colorlinkallblue}}
+\label{sec:styles:colorlinkallblue}
+
+Please take the style information directly from \cref{sec:code:styles}.
+
+\section{\protect\texttt{pdfopt} sets}
+\label{sec:pdfopts}
+
+There are different predefined options sets available to configure the pdf view settings.
+
+\subsection{\protect\texttt{default}}
+\label{sec:pdfopts:default}
+
+Please take the style information directly from \cref{sec:code:pdfopts}.
+
+\subsection{\protect\texttt{stmdefault}}
+\label{sec:pdfopts:stmdefault}
+
+Please take the style information directly from \cref{sec:code:pdfopts}.
+
+\subsection{\protect\texttt{viewfitwmenuwtoolbarwobookmarksopen}}
+\label{sec:pdfopts:viewfitwmenuwtoolbarwobookmarksopen}
+
+Please take the style information directly from \cref{sec:code:pdfopts}.
+
+\printstmindex
+
+\newpage
+\appendix
+
+\section{The code}
+\label{sec:code}
+
+\subsection{stmhyperref.sty}
+\label{sec:code:main}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmhyperref/stmhyperref.sty}
+
+\subsection{stmhyperrefbase.sty}
+\label{sec:code:base}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmhyperref/stmhyperrefbase.sty}
+
+\subsection{stmhyperrefpdfopts.sty}
+\label{sec:code:pdfopts}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmhyperref/stmhyperrefpdfopts.sty}
+
+\subsection{stmhyperrefstyles.sty}
+\label{sec:code:styles}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmhyperref/stmhyperrefstyles.sty}
+
+\end{document}

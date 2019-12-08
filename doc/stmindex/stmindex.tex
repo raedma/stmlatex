@@ -28,7 +28,14 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  index=false,%
+  listings=true%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -48,7 +55,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
-\usepackage{stmdate}
+
 \usepackage[%
   standard=true,% Load a single standard index
   name=Testindex,%
@@ -56,7 +63,6 @@
   columns=3,
   %nonewpage=true,%
 ]{stmindex}
-\usepackage{stmlistings}
 
 \usepackage{hyperref}
 

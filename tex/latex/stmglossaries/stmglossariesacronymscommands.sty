@@ -30,31 +30,13 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmglossariescommands}[2019/10/27 STMs custom LaTeX glossary commands]
+\ProvidesPackage{stmglossariesacronymscommands}[2019/10/27 STMs custom LaTeX acronym commands]
 
 % ---------------------------
 % Commands
 % ---------------------------
 
 \newcommand{\printstmacronyms}        {\printglossary[type=\acronymtype,style=stmacronymstyle ,nonumberlist]}
-
-\newcommand{\printstmscalarglossary}  {\printglossary[type=scalarlist  ,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmvectorglossary}  {\printglossary[type=vectorlist  ,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmmatrixglossary}  {\printglossary[type=matrixlist  ,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmstateglossary}   {\printglossary[type=statelist   ,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmindexglossary}   {\printglossary[type=indexlist   ,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmexponentglossary}{\printglossary[type=exponentlist,style=stmsymbolstyle  ,nonumberlist]}
-\newcommand{\printstmoperatorglossary}{\printglossary[type=operatorlist,style=stmoperatorstyle,nonumberlist]}
-
-\newcommand{\printallstmglossaries}{%
-  \printstmscalarglossary%
-  \printstmvectorglossary%
-  \printstmmatrixglossary%
-  \printstmstateglossary%
-  \printstmindexglossary%
-  \printstmexponentglossary%
-  \printstmoperatorglossary%
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

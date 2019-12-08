@@ -3,8 +3,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % This file includes the common LaTeX
-% acronym style definitions
-% (acronyms, glossaries, symbols)
+% glossary style definitions
+% (glossary, glossaries, symbols)
 % for structural mechanics
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
@@ -27,7 +27,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmglossariesacronymsstyles}[2019/10/27 STMs custom LaTeX acronyms style definitions]
+\ProvidesPackage{stmglossariesglossarystyles}[2019/10/27 STMs custom LaTeX glossary style definitions]
 
 % If not loaded in advance, load the glossaries package with some default options
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
@@ -53,10 +53,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % -----------------
-% Acronym-styles
+% glossary-styles
 % -----------------
 
-\newglossarystyle{stmacronymstyle}{%
+\newglossarystyle{stmglossarystyle}{%
   \renewenvironment{theglossary}%
     {\begin{longtabu} to \linewidth {lX}}%
     {\end{longtabu}}%
@@ -83,13 +83,13 @@
 % Style to show the keys
 % -----------------
 
-\newglossarystyle{stmacronymlabelstyle}{%
+\newglossarystyle{stmglossarylabelstyle}{%
   \renewenvironment{theglossary}%
     {\begin{longtabu} to \linewidth {lcX}}%
     {\end{longtabu}}%
   % Header line
   \renewcommand*{\glossaryheader}{%
-    \textbf{Label} & \textbf{Acronym} & \textbf{Description}
+    \textbf{Label} & \textbf{Entry} & \textbf{Description}
     \tabularnewline%
     \tabularnewline%
     \endhead%

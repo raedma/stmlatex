@@ -26,6 +26,10 @@
 % Content                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% ---------------------------
+% Package
+% ---------------------------
+
 % Declare that this style file requires at least LaTeX version 2e.
 \NeedsTeXFormat{LaTeX2e}
 
@@ -33,18 +37,12 @@
 \ProvidesPackage{stmlanguage}[2019/10/27 STMs custom LaTeX language definitions]
 
 % ---------------------------
-% Package
-% ---------------------------
-
-\@ifpackageloaded{kvoptions}{%
-%
-}{%
-  \RequirePackage{kvoptions}
-}%
-
-% ---------------------------
 % Options
 % ---------------------------
+
+\@ifpackageloaded{kvoptions}{}{%
+  \RequirePackage{kvoptions}
+}%
 
 \DeclareStringOption[english]{language}
 

@@ -28,7 +28,15 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  listings=true,%
+  math=true,%
+  plots=false,%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -45,8 +53,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
-\usepackage{stmdate}
-\usepackage{stmlistings}
+
 \usepackage[
   libraries=true,
   styles=true,
@@ -54,8 +61,6 @@
   globalexternalization=false,
   externalizationoutputfolder=ZZY_TikZ,
 ]{stmplots}
-
-\usepackage{hyperref}
 
 % ---------------------------
 % Doc info
@@ -235,7 +240,6 @@ This is a test. Code thankfully taken from
 \end{tikzpicture}
 \tikzexternaldisable
 \end{figure}
-lalal
 
 \newpage
 \appendix

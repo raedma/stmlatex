@@ -1,0 +1,245 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmunits package
+%
+% Usage
+%  - Compile using 'arara stmunits.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  cleveref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=false,%
+  date=true,%
+  hyperref=true,%
+  index=true,%
+  listings=true,%
+  math=true,%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: makeglossaries
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\usepackage{stmunits}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmunits package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the unit definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/siunitx}{siunitx} package.
+\end{abstract}
+
+\tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmunits} package}
+\label{sec:usage:preamble:wholepackage}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads the base package and the style choice.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmunitsbase.sty+
+  \item \verb+stmunitsitems.sty+
+  \item \verb+stmunitsstyles.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmunits}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{style}} 
+\label{sec:usage:preamble:wholepackage:options:style}
+
+This option value is the equivalent to \cref{sec:usage:preamble:styles:options:style} and is passed through to the underlying package.
+
+\subsection{\protect\texttt{stmunitsbase}}
+\label{sec:usage:preamble:base}
+
+This package loads the underlying base package.% with some default options that can only be set during initialization.
+
+\subsection{\protect\texttt{stmunitsitems}}
+\label{sec:usage:preamble:items}
+
+This loads new unit definitions, not initially defined in the base package. See \cref{sec:items} for the definitions.
+
+\subsection{\protect\texttt{stmunitsstyles}}
+\label{sec:usage:preamble:styles}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:styles:description}
+
+This package contains styles for the representation of units and numbers.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:styles:options}
+
+\paragraph{Option \protect\textit{style}} 
+\label{sec:usage:preamble:styles:options:style}
+
+This is a string option. A list of possible values is shown in \cref{sec:styles}.
+
+\begin{verbatim}
+\usepackage[style=stmdefault]{stmunitsstyles}
+\end{verbatim}
+
+\texttt{style=stmdefault} is the default. It is used in case no other style is set explicitly.
+
+\section{Items}
+\label{sec:items}
+
+\begin{table}[htbp]
+\caption{Additional unit definitions}
+\label{tab:items:additionalunits}
+\begin{tabularx}{\linewidth}{llXll}
+\multicolumn{5}{@{}l@{}}{Length}\\
+\verb+\si{\foot}+ & $\si{\foot}$  &&
+\verb+\si{\inch}+ & $\si{\inch}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Temperature}\\
+\verb+\si{\degreeFahrenheit}+ & $\si{\degreeFahrenheit}$  &&
+\verb+\si{\degreeRankine}+ & $\si{\degreeRankine}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Force}\\
+\verb+\si{\dyn}+ & $\si{\dyn}$  &&
+\verb+\si{\poundforce}+ & $\si{\poundforce}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Pressure}\\
+\verb+\si{\barye}+ & $\si{\barye}$  &&
+\verb+\si{\psi}+ & $\si{\psi}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Density}\\
+\verb+\si{\slug}+ & $\si{\slug}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Energy}\\
+\verb+\si{\erg}+ & $\si{\erg}$  \\[1.5ex]
+\multicolumn{5}{@{}l@{}}{Misc.}\\
+\verb+\si{\promille}+ & $\si{\promille}$  \\
+\end{tabularx}
+\end{table}
+
+\section{Styles}
+\label{sec:styles}
+
+There are different predefined styles available to format your numbers and units.
+
+\subsection{\protect\texttt{default}}
+\label{sec:styles:default}
+
+This loads the default style from the underlying base package and does not apply individual styles.
+
+\subsection{\protect\texttt{stmdefault}}
+\label{sec:styles:stmdefault}
+
+This loads unit definition style for the stm package. Have a look at the code in \cref{sec:code:styles} for details.
+
+\printstmindex
+
+\newpage
+\appendix
+
+\section{The code}
+\label{sec:code}
+
+\subsection{stmunits.sty}
+\label{sec:code:main}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmunits/stmunits.sty}
+
+\subsection{stmunitsbase.sty}
+\label{sec:code:base}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmunits/stmunitsbase.sty}
+
+\subsection{stmunitsitems.sty}
+\label{sec:code:items}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmunits/stmunitsitems.sty}
+
+\subsection{stmunitsstyles.sty}
+\label{sec:code:styles}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmunits/stmunitsstyles.sty}
+
+\end{document}

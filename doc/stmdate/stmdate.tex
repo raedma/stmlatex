@@ -28,7 +28,13 @@
 % Documentclass
 % ---------------------------
 
-\documentclass{scrartcl}
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=false,%
+  hyperref=true,%
+  listings=true%
+]{stmtext}
 
 % ---------------------------
 % Build automation
@@ -45,13 +51,11 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+
 \usepackage[%
   commands=true,%
   styles=true,%
 ]{stmdate}
-\usepackage{stmlistings}
-
-\usepackage{hyperref}
 
 % ---------------------------
 % Doc info
@@ -79,6 +83,7 @@ These are the date definitions for \texttt{stmlatex}. It is build upon the \href
 \section{Usage}% - in the preamble}
 
 \subsection{Load the whole \protect\texttt{stmdate} package}
+\label{sec:usage:preamble:wholepackage}
 
 \subsubsection{Description}
 \label{sec:usage:preamble:wholepackage:description}

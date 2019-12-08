@@ -1,0 +1,125 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This file includes unit definitions.
+% Based upon the siunitx package:
+%   https://ctan.org/pkg/siunitx
+%
+% Usage
+%  - Premble:
+%    - \usepackage{stmunitsstyles}
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmunitsstyles}[2019/10/27 STMs custom LaTeX unit style definitions]
+
+% ---------------------------
+% Base package
+% ---------------------------
+
+\@ifpackageloaded{stmunits}{}{\RequirePackage{stmunits}}%
+
+% ---------------------------
+% Options
+% ---------------------------
+
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+\SetupKeyvalOptions{%
+  family=stmunitsstyles,%
+  prefix=stmunitsstyles@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Style name
+\DeclareStringOption[stmdefault]{style}
+
+% Process options
+\ProcessKeyvalOptions{stmunitsstyles}
+
+% ---------------------------
+% Package
+% ---------------------------
+
+% ---------------------------
+% Setup
+% ---------------------------
+
+\sisetup{%
+  exponent-product = \cdot,%
+  output-product = \cdot,%
+  binary-units=true,%
+}
+
+% ---------------------------
+% Style
+% ---------------------------
+
+\@namedef{stmunitsstyles@style@default}{%
+  % This here is empty to load the standard sisetup
+}
+
+\@namedef{stmunitsstyles@style@stmdefault}{%
+  \sisetup{%
+    allow-number-unit-breaks = false,%
+    binary-units             = true,%
+    detect-all,%
+    exponent-product         = \cdot,%
+    output-product           = \cdot,%
+    separate-uncertainty     = true,%
+  }
+}
+
+% Evaluate option settings
+% https://tex.stackexchange.com/a/249102
+\newcommand*{\stmunitsstyles@evaluate}[1]{%
+  % Check, if option value in \<prefix>@<option> exists
+  \@ifundefined{stmunitsstyles@#1}{%
+    % Should not happen
+    \PackageError{stmunitsstyles}{Evaluating unknown option `#1'}\@ehc
+  }{%
+    % Check, if there is an implementation for the value of the option
+    % in macro \<prefix>@<option>@<value>
+    \@ifundefined{stmunitsstyles@#1@\csname stmunitsstyles@#1\endcsname}{%
+      \PackageError{stmunitsstyles}{%
+        Unknown option setting: #1=%
+        \csname stmunitsstyles@#1\endcsname
+      }\@ehc
+    }{%
+      % Call the implementation for the value
+      \csname stmunitsstyles@#1@%
+              \csname stmunitsstyles@#1\endcsname
+      \endcsname
+      \relax
+    }%
+  }%
+}
+
+\stmunitsstyles@evaluate{style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput

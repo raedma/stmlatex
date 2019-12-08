@@ -245,7 +245,7 @@
 }
 
 % ---------------------------
-% Modules
+% Base packages
 % ---------------------------
 
 \ifstmtext@color
@@ -262,10 +262,7 @@
   \RequirePackage{stmdate}
 \fi
 
-\ifstmtext@glossaries
-  \RequirePackage{stmglossaries}
-\fi
-
+% This must be loaded ahead of tikz externalization
 \ifstmtext@index
   \RequirePackage{stmindex}
 \fi
@@ -296,6 +293,10 @@
 \ifstmtext@units
   \RequirePackage{stmunits}
 \fi
+
+% ---------------------------
+% Packages with dependencies
+% ---------------------------
 
 % ---------------------------
 % Coseoul to get a level-independent document structure
@@ -331,9 +332,15 @@
   \AtEndPreamble{
     
     %
-    \RequirePackage{stmhyperrefsetup}
+    \RequirePackage{stmhyperref}
     
-    % Must be loaded after hyperref
+    % After hyperref for links to work
+    % dependency on babel language
+    \ifstmtext@glossaries
+      \RequirePackage{stmglossaries}
+    \fi
+    
+    
     \ifstmtext@attachfile
       \RequirePackage{attachfile}
     \fi

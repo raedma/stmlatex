@@ -40,12 +40,12 @@
   page=false,%
   %institute=FA-STM,%
   %site=BS,%
-  hyperref=true,%
   cleveref=true,%
   conditionallox=true,%
   conditionalloxnewpage=true,%
   date=true,%
   glossaries=true,%
+  hyperref=true,%
   index=true,%
   listings=true%
 ]{stmtext}
@@ -66,7 +66,6 @@
 % Packages
 % ---------------------------
 
-%\usepackage{stmhyperrefsetup}
 \usepackage{booktabs}
 \usepackage{longtable,tabu}
 \usepackage{ltxtable}
@@ -145,6 +144,8 @@ The complete class and module system can be found at
 This section describes the class options. All options are key-value-options, meaning they are set using the definition \texttt{KEY=VALUE}. It must be noted that these options can not represent the full features of the module packages. In case more advanced options are required make sure to have a look at the individual package descriptions and consider loading them individually. Maybe you find what you need.
 
 \leveldown{Overview}
+
+This overview contains the most important informations about package options. If there are additional comments about individual options an additional section is created for their description.
 
 \paragraph{Boolean options}
 
@@ -282,19 +283,19 @@ The package \ctanpackagelink{attachfile} is one of the packages that has to be l
 
 The package \ctanpackagelink{cleveref} is one of the packages that has to be loaded at a specific relative position to \ctanpackagelink{hyperref}. Thus, this option is only relevant in case the \nameref{sec:options:hyperref} from \cref{sec:options:hyperref} is used.
 
-\levelstay{Option \protect\texttt{color}}
-\stmindex{Options!color}
+% \levelstay{Option \protect\texttt{color}}
+% \stmindex{Options!color}
 
 \levelstay{Option \protect\texttt{conditionallox}}
 \stmindex{Options!conditionallox}
 
 In case the option \texttt{conditionallox} is used, the document has to be compiled at least three times.
 
-\levelstay{Option \protect\texttt{conditionalloxnewpage}}
-\stmindex{Options!conditionalloxnewpage}
+% \levelstay{Option \protect\texttt{conditionalloxnewpage}}
+% \stmindex{Options!conditionalloxnewpage}
 
-\levelstay{Option \protect\texttt{date}}
-\stmindex{Options!date}
+% \levelstay{Option \protect\texttt{date}}
+% \stmindex{Options!date}
 
 \levelstay{Option \protect\texttt{glossaries}}
 \stmindex{Options!glossaries}
@@ -332,16 +333,16 @@ or
   style=texcodestyle
 ]
 \printstmacronyms
-\printallstmglossaries
+\printallstmsymbols
 \end{lstlisting}
 
 In case no entries are defined, the lists are simply omitted in your document.%\gls{acr:DOI}.
 
-\levelstay{Option \protect\texttt{index}}
-\stmindex{Options!index}
+% \levelstay{Option \protect\texttt{index}}
+% \stmindex{Options!index}
 
-\levelstay{Option \protect\texttt{institute}}
-\stmindex{Options!institute}
+% \levelstay{Option \protect\texttt{institute}}
+% \stmindex{Options!institute}
 
 \levelstay{Option \protect\texttt{hyperref}}
 \label{sec:options:hyperref}
@@ -349,34 +350,44 @@ In case no entries are defined, the lists are simply omitted in your document.%\
 
 https://tex.stackexchange.com/a/26592
 
-\levelstay{Option \protect\texttt{language}}
-\stmindex{Options!language}
+% \levelstay{Option \protect\texttt{language}}
+% \stmindex{Options!language}
 
 \levelstay{Option \protect\texttt{layout}}
 \label{sec:options:layout}
 \stmindex{Options!layout}
 
-\levelstay{Option \protect\texttt{listings}}
-\stmindex{Options!listings}
+This class is supposed to be an interface between different class bundles. Currently, this class offers an interface to the standard \LaTeX{} class bundle (\texttt{article}, \texttt{report}, \texttt{book}), the KOMA-script bundle (\texttt{scrartcl}, \texttt{scrreprt}, \texttt{scrbook}) and the RM-\LaTeX{} bundle.
 
-\levelstay{Option \protect\texttt{math}}
-\stmindex{Options!math}
+It is not the goal to implement all options of all classes rather than to allow an easy switch for standard documents. In case you miss an option for a specific bundle, feel free to implement it.
 
-\levelstay{Option \protect\texttt{plots}}
-\stmindex{Options!plots}
+% \levelstay{Option \protect\texttt{listings}}
+% \label{sec:options:listings}
+% \stmindex{Options!listings}
 
-\levelstay{Option \protect\texttt{site}}
-\stmindex{Options!site}
+% \levelstay{Option \protect\texttt{math}}
+% \label{sec:options:math}
+% \stmindex{Options!math}
 
-\levelstay{Option \protect\texttt{tikz}}
-\stmindex{Options!tikz}
+% \levelstay{Option \protect\texttt{plots}}
+% \label{sec:options:plots}
+% \stmindex{Options!plots}
 
-\levelstay{Option \protect\texttt{type}}
-\label{sec:options:type}
-\stmindex{Options!type}
+% \levelstay{Option \protect\texttt{site}}
+% \label{sec:options:site}
+% \stmindex{Options!site}
 
-\levelstay{Option \protect\texttt{units}}
-\stmindex{Options!units}
+% \levelstay{Option \protect\texttt{tikz}}
+% \label{sec:options:tikz}
+% \stmindex{Options!tikz}
+
+% \levelstay{Option \protect\texttt{type}}
+% \label{sec:options:type}
+% \stmindex{Options!type}
+% 
+% \levelstay{Option \protect\texttt{units}}
+% \label{sec:options:units}
+% \stmindex{Options!units}
 
 \levelstay{Other options}
 
