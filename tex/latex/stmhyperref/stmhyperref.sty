@@ -62,16 +62,13 @@
 \ProcessKeyvalOptions{stmhyperref}
 
 % ---------------------------
-% Base
+% Modules
 % ---------------------------
 
+% Load the base package
 \@ifpackageloaded{hyperref}{}{%
   \RequirePackage{stmhyperrefbase}
 }%
-
-% ---------------------------
-% Modules
-% ---------------------------
 
 % Load the styles
 \ifstmhyperref@styles

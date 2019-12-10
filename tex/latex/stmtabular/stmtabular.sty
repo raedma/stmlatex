@@ -2,13 +2,11 @@
 % Header                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% This is a interface to all stm math definitions
-% Based upon the amsmath package:
-%   https://ctan.org/pkg/amsmath
+% This is a interface to all stm tabular definitions
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmmathbase}
+%    - \usepackage{stmtabular}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,15 +28,38 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmmathbase}[2019/10/27 STMs custom LaTeX math definitions]
+\ProvidesPackage{stmtabular}[2019/10/27 STMs custom LaTeX tabular definitions]
 
 % ---------------------------
-% Package
+% Options
 % ---------------------------
 
-% Load amsmath to defined math operators
-\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
-\@ifpackageloaded{amssymb}{}{\RequirePackage{amssymb}}%
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
+\SetupKeyvalOptions{%
+  family=stmtabular,%
+  prefix=stmtabular@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Items
+\DeclareBoolOption[true]{columntypes}
+
+% Process options
+\ProcessKeyvalOptions{stmtabular}
+
+% ---------------------------
+% Modules
+% ---------------------------
+
+% Load the items
+\ifstmtabular@columntypes
+  \@ifpackageloaded{stmtabularcolumntypes}{}{%
+    \RequirePackage{stmtabularcolumntypes}%
+  }%
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

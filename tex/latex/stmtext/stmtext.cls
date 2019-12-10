@@ -78,6 +78,7 @@
 \DeclareBoolOption[false]{listings}
 \DeclareBoolOption[false]{math}
 \DeclareBoolOption[false]{plots}
+\DeclareBoolOption[false]{tabular}
 \DeclareBoolOption[false]{tikz}
 \DeclareBoolOption[true] {tikzexternalization}
 \DeclareBoolOption[false]{units}
@@ -303,6 +304,10 @@
 
 \ifstmtext@plots
   \RequirePackage{stmplots}
+\fi
+
+\ifstmtext@tabular
+  \RequirePackage{stmtabular}
 \fi
 
 % Must be loaded before tikz

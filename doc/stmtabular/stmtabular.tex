@@ -1,0 +1,140 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmtabular package
+%
+% Usage
+%  - Compile using 'arara stmtabular.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  listings=true,%
+  math=true,%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+
+\usepackage[
+  columntypes=true,%
+]{stmtabular}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmtabular package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the tabular definitions for \texttt{stmlatex}.
+\end{abstract}
+
+\tableofcontents
+
+\section{Column types}
+
+With the option \texttt{columntypes=true}, the column type definitions from the \href{http://www.matthiaspospiech.de/files/latex/vorlagen/thesis/TemplateDocumentation.pdf#subsection.7.4.12}{Thesis Template} are loaded.
+
+\subsection{\protect\texttt{p}-column type based}
+
+\begin{table}[htbp]
+\begin{tabular}{L{0.3\linewidth}C{0.3\linewidth}R{0.3\linewidth}}
+\toprule
+fixed width (L: left)   &
+fixed width (C: center) &
+fixed width (R: right)  \\
+\midrule
+%
+text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{\protect\texttt{X}-column type based}
+
+\begin{table}[htbp]
+\begin{tabularx}{\textwidth}{WZY}
+\toprule
+variable (W: left)   &
+variable (Z: center) &
+variable (Y: right)  \\
+\midrule
+%
+text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\appendix
+
+\newpage
+\section{The code}
+
+\subsection{\protect\texttt{stmtabular.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmtabular/stmtabular.sty}
+
+\subsection{\protect\texttt{stmtabularcolumntypes.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmtabular/stmtabularcolumntypes.sty}
+
+\end{document}

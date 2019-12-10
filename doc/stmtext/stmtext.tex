@@ -144,6 +144,7 @@ The complete class and module system can be found at
 This section describes the class options. All options are key-value-options, meaning they are set using the definition \texttt{KEY=VALUE}. It must be noted that these options can not represent the full features of the module packages. In case more advanced options are required make sure to have a look at the individual package descriptions and consider loading them individually. Maybe you find what you need.
 
 \leveldown{Overview}
+\label{sec:options:overview}
 
 This overview contains the most important informations about package options. If there are additional comments about individual options an additional section is created for their description.
 
@@ -200,6 +201,7 @@ hyperref       \stmindex{Options!hyperref}       & true  & Load the \stmlatexpac
 listings       \stmindex{Options!listings}       & false & Load the \stmlatexpackagelink{stmlistings} package\\
 math           \stmindex{Options!math}           & false & Load the \stmlatexpackagelink{stmmath} package\\
 plots          \stmindex{Options!plots}          & false & Load the \stmlatexpackagelink{stmplots} package\\
+tabular        \stmindex{Options!tabular}        & false & Load the \stmlatexpackagelink{stmtabular} package\\
 tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
 units          \stmindex{Options!units}          & false & Load the \stmlatexpackagelink{stmunits} package\\
 \end{longtable}
@@ -398,7 +400,7 @@ It is not the goal to implement all options of all classes rather than to allow 
 
 \levelstay{Other options}
 
-All other options are passed to the underlying document class. Thus, it has to be made sure that the underlying document class understands these options. At this point, switching the argument in the \nameref{sec:options:layout} may lead to problems in case the options is specific to a document class.
+All other options not explicitly list in \cref{sec:options:overview} are passed to the underlying document class. Thus, it has to be made sure that the underlying document class understands these options. At this point, switching the argument in the \nameref{sec:options:layout} may lead to problems in case the options is specific to a document class.
 
 \setcounter{currentlevel}{\basetoclevelnr}
 \levelstay{Usage}

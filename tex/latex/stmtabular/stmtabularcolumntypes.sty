@@ -2,13 +2,11 @@
 % Header                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% This is a interface to all stm math definitions
-% Based upon the amsmath package:
-%   https://ctan.org/pkg/amsmath
+% This is a interface to all stm tabular definitions
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmmathbase}
+%    - \usepackage{stmtabularcolumntypes}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,15 +28,36 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmmathbase}[2019/10/27 STMs custom LaTeX math definitions]
+\ProvidesPackage{stmtabularcolumntypes}[2019/10/27 STMs custom LaTeX tabular column type definitions]
 
 % ---------------------------
-% Package
+% Modules
 % ---------------------------
 
-% Load amsmath to defined math operators
-\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}%
-\@ifpackageloaded{amssymb}{}{\RequirePackage{amssymb}}%
+% For RaggedLeft/RaggedRight/Centering
+\@ifpackageloaded{ragged2e}{}{%
+  \RequirePackage{ragged2e}%
+}
+
+% for X-column
+\@ifpackageloaded{tabularx}{}{%
+  \RequirePackage{tabularx}%
+}
+
+% Thankfully copied from 
+% https://github.com/pospiech/latex/blob/master/latexthesistemplate/packages/publish/tablestyles.dtx
+%% centered (X):
+\newcolumntype{Z}{>{\centering\arraybackslash\hspace{0pt}}X}
+%% right (X):
+\newcolumntype{Y}{>{\RaggedLeft\arraybackslash\hspace{0pt}}X}
+%% left (X):
+\newcolumntype{W}{>{\RaggedRight\arraybackslash\hspace{0pt}}X}
+%% left (p):
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash\hspace{0pt}}p{#1}}
+%% right (p):
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash\hspace{0pt}}p{#1}}
+%% centered (p):
+\newcolumntype{C}[1]{>{\Centering\arraybackslash\hspace{0pt}}p{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %
