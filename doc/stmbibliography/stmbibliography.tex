@@ -1,0 +1,199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmbibliography package
+%
+% Usage
+%  - Compile using 'arara stmbibliography.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Literature
+% ---------------------------
+
+\begin{filecontents*}{literature.bib}
+@manual{biblatex314_20191201,
+  Title                    = {The biblatex Package},
+  Author                   = {Kime, Philip and Wemheuer,Moritz and Lehman, Philipp},
+  Number                   = {3.14 2019-12-01},
+  Type                     = {},
+  Year                     = {2019},
+  url                      = {https://ctan.org/pkg/biblatex},
+}
+\end{filecontents*}
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  bibliography=false,%
+  cleveref=true,%
+  conditionallox=true,%
+  conditionalloxnewpage=false,%
+  date=true,%
+  hyperref=true,%
+  index=true,%
+  listings=true%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: biber
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: makeglossaries
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% a!rara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*', 'literature.bib' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage[%
+  style=stmdefault,%
+]{stmbibliography}
+
+\addbibresource{literature.bib}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmbibliography package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This package offers some default preferences for the display of bibliographies. It is build upon the \href{https://ctan.org/pkg/biblatex}{biblatex} package \cite{biblatex314_20191201}.
+\end{abstract}
+
+\tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmbibliography} package}
+\label{sec:usage:preamble:wholepackage}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads the base package and the style choice.
+
+% By default the package loads
+
+% \begin{itemize}[noitemsep]
+  % \item \verb+stmbibliographybase.sty+
+  % \item \verb+stmbibliographypdfopts.sty+
+  % \item \verb+stmbibliographystyles.sty+
+% \end{itemize}
+
+% See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+% \paragraph{Option \protect\textit{styles}} 
+% \label{sec:usage:preamble:wholepackage:options:styles}
+
+% This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined styles.
+
+% \begin{verbatim}
+% \usepackage[styles=true|false]{stmbibliography}
+% \end{verbatim}
+
+% \texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{style}} 
+\label{sec:usage:preamble:wholepackage:options:style}
+
+% This option value is the equivalent to \cref{sec:usage:preamble:styles:options:style} and is passed through to the underlying package.
+
+This is a string option. A list of possible values is shown in \cref{sec:styles}.
+
+\begin{verbatim}
+\usepackage[style=stmdefault]{stmbibliographystyles}
+\end{verbatim}
+
+\texttt{style=stmdefault} is the default. It is used in case no other style is set explicitly.
+
+\section{Styles}
+\label{sec:styles}
+\stmindex{Style}
+
+There are different predefined styles available to format your hypertext.
+
+\subsection{\protect\texttt{default}}
+\label{sec:styles:default}
+\stmindex{Style!default}
+
+This loads the default style from the underlying base package and does not apply individual styles.
+
+\subsection{\protect\texttt{stmdefault}}
+\label{sec:styles:stmdefault}
+\stmindex{Style!stmdefault}
+
+This loads the default preferences for STM\LaTeX{} based documents.
+
+\printbibliography
+
+\printstmindex
+
+\newpage
+\appendix
+
+\section{The code}
+\label{sec:code}
+
+\subsection{\protect\texttt{stmbibliography.sty}}
+\label{sec:code:main}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmbibliography/stmbibliography.sty}
+
+\end{document}

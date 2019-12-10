@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This file includes hyperref setup
+% Based upon the biblatex package:
+%   https://ctan.org/pkg/biblatex
+%
+% Usage
+%  - Premble:
+%    - \usepackage{stmbibliography}
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmbibliography}[2019/10/27 STMs bibliography definitions]
+
+% ---------------------------
+% Options
+% ---------------------------
+
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
+\SetupKeyvalOptions{%
+  family=stmbibliography,%
+  prefix=stmbibliography@,%
+  setkeys=\kvsetkeys,%
+}
+
+% Apply style name
+\DeclareStringOption[stmdefault]{style}
+
+% Process options
+\ProcessKeyvalOptions{stmbibliography}
+
+% ---------------------------
+% Modules
+% ---------------------------
+
+\@namedef{stmbibliography@style@default}{%
+  \RequirePackage{biblatex}
+}
+
+\@namedef{stmbibliography@style@stmdefault}{%
+
+  % These options must be set at the time of \usepackage
+  % http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf#subsubsection.3.1.1
+  \PassOptionsToPackage{%
+    backend=biber,%
+    style=numeric-comp,%
+  }{biblatex}
+  
+  % Load the package
+  \RequirePackage{biblatex}
+  
+  % Preamble options
+  % http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf#subsubsection.3.1.2
+  \ExecuteBibliographyOptions{%
+    sorting=none,%
+  }
+}
+
+% Evaluate option settings
+% https://tex.stackexchange.com/a/249102
+\newcommand*{\stmbibliography@evaluate}[1]{%
+  % Check, if option value in \<prefix>@<option> exists
+  \@ifundefined{stmbibliography@#1}{%
+    % Should not happen
+    \PackageError{stmbibliography}{Evaluating unknown option `#1'}\@ehc
+  }{%
+    % Check, if there is an implementation for the value of the option
+    % in macro \<prefix>@<option>@<value>
+    \@ifundefined{stmbibliography@#1@\csname stmbibliography@#1\endcsname}{%
+      \PackageError{stmbibliography}{%
+        Unknown option setting: #1=%
+        \csname stmbibliography@#1\endcsname
+      }\@ehc
+    }{%
+      % Call the implementation for the value
+      \csname stmbibliography@#1@%
+              \csname stmbibliography@#1\endcsname
+      \endcsname
+      \relax
+    }%
+  }%
+}
+
+\stmbibliography@evaluate{style}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput

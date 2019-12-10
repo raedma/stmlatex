@@ -61,8 +61,8 @@
 
 \usepackage[%
   standard=true,% Load a single standard index
-  name=Testindex,%
-  title={Test\ index},%
+  standardname=Testindex,%
+  standardtitle={Test\ index},%
   columns=3,
   %nonewpage=true,%
 ]{stmindex}
@@ -77,15 +77,6 @@
 \title{stmindex package description}
 \subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
 \date{\today}
-
-% ---------------------------
-% Index setup
-% ---------------------------
-
-%\indexsetup{%
-%  level=\section*,%
-%  toclevel=section,%
-%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Document                         %
@@ -150,10 +141,10 @@ This is a boolean option. Expected values are either \texttt{true} or \texttt{fa
 This is a string option. It controls the name of the standard index files. It only has an affect in case option \texttt{standard=true}.
 
 \begin{verbatim}
-\usepackage[name=Testindex]{stmindex}
+\usepackage[standardname=Testindex]{stmindex}
 \end{verbatim}
 
-The default is \textit{Keywords}.
+The default is \textit{Index}.
 
 \paragraph{Option \protect\textit{title}} 
 \label{sec:usage:preamble:options:title}
@@ -162,10 +153,10 @@ The default is \textit{Keywords}.
 This is a string option. It controls the title of the standard index in the document. It only has an affect in case option \texttt{standard=true}.
 
 \begin{verbatim}
-\usepackage[title={Test\ index}]{stmindex}
+\usepackage[standardtitle={Test\ index}]{stmindex}
 \end{verbatim}
 
-The default is \textit{Keywords}. Spaces have to be put by spacing commands explicitly.
+The default is \textit{Index}. Spaces have to be put by spacing commands explicitly.
 
 \paragraph{Option \protect\textit{intoc}} 
 \label{sec:usage:preamble:options:intoc}
@@ -270,18 +261,28 @@ There seems to be a problem with the combination of \texttt{imakeidx} and the ex
 
 \lstinputlisting[
   style=texpackagedocstyle,%
+  nolol,%
 ]{../../tex/latex/stmindex/stmindex.sty}
 
 \subsection{\protect\texttt{stmindexbase.sty}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%
+  nolol,%
 ]{../../tex/latex/stmindex/stmindexbase.sty}
 
 \subsection{\protect\texttt{stmindexstandard.sty}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%
+  nolol,%
 ]{../../tex/latex/stmindex/stmindexstandard.sty}
+
+\subsection{\protect\texttt{stmindexstyles.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+  nolol,%
+]{../../tex/latex/stmindex/stmindexstyles.sty}
 
 \end{document}

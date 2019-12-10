@@ -66,6 +66,7 @@
 }
 
 % Bool option
+\DeclareBoolOption[false]{bibliography}
 \DeclareBoolOption[true] {color}
 \DeclareBoolOption[true] {conditionallox}
 \DeclareBoolOption[true] {conditionalloxnewpage}
@@ -259,6 +260,10 @@
 % Base packages
 % ---------------------------
 
+\ifstmtext@bibliography
+  \RequirePackage{stmbibliography}
+\fi
+
 \ifstmtext@color
   \RequirePackage{stmcolors}
 \fi
@@ -338,6 +343,25 @@
 }{}%
 
 \setcounter{currentlevel}{\basetoclevelnr}
+
+% ---------------------------
+% Commands dependent of the document base type
+% ---------------------------
+
+\ifthenelse{\equal{\stmtextbase@type}{article}}{%
+  
+}{}%
+\ifthenelse{\equal{\stmtextbase@type}{report}}{%
+  
+}{}%
+\ifthenelse{\equal{\stmtextbase@type}{book}}{%
+
+  % http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf#subsubsection.3.1.2
+  \ExecuteBibliographyOptions{%
+    refsection=part,% Individual bibliograpy for each part
+  }
+  
+}{}%
 
 % ---------------------------
 % Hyperref - make sure it is loaded as the last package

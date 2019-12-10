@@ -187,6 +187,7 @@ These options can only have the values \texttt{true} or \texttt{false}.
 % Content
 % ---------------------------
 attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
+bibliography   \stmindex{Options!bibliography}   & false & Load the \stmlatexpackagelink{bibliography} package\\
 calc           \stmindex{Options!calc}           & false & Load the \texttt{calc} package at the correct position relative to \texttt{stmtikz}\\
 cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleveref} package at the correct position relative to \texttt{stmhyperref}\\
 color          \stmindex{Options!color}          & true  & Load the \stmlatexpackagelink{stmcolors} package\\
@@ -264,6 +265,7 @@ The package \ctanpackagelink{cleveref} is one of the packages that has to be loa
 In case the option \texttt{conditionallox} is used, the document has to be compiled at least three times.
 
 % \levelstay{Option \protect\texttt{conditionalloxnewpage}}
+% \label{sec:options:conditionalloxnewpage}
 % \stmindex{Options!conditionalloxnewpage}
 
 % \levelstay{Option \protect\texttt{date}}
@@ -311,8 +313,14 @@ or
 In case no entries are defined, the lists are simply omitted in your document.%\gls{acr:DOI}.
 
 \levelstay{Option \protect\texttt{index}}
+\label{sec:options:index}
 \stmindex{Options!index}
 
+\leveldown{Base package issues}
+
+There are issues with the \texttt{nonewpage} option of the base package. Thus, currently, there is no chance to disable that a index is created on a new page.
+
+\levelstay{Individual indices}
 In case it is desired to use other than the default index settings, e.g. create a new index next or replacing the standard, it is recommended to load \texttt{stmtext} with the option \texttt{index=false} and loading the index individually. Otherwise, there might be conflicts in case \texttt{tikz=true} is used in combination.
 
 \begin{lstlisting}[
@@ -339,15 +347,17 @@ In case it is desired to use other than the default index settings, e.g. create 
 \end{lstlisting}
 
 % \levelstay{Option \protect\texttt{institute}}
+% \label{sec:options:institute}
 % \stmindex{Options!institute}
 
-\levelstay{Option \protect\texttt{hyperref}}
+\levelup{Option \protect\texttt{hyperref}}
 \label{sec:options:hyperref}
 \stmindex{Options!hyperref}
 
 https://tex.stackexchange.com/a/26592
 
 % \levelstay{Option \protect\texttt{language}}
+% \label{sec:options:language}
 % \stmindex{Options!language}
 
 \levelstay{Option \protect\texttt{layout}}

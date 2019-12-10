@@ -2,13 +2,13 @@
 % Header                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% This file includes hyperref setup
-% Based upon the hyperref package:
-%   https://ctan.org/pkg/hyperref
+% This file includes index setup
+% Based upon the index package:
+%   https://ctan.org/pkg/index
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmhyperref}
+%    - \usepackage{stmindexstyles}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,7 +30,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmhyperref}[2019/10/27 STMs hyperref setup definitions]
+\ProvidesPackage{stmindexstyles}[2019/10/27 STMs index style definitions]
 
 % ---------------------------
 % Options
@@ -39,57 +39,58 @@
 % For options
 \@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
-% Option group
 \SetupKeyvalOptions{%
-  family=stmhyperref,%
-  prefix=stmhyperref@,%
+  family=stmindexstyles,%
+  prefix=stmindexstyles@,%
   setkeys=\kvsetkeys,%
 }
 
-% Load styles
-\DeclareBoolOption[true]{styles}
-
-% Apply style name
+% Style name
 \DeclareStringOption[stmdefault]{style}
 
-% Load styles
-\DeclareBoolOption[true]{pdfopts}
-
-% Apply style name
-\DeclareStringOption[stmdefault]{pdfopt}
-
 % Process options
-\ProcessKeyvalOptions{stmhyperref}
+\ProcessKeyvalOptions{stmindexstyles}
 
 % ---------------------------
-% Base
+% Style
 % ---------------------------
 
-\@ifpackageloaded{hyperref}{}{%
-  \RequirePackage{stmhyperrefbase}
-}%
+\@namedef{stmindexstyles@style@default}{%
+  % This here is empty to load the standard index setup
+}
 
-% ---------------------------
-% Modules
-% ---------------------------
-
-% Load the styles
-\ifstmhyperref@styles
-  \@ifpackageloaded{stmhyperrefstyles}{}{%
-    \RequirePackage[
-      style=\stmhyperref@style
-    ]{stmhyperrefstyles}%
+\@namedef{stmindexstyles@style@stmdefault}{%
+  \indexsetup{%
+    firstpagestyle=plain%
   }%
-\fi
+}
 
-% Load the styles
-\ifstmhyperref@pdfopts
-  \@ifpackageloaded{stmhyperrefpdfopts}{}{%
-    \RequirePackage[
-      style=\stmhyperref@pdfopt
-    ]{stmhyperrefpdfopts}%
+% Evaluate option settings
+% https://tex.stackexchange.com/a/249102
+\newcommand*{\stmindexstyles@evaluate}[1]{%
+  % Check, if option value in \<prefix>@<option> exists
+  \@ifundefined{stmindexstyles@#1}{%
+    % Should not happen
+    \PackageError{stmindexstyles}{Evaluating unknown option `#1'}\@ehc
+  }{%
+    % Check, if there is an implementation for the value of the option
+    % in macro \<prefix>@<option>@<value>
+    \@ifundefined{stmindexstyles@#1@\csname stmindexstyles@#1\endcsname}{%
+      \PackageError{stmindexstyles}{%
+        Unknown option setting: #1=%
+        \csname stmindexstyles@#1\endcsname
+      }\@ehc
+    }{%
+      % Call the implementation for the value
+      \csname stmindexstyles@#1@%
+              \csname stmindexstyles@#1\endcsname
+      \endcsname
+      \relax
+    }%
   }%
-\fi
+}
+
+\stmindexstyles@evaluate{style}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

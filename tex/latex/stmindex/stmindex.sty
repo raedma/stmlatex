@@ -57,10 +57,16 @@
 \DeclareBoolOption[true]{standard}
 
 % Acronyms
-\DeclareStringOption[Keywords]{name}
+\DeclareStringOption[Index]{standardname}
 
 % Acronyms
-\DeclareStringOption[Keywords]{title}
+\DeclareStringOption[Index]{standardtitle}
+
+% Load styles
+\DeclareBoolOption[true]{styles}
+
+% Apply style name
+\DeclareStringOption[stmdefault]{style}
 
 % Put index in toc
 \DeclareBoolOption[true]{intoc}
@@ -83,12 +89,21 @@
   \RequirePackage{stmindexbase}%
 }%
 
+% Load the styles
+\ifstmindex@styles
+  \@ifpackageloaded{stmindexstyles}{}{%
+    \RequirePackage[
+      style=\stmindex@style
+    ]{stmindexstyles}%
+  }%
+\fi
+
 % Load the standard index
 \ifstmindex@standard
   \@ifpackageloaded{stmindexstandard}{}{%
     \RequirePackage[%
-      name=\stmindex@name,%
-      title=\stmindex@title,%
+      name=\stmindex@standardname,%
+      title=\stmindex@standardtitle,%
       intoc\ifstmindex@intoc\else{=false}\fi,%
       columns=\stmindex@columns,%
     ]{stmindexstandard}%
