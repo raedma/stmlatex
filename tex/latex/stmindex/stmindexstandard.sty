@@ -29,9 +29,6 @@
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
 \ProvidesPackage{stmindexstandard}[2019/11/03 STMs custom LaTeX standard index definitions]
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
 % For new commands
 \@ifpackageloaded{xparse}{}{\RequirePackage{xparse}}%
 \@ifpackageloaded{ifmtarg}{}{\RequirePackage{ifmtarg}}%
@@ -40,6 +37,10 @@
 % Options
 % ---------------------------
 
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmindexstandard,%
   prefix=stmindexstandard@,%
@@ -73,10 +74,7 @@
 
 % If not loaded in advance, load the base package with some default options
 \@ifpackageloaded{stmindexbase}{}{%
-  \RequirePackage%[%
-    %nonewpage={\ifstmindex@nonewpage true\else false\fi}%
-  %]
-  {stmindexbase}%
+  \RequirePackage{stmindexbase}%
 }%
 
 % ---------------------------
@@ -105,7 +103,6 @@
   title={\stmindexstandard@title},%
   intoc\ifstmindexstandard@intoc\else{=false}\fi,
   columns=\stmindexstandard@columns,%
-  %\ifstmindexstandard@columnseprule{columnseprule,}\fi%
 ]
 
 \newcommand{\printstmindex}{\printindex[\stmStandardIdxName]}

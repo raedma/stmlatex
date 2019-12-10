@@ -33,12 +33,6 @@
 \ProvidesPackage{stmunits}[2019/10/27 STMs custom LaTeX unit definitions]
 
 % ---------------------------
-% Package
-% ---------------------------
-
-\@ifpackageloaded{siunitx}{}{\RequirePackage{siunitx}}%
-
-% ---------------------------
 % Options
 % ---------------------------
 
@@ -67,6 +61,11 @@
 % ---------------------------
 % Modules
 % ---------------------------
+
+% Load the base package
+\@ifpackageloaded{stmunitsbase}{}{%
+  \RequirePackage{stmunitsbase}%
+}%
 
 % Load the styles
 \ifstmunits@styles

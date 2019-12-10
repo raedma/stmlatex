@@ -151,35 +151,6 @@ This overview contains the most important informations about package options. If
 
 These options can only have the values \texttt{true} or \texttt{false}.
 
-% \begingroup
-% % \renewcommand*{\arraystretch}{1.1}
-% \begin{table}[htbp]
-%   \caption{Boolean class options}
-%   \label{tab:options:boolean}
-%   \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
-%   \toprule
-%   %Name & Default & Description\\
-%   \multicolumn{1}{c}{Key} & \rmfamily{Default value} & \multicolumn{1}{c}{Description}\\
-%   \midrule
-%   attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
-%   cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
-%   color          \stmindex{Options!color}          & true  & Load the \stmlatexpackagelink{stmcolors} package\\
-%   conditionallox \stmindex{Options!conditionallox} & true  & Load the \stmlatexpackagelink{stmconditionallox} package\\
-%   conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
-%   date           \stmindex{Options!date}           & false & Load the \stmlatexpackagelink{stmdate} package\\
-%   glossaries     \stmindex{Options!glossaries}     & false & Load the \stmlatexpackagelink{stmglossaries} package\\
-%   index          \stmindex{Options!index}          & false & Load the \stmlatexpackagelink{stmindex} package\\
-%   hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
-%   listings       \stmindex{Options!listings}       & false & Load the \stmlatexpackagelink{stmlistings} package\\
-%   math           \stmindex{Options!math}           & false & Load the \stmlatexpackagelink{stmmath} package\\
-%   plots          \stmindex{Options!plots}          & false & Load the \stmlatexpackagelink{stmplots} package\\
-%   tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
-%   units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
-%   \bottomrule
-%   \end{longtabu}%
-% \end{table}
-% \endgroup
-
 \begin{filecontents}{\tabledir\jobname-optionsbool.tex}
 \begin{longtable}{@{}>{\ttfamily}l>{\ttfamily}cX@{}}
 % Captions
@@ -216,19 +187,20 @@ These options can only have the values \texttt{true} or \texttt{false}.
 % Content
 % ---------------------------
 attachfile     \stmindex{Options!attachfile}     & false & Load the \texttt{attachfile} package at the correct position relative to \texttt{stmhyperref}\\
-cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleverref} package at the correct position relative to \texttt{stmhyperref}\\
+calc           \stmindex{Options!calc}           & false & Load the \texttt{calc} package at the correct position relative to \texttt{stmtikz}\\
+cleverref      \stmindex{Options!cleverref}      & false & Load the \texttt{cleveref} package at the correct position relative to \texttt{stmhyperref}\\
 color          \stmindex{Options!color}          & true  & Load the \stmlatexpackagelink{stmcolors} package\\
 conditionallox \stmindex{Options!conditionallox} & true  & Load the \stmlatexpackagelink{stmconditionallox} package\\
 conditionalloxnewpage \stmindex{Options!conditionalloxnewpage} & true & Set the value of the \texttt{newpage} option in the \texttt{stmconditionallox} package\\
 date           \stmindex{Options!date}           & false & Load the \stmlatexpackagelink{stmdate} package\\
 glossaries     \stmindex{Options!glossaries}     & false & Load the \stmlatexpackagelink{stmglossaries} package\\
 index          \stmindex{Options!index}          & false & Load the \stmlatexpackagelink{stmindex} package\\
-hyperref       \stmindex{Options!hyperref}       & true  & Load the \texttt{stmhyperrefsetup} package\\
+hyperref       \stmindex{Options!hyperref}       & true  & Load the \stmlatexpackagelink{stmhyperref} package\\
 listings       \stmindex{Options!listings}       & false & Load the \stmlatexpackagelink{stmlistings} package\\
 math           \stmindex{Options!math}           & false & Load the \stmlatexpackagelink{stmmath} package\\
 plots          \stmindex{Options!plots}          & false & Load the \stmlatexpackagelink{stmplots} package\\
 tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
-units          \stmindex{Options!units}          & false & Load the \texttt{stmunits} package\\
+units          \stmindex{Options!units}          & false & Load the \stmlatexpackagelink{stmunits} package\\
 \end{longtable}
 \end{filecontents}
 
@@ -338,8 +310,33 @@ or
 
 In case no entries are defined, the lists are simply omitted in your document.%\gls{acr:DOI}.
 
-% \levelstay{Option \protect\texttt{index}}
-% \stmindex{Options!index}
+\levelstay{Option \protect\texttt{index}}
+\stmindex{Options!index}
+
+In case it is desired to use other than the default index settings, e.g. create a new index next or replacing the standard, it is recommended to load \texttt{stmtext} with the option \texttt{index=false} and loading the index individually. Otherwise, there might be conflicts in case \texttt{tikz=true} is used in combination.
+
+\begin{lstlisting}[
+  style=texcodestyle
+]
+
+\documentclass[%
+  ...
+  index=false,%
+  ...
+]{stmtext}
+
+...
+
+% replace standard index
+\usepackage[
+  standard=false
+]{stmindex}
+
+...
+
+% Must come after \makeindex, e.g. from stmindex
+\usepackage{stmtikzexternalization}
+\end{lstlisting}
 
 % \levelstay{Option \protect\texttt{institute}}
 % \stmindex{Options!institute}
@@ -411,7 +408,7 @@ All other options are passed to the underlying document class. Thus, it has to b
 
 \section{The code}
 
-\subsection{stmtext.cls}
+\subsection{\protect\texttt{stmtext.cls}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%

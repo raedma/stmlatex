@@ -33,16 +33,13 @@
 \ProvidesPackage{stmtikz}[2019/10/27 STMs custom LaTeX tikz definitions]
 
 % ---------------------------
-% Package
-% ---------------------------
-
-\@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
-% ---------------------------
 % Options
 % ---------------------------
 
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmtikz,%
   prefix=stmtikz@,%
@@ -70,6 +67,11 @@
 % ---------------------------
 % Modules
 % ---------------------------
+
+% Load the base package
+\@ifpackageloaded{stmtikzbase}{}{%
+  \RequirePackage{stmtikzbase}%
+}%
 
 % Libraries
 \ifstmtikz@libraries

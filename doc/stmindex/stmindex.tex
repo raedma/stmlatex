@@ -31,6 +31,8 @@
 \documentclass[%
   type=article,%
   layout=koma,%
+  conditionallox=true,%
+  conditionalloxnewpage=false,%
   date=true,%
   hyperref=true,%
   index=false,%
@@ -41,6 +43,7 @@
 % Build automation
 % ---------------------------
 
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 %!arara: makeglossaries
@@ -97,6 +100,10 @@ This is an interface to facilitate the creation of a single index for \texttt{st
 \end{abstract}
 
 \tableofcontents
+
+\conditionallistoffigures  % Insert List of Figures if figures are present
+\conditionallistoftables   % Insert List of Tables if tables are present
+\conditionallistoflistings % Insert List of Listings if listings are present
 
 \section{About}
 \stmindex{About}
@@ -204,144 +211,77 @@ in a class with where \verb+\chapter+ is the highest level, but you want the ind
 
 In case multiple indices are used, the standard \texttt{imakeidx} commands apply for printing an index.
 
+\section{Create an individual index independent of the standard index}
+
+It is possible to create new indices next to or in replacement of the standard index. It is required to load \texttt{stmtikzexternalization} after the \texttt{\textbackslash makeindex} call.
+
+\begin{lstlisting}[
+  breaklines,%
+  style=texcodestyle,%
+  numbers=left,%
+  caption={Setup individual index},
+  label=lst:index:individual,
+]
+% Disable the standard index
+\usepackage[
+  standard=false
+]{stmindex}
+
+% Setup identifiers
+\newcommand{\pdKeywordIdxName}{pdkeywordindex}
+\newcommand{\pdKeywordIdxTitle}{Peridigm keyword index}
+
+% Macro expansion
+\DeclareDocumentCommand{\pdkeywordindex}{%
+  O{\pdKeywordIdxName}%style - optional, default in brackets
+  m%
+}{%
+  \index[#1]{#2}%
+}
+
+% Make index
+\makeindex[%pdkeywords
+  name={\pdKeywordIdxName},%
+  title={\pdKeywordIdxTitle},%
+  intoc,%
+  columns=2,%
+]
+
+% Print command
+\newcommand{\printpdkeywordindex}{\printindex[\pdKeywordIdxName]}
+
+% Must come after \makeindex from imakeidx package, e.g. in stmindex
+\usepackage{stmtikzexternalization}
+\end{lstlisting}
+
 \section{Known issues}
 \stmindex{Issues}
 
 There seems to be a problem with the combination of \texttt{imakeidx} and the externalization of \texttt{tikz} pictures as from \texttt{stmtikz}. Externalization must be activated after the call to \texttt{imakeidx} to make it work. See \url{https://tex.stackexchange.com/q/393697}.
 
-% \subsection{Load the whole \protect\texttt{stmdate} package}
-
-% \subsubsection{Description}
-% \label{sec:usage:preamble:wholepackage:description}
-
-% This is an interface package which loads date styles and commands commonly required throughout document creation.
-
-% By default the package loads
-
-% \begin{itemize}[noitemsep]
-  % \item \verb+stmdatestyles.sty+
-  % \item \verb+stmdatecommands.sty+
-% \end{itemize}
-
-% See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
-
-% \subsubsection{Options}
-% \label{sec:usage:preamble:wholepackage:options}
-
-% \paragraph{Option \protect\textit{styles}} 
-% \label{sec:usage:preamble:wholepackage:options:styles}
-
-% This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined date styles.
-
-% \begin{verbatim}
-% \usepackage[styles=true|false]{stmdate}
-% \end{verbatim}
-
-% \texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
-
-% \paragraph{Option \protect\textit{commands}} 
-% \label{sec:usage:preamble:wholepackage:options:commands}
-
-% This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of specific date commands.
-
-% \begin{verbatim}
-% \usepackage[commands=true|false]{stmdate}
-% \end{verbatim}
-
-% \texttt{commands=true} is the default. It is used in case \texttt{commands=false} is not set explicitly.
-
-% \subsection{\protect\texttt{stmdatestyles}}
-% \label{sec:usage:preamble:styles}
-
-% \subsubsection{Description}
-% \label{sec:usage:preamble:styles:description}
-
-% This package contains styles for displaying dates in different formats. These can be used by commands from the underlying \href{https://ctan.org/pkg/datetime2}{datetime2} package, e.g. with the style definitions from \autoref{sec:usage:preamble:styles:styles}
-
-% \begin{verbatim}
-% \DTMsetdatestyle{$STYLENAME$}\DTMtoday
-% \end{verbatim}
-
-% or use the convenience commands from \autoref{sec:usage:preamble:commands}.
-
-% \subsubsection{Styles}
-% \label{sec:usage:preamble:styles:styles}
-
-% These are the date styles and the respective output.
-
-% \begin{table}[htbp]
-% \centering
-% \begin{tabular}{ll}
-% \texttt{versiondatestyle} & \formatdate[versiondatestyle]{\DTMToday}
-% \end{tabular}
-% \end{table}
-
-% \subsection{\protect\texttt{stmdatecommands}}
-% \label{sec:usage:preamble:commands}
-
-% \subsubsection{Description}
-% \label{sec:usage:preamble:commands:description}
-
-% These are commands to manipulate dates and their display.
-
-% \subsubsection{Command \protect\texttt{\textbackslash formatdate}}
-% \label{sec:usage:preamble:commands:description}
-
-% \paragraph{Examples}
-
-% \begin{table}[htbp]
-% \centering
-% \begin{tabular}{ll}
-% \verb+\formatdate[versiondatestyle]{\DTMToday}+ & \formatdate[versiondatestyle]{\DTMToday}\\
-% \verb+\formatdate{\today}+ & \formatdate{\today}\\
-% \verb+\formatdate[versiondatestyle]{\today}+ & \formatdate[versiondatestyle]{\today}\\
-% \verb+\formatdate{2019}[2][3]+ & \formatdate{2019}[2][3]\\
-% \verb+\formatdate[versiondatestyle]{2019}[2][3]+ & \formatdate[versiondatestyle]{2019}[2][3]\\
-% \verb+\formatdate[versiondatestyle]{2019}[11][3]+ & \formatdate[versiondatestyle]{2019}[11][3]\\
-% \verb+\formatdate{2019}[2]+ & \formatdate{2019}[2]\\
-% \verb+\formatdate[versiondatestyle]{2019}[2]+ & \formatdate[versiondatestyle]{2019}[2]\\
-% \verb+\formatdate{2019}[2][]+ & \formatdate{2019}[2][]\\
-% \verb+\formatdate[versiondatestyle]{2019}[2][]+ & \formatdate[versiondatestyle]{2019}[2][]\\
-% \verb+\formatdate{2019}[][]+ & \formatdate{2019}[][]\\
-% \verb+\formatdate[versiondatestyle]{2019}[][]+ & \formatdate[versiondatestyle]{2019}[][]
-% \end{tabular}
-% \end{table}ection{Load the whole \protect\texttt{stmdate} package}
-
-
-
-
 \printstmindex
-
 
 \newpage
 \appendix
 
 \section{The code}
 
-\subsection{stmindex.sty}
+\subsection{\protect\texttt{stmindex.sty}}
 
 \lstinputlisting[
-  breaklines,%
-  style=texcodestyle,%
-  numbers=left,%
+  style=texpackagedocstyle,%
 ]{../../tex/latex/stmindex/stmindex.sty}
 
-% \newpage
-% \subsection{stmdatecommands.sty}
+\subsection{\protect\texttt{stmindexbase.sty}}
 
-% \lstinputlisting[
-  % breaklines,%
-  % style=texcodestyle,%
-  % numbers=left,%
-% ]{../../tex/latex/stmdate/stmdatecommands.sty}
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmindex/stmindexbase.sty}
 
-% \newpage
-% \subsection{stmdatestyles.sty}
+\subsection{\protect\texttt{stmindexstandard.sty}}
 
-% \lstinputlisting[
-  % breaklines,%
-  % style=texcodestyle,%
-  % numbers=left,%
-% ]{../../tex/latex/stmdate/stmdatestyles.sty}
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmindex/stmindexstandard.sty}
 
 \end{document}

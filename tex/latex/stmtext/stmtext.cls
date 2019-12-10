@@ -72,11 +72,13 @@
 \DeclareBoolOption[false]{date}
 \DeclareBoolOption[false]{glossaries}
 \DeclareBoolOption[false]{index}
+\DeclareBoolOption[true] {indexstandard}
 \DeclareBoolOption[true] {hyperref}
 \DeclareBoolOption[false]{listings}
 \DeclareBoolOption[false]{math}
 \DeclareBoolOption[false]{plots}
 \DeclareBoolOption[false]{tikz}
+\DeclareBoolOption[true] {tikzexternalization}
 \DeclareBoolOption[false]{units}
 
 %
@@ -89,6 +91,9 @@
 % Options that are dependent of the position of hyperref
 \DeclareBoolOption[false]{attachfile}
 \DeclareBoolOption[false]{cleveref}
+
+% Options that are dependent of the position of tikz
+\DeclareBoolOption[false]{calc}
 
 % any other options are passed to the base class
 \DeclareDefaultOption{%
@@ -146,9 +151,11 @@
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
     \LoadClass{dlrartcl}
+    \RequirePackage{auxhook}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{koma}}{%
     \LoadClass{scrartcl}
+    \RequirePackage{auxhook}
   }{}%
 }{}%
 \ifthenelse{\equal{\stmtextbase@type}{report}}{%
@@ -157,9 +164,11 @@
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
     \LoadClass{dlrreprt}
+    \RequirePackage{auxhook}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{koma}}{%
     \LoadClass{scrreprt}
+    \RequirePackage{auxhook}
   }{}%
 }{}%
 \ifthenelse{\equal{\stmtextbase@type}{book}}{%
@@ -168,9 +177,11 @@
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{dlr}}{%
     \LoadClass{dlrbook}
+    \RequirePackage{auxhook}
   }{}%
   \ifthenelse{\equal{\stmtextbase@layout}{koma}}{%
     \LoadClass{scrbook}
+    \RequirePackage{auxhook}
   }{}%
 }{}%
 
@@ -264,6 +275,9 @@
 
 % This must be loaded ahead of tikz externalization
 \ifstmtext@index
+  \PassOptionsToPackage{%
+    standard={\ifstmtext@indexstandard true\else false\fi},%
+  }{stmindex}%
   \RequirePackage{stmindex}
 \fi
 
@@ -286,7 +300,15 @@
   \RequirePackage{stmplots}
 \fi
 
+% Must be loaded before tikz
+\ifstmtext@calc
+  \RequirePackage{calc}
+\fi
+
 \ifstmtext@tikz
+  \PassOptionsToPackage{%
+    externalization={\ifstmtext@tikzexternalization true\else false\fi},%
+  }{stmtikz}%
   \RequirePackage{stmtikz}
 \fi
 

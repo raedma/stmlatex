@@ -39,13 +39,14 @@
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
 \ProvidesPackage{stmindex}[2019/11/03 STMs custom LaTeX index definitions]
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
 % ---------------------------
 % Options
 % ---------------------------
 
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmindex,%
   prefix=stmindex@,%
@@ -74,20 +75,13 @@
 \ProcessKeyvalOptions{stmindex}
 
 % ---------------------------
-% Base
-% ---------------------------
-
-% If not loaded in advance, load the base package with some default options
-\@ifpackageloaded{stmindexbase}{}{%
-  \RequirePackage%[%
-    %nonewpage={\ifstmindex@nonewpage true\else false\fi}%
-  %]
-  {stmindexbase}%
-}%
-
-% ---------------------------
 % Modules
 % ---------------------------
+
+% Load the base package
+\@ifpackageloaded{stmindexbase}{}{%
+  \RequirePackage{stmindexbase}%
+}%
 
 % Load the standard index
 \ifstmindex@standard

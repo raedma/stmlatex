@@ -8,7 +8,7 @@
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmcolors}
+%    - \usepackage{stmcolorsitems}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,43 +30,34 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmcolors}[2019/10/27 STMs custom LaTeX color definitions]
+\ProvidesPackage{stmcolorsitems}[2019/10/27 STMs custom LaTeX color definitions]
 
 % ---------------------------
-% Options
+% Package
 % ---------------------------
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
-% Option group
-\SetupKeyvalOptions{%
-  family=stmcolors,%
-  prefix=stmcolors@,%
-  setkeys=\kvsetkeys,%
-}
-
-% Items
-\DeclareBoolOption[true]{items}
-
-% Process options
-\ProcessKeyvalOptions{stmcolors}
+\@ifpackageloaded{stmunitsbase}{}{\RequirePackage{stmunitsbase}}%
 
 % ---------------------------
-% Modules
+% Colors
 % ---------------------------
 
-% Load the base package
-\@ifpackageloaded{stmcolorsbase}{}{%
-  \RequirePackage{stmcolorsbase}%
-}%
+\definecolor{backgroundcolor}{RGB}{255,255,255}
 
-% Load the items
-\ifstmcolors@items
-  \@ifpackageloaded{stmcolorsitems}{}{%
-    \RequirePackage{stmcolorsitems}%
-  }%
-\fi
+\definecolor{boxgraycolor}{RGB}{240,240,240}
+
+\definecolor{sketchgraycolor}{RGB}{220,220,220}
+
+\definecolor{verbgraycolor}{gray}{0.9}
+\definecolor{codecommentgraycolor}{gray}{0.5}
+
+\definecolor{cadmiumgreencolor}{rgb}{0.0, 0.42, 0.24}
+
+\definecolor{stmmarkupcolor}{rgb}{1.0, 0.0, 0.0} % red
+
+\definecolor{hyperrefstmtylelinkcolor}{gray}{0}
+\definecolor{hyperrefstmtylecitecolor}{gray}{0}
+\definecolor{hyperrefstmtyleurlcolor}{RGB}{0,0,255}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

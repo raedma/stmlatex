@@ -33,16 +33,13 @@
 \ProvidesPackage{stmdate}[2019/10/27 STMs custom LaTeX date definitions]
 
 % ---------------------------
-% Package
-% ---------------------------
-
-\@ifpackageloaded{datetime2}{}{\RequirePackage[style=iso]{datetime2}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
-% ---------------------------
 % Options
 % ---------------------------
 
+% Options package
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmdate,%
   prefix=stmdate@,%
@@ -61,6 +58,11 @@
 % ---------------------------
 % Modules
 % ---------------------------
+
+% Load the base package
+\@ifpackageloaded{stmdatebase}{}{%
+  \RequirePackage{stmdatebase}%
+}%
 
 % Commands
 \ifstmdate@commands

@@ -93,8 +93,9 @@ This is an interface package which loads date styles and commands commonly requi
 By default the package loads
 
 \begin{itemize}[noitemsep]
-  \item \verb+stmdatestyles.sty+
+  \item \verb+stmdatebase.sty+
   \item \verb+stmdatecommands.sty+
+  \item \verb+stmdatestyles.sty+
 \end{itemize}
 
 See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
@@ -186,21 +187,27 @@ These are commands to manipulate dates and their display.
 
 \section{The code}
 
-\subsection{stmdate.sty}
+\subsection{\protect\texttt{stmdate.sty}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%
 ]{../../tex/latex/stmdate/stmdate.sty}
 
+\subsection{\protect\texttt{stmdatebase.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmdate/stmdatebase.sty}
+
 \newpage
-\subsection{stmdatecommands.sty}
+\subsection{\protect\texttt{stmdatecommands.sty}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%
 ]{../../tex/latex/stmdate/stmdatecommands.sty}
 
 \newpage
-\subsection{stmdatestyles.sty}
+\subsection{\protect\texttt{stmdatestyles.sty}}
 
 \lstinputlisting[
   style=texpackagedocstyle,%

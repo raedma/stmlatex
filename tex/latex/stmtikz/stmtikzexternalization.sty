@@ -38,12 +38,15 @@
 % ---------------------------
 
 \@ifpackageloaded{tikz}{}{\RequirePackage{tikz}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
 
 % ---------------------------
 % Options
 % ---------------------------
 
+% Options package
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmtikzexternalization,%
   prefix=stmtikzexternalization@,%

@@ -2,13 +2,13 @@
 % Header                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% This file includes color definitions
-% Based upon the xcolor package:
-%   https://ctan.org/pkg/xcolor
+% This is a interface to all stm pgfplots definitions
+% Based upon the pgfplots package:
+%   https://ctan.org/pkg/pgfplots
 %
 % Usage
 %  - Premble:
-%    - \usepackage{stmcolors}
+%    - \usepackage{stmplots}
 % 
 % Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
 %                       Initial draft
@@ -30,43 +30,14 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesPackage{stmcolors}[2019/10/27 STMs custom LaTeX color definitions]
+\ProvidesPackage{stmplots}[2019/10/27 STMs custom LaTeX plot definitions]
 
 % ---------------------------
-% Options
+% Package
 % ---------------------------
 
-% For options
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
-% Option group
-\SetupKeyvalOptions{%
-  family=stmcolors,%
-  prefix=stmcolors@,%
-  setkeys=\kvsetkeys,%
-}
-
-% Items
-\DeclareBoolOption[true]{items}
-
-% Process options
-\ProcessKeyvalOptions{stmcolors}
-
-% ---------------------------
-% Modules
-% ---------------------------
-
-% Load the base package
-\@ifpackageloaded{stmcolorsbase}{}{%
-  \RequirePackage{stmcolorsbase}%
-}%
-
-% Load the items
-\ifstmcolors@items
-  \@ifpackageloaded{stmcolorsitems}{}{%
-    \RequirePackage{stmcolorsitems}%
-  }%
-\fi
+\@ifpackageloaded{pgfplots}{}{\RequirePackage{pgfplots}}%
+\@ifpackageloaded{pgfplotstable}{}{\RequirePackage{pgfplotstable}}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

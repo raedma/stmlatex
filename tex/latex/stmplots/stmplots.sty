@@ -33,17 +33,13 @@
 \ProvidesPackage{stmplots}[2019/10/27 STMs custom LaTeX plot definitions]
 
 % ---------------------------
-% Package
-% ---------------------------
-
-\@ifpackageloaded{pgfplots}{}{\RequirePackage{pgfplots}}%
-\@ifpackageloaded{pgfplotstable}{}{\RequirePackage{pgfplotstable}}%
-\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
-
-% ---------------------------
 % Options
 % ---------------------------
 
+% For options
+\@ifpackageloaded{kvoptions}{}{\RequirePackage{kvoptions}}%
+
+% Option group
 \SetupKeyvalOptions{%
   family=stmplots,%
   prefix=stmplots@,%
@@ -72,13 +68,22 @@
 \ProcessKeyvalOptions{stmplots}
 
 % ---------------------------
+% Modules
+% ---------------------------
+
+% Load the base package
+\@ifpackageloaded{stmplotsbase}{}{%
+  \RequirePackage{stmplotsbase}%
+}%
+
+% ---------------------------
 % Pgf version
 % ---------------------------
 
 \pgfplotsset{compat=\stmplots@compat}
 
 % ---------------------------
-% Modules
+% Modules 2
 % ---------------------------
 
 % Libraries
