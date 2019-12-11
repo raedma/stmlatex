@@ -145,8 +145,6 @@
 % Base class
 % ---------------------------
 
-% Load scrreprt class
-
 \ifthenelse{\equal{\stmtextbase@type}{article}}{%
   \ifthenelse{\equal{\stmtextbase@layout}{standard}}{%
     \LoadClass{article}
@@ -251,6 +249,7 @@
     
     % The command for the second titlepage
     \newcommand{\secondpage}{}%
+    \newcommand{\printsecondpage}{}%
 }{
   
   \RequirePackage{dlrsecondpage}
@@ -261,6 +260,12 @@
 % Base packages
 % ---------------------------
 
+\PassOptionsToPackage{%
+  language=\stmtext@language,%
+}{stmlanguage}%
+\RequirePackage{stmlanguage}
+
+% Must come after language
 \ifstmtext@bibliography
   \RequirePackage{stmbibliography}
 \fi
@@ -286,13 +291,6 @@
   }{stmindex}%
   \RequirePackage{stmindex}
 \fi
-
-%\ifstmtext@language
-  \PassOptionsToPackage{%
-    language=\stmtext@language,%
-  }{stmlanguage}%
-  \RequirePackage{stmlanguage}
-%\fi
 
 \ifstmtext@listings
   \RequirePackage{stmlistings}
@@ -366,6 +364,37 @@
     refsection=part,% Individual bibliograpy for each part
   }
   
+}{}%
+
+% ---------------------------
+% Put stuff in the TOC
+% ---------------------------
+
+\ifthenelse{%
+  \equal{\stmtextbase@layout}{dlr} \OR%
+  \equal{\stmtextbase@layout}{koma}%
+}{%
+  \KOMAoptions{%
+    bibliography=totoc,%
+    %figures=plain,%
+    %fleqn,% not supported in KOMA options
+    listof=totoc,%
+  }%
+}{}%
+
+\ifthenelse{%
+  \equal{\stmtextbase@layout}{standard}%
+}{%
+  
+  %\@ifpackageloaded{biblatex}{
+    %\PassOptionsToPackage{toc=bib}{biblatex}
+  %}{%
+    \PassOptionsToPackage{%
+      nottoc,%
+      notbib,%
+    }{tocbibind}
+    \RequirePackage{tocbibind}    
+  %}
 }{}%
 
 % ---------------------------

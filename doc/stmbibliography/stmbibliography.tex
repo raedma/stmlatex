@@ -114,7 +114,7 @@ This package offers some default preferences for the display of bibliographies. 
 \conditionallistoftables   % Insert List of Tables if tables are present
 \conditionallistoflistings % Insert List of Listings if listings are present
 
-\section{Usage}% - in the preamble}
+\section{Usage - in the preamble}
 
 \subsection{Load the whole \protect\texttt{stmbibliography} package}
 \label{sec:usage:preamble:wholepackage}
@@ -161,6 +161,10 @@ This is a string option. A list of possible values is shown in \cref{sec:styles}
 
 \texttt{style=stmdefault} is the default. It is used in case no other style is set explicitly.
 
+\section{Usage - in the document}
+
+To assure that the bibliography is added to the table of contents for all base classes, use \verb+\printbibliography[heading=bibintoc]+ instead of a simple \verb+\printbibliography+.
+
 \section{Styles}
 \label{sec:styles}
 \stmindex{Style}
@@ -179,7 +183,8 @@ This loads the default style from the underlying base package and does not apply
 
 This loads the default preferences for STM\LaTeX{} based documents.
 
-\printbibliography
+%\printbibliography
+\printbibliography[heading=bibintoc]
 
 \printstmindex
 
