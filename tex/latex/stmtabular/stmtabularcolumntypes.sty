@@ -44,6 +44,10 @@
   \RequirePackage{tabularx}%
 }
 
+% Hide-column: Use this column type to have but not print a complete column
+% https://tex.stackexchange.com/a/16607
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
 % Thankfully copied from 
 % https://github.com/pospiech/latex/blob/master/latexthesistemplate/packages/publish/tablestyles.dtx
 %% centered (X):
