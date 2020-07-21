@@ -36,6 +36,10 @@
 %\@ifpackageloaded{longtable}{}{\RequirePackage{longtable}}%
 \@ifpackageloaded{tabu}{}{\RequirePackage{tabu}}%
 
+%
+\@ifpackageloaded{stmbibliography}{}{\RequirePackage{stmbibliography}}%
+\addbibresource{stmglossariesglossarysources.bib}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Functionality                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,20 +66,50 @@
     {\end{longtabu}}%
   % Header line
   \renewcommand*{\glossaryheader}{%
-    %\textbf{Label} & \textbf{Symbol}
+    %\textbf{Entry} & \textbf{Symbol}
     \tabularnewline%
     \tabularnewline%
     \endhead%
     \endfoot%
   }%
   % indicate what to do at the start of each logical group
-  %\renewcommand*{\glsgroupheading}[1]{}%
-  %\renewcommand*{\glsgroupskip}{}% What to do between groups
+  %\renewcommand*{\glsgroupheading}[1]{}% Group heading
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
   \renewcommand*{\glossaryentryfield}[5]{%
     \glsentryitem{##1}\glstarget{##1}{##2}
       & ##3\glspostdescription ##5% Description
     \tabularnewline%
+  }
+}
+
+% -----------------
+% Style to show entries with sources
+% -----------------
+
+\newglossarystyle{stmglossarysourcestyle}{%
+  \renewenvironment{theglossary}%
+    {\begin{longtabu} to \linewidth {lXc}}%
+    {\end{longtabu}}%
+  % Header line
+  \renewcommand*{\glossaryheader}{%
+    %\textbf{Entry} & \textbf{Symbol} & \textbf{Sources}
+    \tabularnewline%
+    \tabularnewline%
+    \endhead%
+    \endfoot%
+  }%
+  % indicate what to do at the start of each logical group
+  %\renewcommand*{\glsgroupheading}[1]{}% Group heading
+  \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentryitem{##1}\glstarget{##1}{##2} &%
+		##3\glspostdescription ##5 &%
+    \tabularnewline%
+		\ifglshasfield{useri}{##1}{\space%
+      % in the event of multiple cites, \glsentryuseri{##1} needs to be expanded before being passed to \cite.
+      \glsletentryfield{\thiscite}{##1}{useri}%
+      \expandafter\cite\expandafter{\thiscite}%
+		}{}%
   }
 }
 
@@ -103,6 +137,40 @@
     \glsentrycounterlabel{##1} &%
     \glsentryitem{##1}\glstarget{##1}{##2}&%
     ##3\glspostdescription ##5% Description
+    \tabularnewline%
+  }
+}
+
+% -----------------
+% Style to show the keys with sources
+% -----------------
+
+\newglossarystyle{stmglossarylabelsourcestyle}{%
+  \renewenvironment{theglossary}%
+    {\begin{longtabu} to \linewidth {lcXc}}%
+    {\end{longtabu}}%
+  % Header line
+  \renewcommand*{\glossaryheader}{%
+    \textbf{Label} & \textbf{Entry} & \textbf{Description} & \textbf{Sources}
+    \tabularnewline%
+    \tabularnewline%
+    \endhead%
+    \endfoot%
+  }%
+  % indicate what to do at the start of each logical group
+  %\renewcommand*{\glsgroupheading}[1]{}%
+  %\renewcommand*{\glsgroupskip}{}% What to do between groups
+  \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentrycounterlabel{##1} &%
+    \glsentryitem{##1}\glstarget{##1}{##2}&%
+    ##3\glspostdescription ##5&%
+		\ifglshasfield{useri}{##1}{\space%
+      % in the event of multiple cites, \glsentryuseri{##1} needs to be expanded before being passed to \cite.
+      \glsletentryfield{\thiscite}{##1}{useri}%
+      \expandafter\cite\expandafter{\thiscite}
+		}{}%
+    %\space ##2%
     \tabularnewline%
   }
 }

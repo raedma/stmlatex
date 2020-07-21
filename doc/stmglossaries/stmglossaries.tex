@@ -46,9 +46,10 @@
 
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: makeglossaries
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: biber
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*', 'stmglossaries-*.tex' ], recursive: yes }
@@ -768,7 +769,25 @@ This is a style for acronyms. It has one item column which is left aligned. The 
 
 \paragraph{Description}
 
-This is a style for the glossary. It has one item column which is left aligned. The columns are \textit{Abbreviation} and \textit{Description}. Column headings are not printed.
+This glossary style has two columns. The columns are \textit{Entry} and \textit{Description}. Both columns are left aligned.
+
+\subsubsection{\protect\texttt{stmglossarysourcestyle}}
+\label{sec:usage:styles:glossary:stmglossarysourcestyle}
+
+\paragraph{Description}
+
+This glossary style has three columns. The columns are \textit{Entry}, \textit{Description} and Sources. The first two columns are left aligned, the last column is centered.
+
+In case you use this style, at least the following compile sequence is necessary:
+
+\begin{verbatim}
+pdflatex
+makeglossaries
+pdflatex
+biber
+pdflatex
+pdflatex
+\end{verbatim}
 
 \subsection{Symbol styles}
 \label{sec:usage:styles:symbols}
@@ -862,6 +881,10 @@ This is a style for variable operators with one left align item column. The colu
 
 \newpage
 
+\printbibliography
+
+\newpage
+
 \printstmindex
 
 \newpage
@@ -882,7 +905,8 @@ This is a style for variable operators with one left align item column. The colu
 
 \glstocfalse
 \glsaddall[types={main}]
-\printglossary[type=main,style=stmacronymlabelstyle,nonumberlist]
+%\printglossary[type=main,style=stmglossarylabelstyle,nonumberlist]
+\printglossary[type=main,style=stmglossarylabelsourcestyle,nonumberlist]
 %\printacronyms[style=stmacronymlabelstyle,nonumberlist]
 \glstoctrue
 
