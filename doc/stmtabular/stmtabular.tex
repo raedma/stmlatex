@@ -52,6 +52,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
+\usepackage{enumitem}
 
 \usepackage[
   columntypes=true,%
@@ -79,6 +80,49 @@ These are the tabular definitions for \texttt{stmlatex}.
 \end{abstract}
 
 \tableofcontents
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmtabular} package}
+\label{sec:usage:preamble:wholepackage}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads date styles and commands commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmtabularcolumntypes.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{columntypes}} 
+\label{sec:usage:preamble:wholepackage:options:columntypes}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined column types.
+
+\begin{verbatim}
+\usepackage[columntypes=true|false]{stmtabular}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{booktabs}} 
+\label{sec:usage:preamble:wholepackage:options:booktabs}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of the \href{https://ctan.org/pkg/booktabs}{booktabs} package.
+
+\begin{verbatim}
+\usepackage[booktabs=true|false]{stmtabular}
+\end{verbatim}
+
+\texttt{booktabs=true} is the default. It is used in case \texttt{booktabs=false} is not set explicitly.
 
 \section{Column types}
 
