@@ -36,13 +36,28 @@
 % Package
 % ---------------------------
 
-%\@ifpackageloaded{listings}{}{\RequirePackage{listings}}%
+\@ifpackageloaded{listings}{}{\RequirePackage{listings}}%
+\@ifpackageloaded{stmcolors}{}{\RequirePackage{stmcolors}}%
+\@ifpackageloaded{stmlistingsstyles}{}{\RequirePackage{stmlistingsstyles}}%
+\@ifpackageloaded{xparse}{}{\RequirePackage{xparse}}%
+\@ifpackageloaded{ifmtarg}{}{\RequirePackage{ifmtarg}}%
 
 % ---------------------------
 % Commands
 % ---------------------------
 
 \newcommand*{\lstcomment}[1]{\hfill\makebox[5.25cm][l]{#1}}%
+
+
+% https://tex.stackexchange.com/a/33753
+\DeclareDocumentCommand{\inlinecode}{%
+  O{+}% Delimiters - optional, default in brackets
+  O{verbgraycolor}% Color for the colorbox - optional, default in brackets
+  O{inlinecodestyle}% Style definition for code - optional, default in brackets
+  m% content
+}{%
+  \colorbox{#2}{\lstinline[style=#3]#1#4#1}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

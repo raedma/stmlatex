@@ -47,12 +47,22 @@
 % Items
 \DeclareBoolOption[true]{columntypes}
 
+% Items
+\DeclareBoolOption[true]{booktabs}
+
 % Process options
 \ProcessKeyvalOptions{stmtabular}
 
 % ---------------------------
 % Modules
 % ---------------------------
+
+% Load the items
+\ifstmtabular@booktabs
+  \@ifpackageloaded{booktabs}{}{%
+    \RequirePackage{booktabs}%
+  }%
+\fi
 
 % Load the items
 \ifstmtabular@columntypes

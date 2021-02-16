@@ -1,0 +1,227 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmlistings package
+%
+% Usage
+%  - Compile using 'arara stmlistings.tex'
+% 
+% Revisions: 2019-10-27 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Composite Structures and Adaptive Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/fa/en      |/ DLR
+%
+% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  hyperref=true,%
+  date=true,%
+  listings=false,%
+  tabular=true,%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.auxlock', '*.bbl', '*.bcf', '*.blg', '*.dpth', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*' ], recursive: yes }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\usepackage[%
+  commands=true,%
+  environments=true,%
+  styles=true,%
+]{stmlistings}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmlistings package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR FA STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the listings definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/listings}{listings} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Usage}% - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmlistings} package}
+\label{sec:usage:preamble:wholepackage}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:wholepackage:description}
+
+This is an interface package which loads listings styles and commands commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+%   \item \verb+stmlistingsbase.sty+
+  \item \verb+stmlistingscommands.sty+
+  \item \verb+stmlistingsenvironments.sty+
+  \item \verb+stmlistingsstyles.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined listings styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmlistings}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{commands}} 
+\label{sec:usage:preamble:wholepackage:options:commands}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of specific listings commands.
+
+\begin{verbatim}
+\usepackage[commands=true|false]{stmlistings}
+\end{verbatim}
+
+\texttt{commands=true} is the default. It is used in case \texttt{commands=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{environments}} 
+\label{sec:usage:preamble:wholepackage:options:environments}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It enables and disables the loading of specific listings environments.
+
+\begin{verbatim}
+\usepackage[environments=true|false]{stmlistings}
+\end{verbatim}
+
+\texttt{commands=true} is the default. It is used in case \texttt{commands=false} is not set explicitly.
+
+\subsection{\protect\texttt{stmlistingsstyles}}
+\label{sec:usage:preamble:styles}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:styles:description}
+
+\subsubsection{Styles}
+\label{sec:usage:preamble:styles:styles}
+
+\subsection{\protect\texttt{stmlistingscommands}}
+\label{sec:usage:preamble:commands}
+
+\subsubsection{Description}
+\label{sec:usage:preamble:commands:description}
+
+These are commands and shortcuts for listings.
+
+\subsubsection{Command \protect\texttt{\textbackslash inlinecode}}
+\label{sec:usage:preamble:commands:inlinecode}
+
+\paragraph{Description}
+
+Create an code snippet in the current line.
+
+\paragraph{Usage} The command arguments are\mbox{}\\
+
+\begin{tabularx}{\linewidth}{ccccX}
+\toprule
+Nr.  & Entity & Type & Default  & Description\\
+\midrule
+1 & Delimiter & optional & \verb|+| & Defines beginning and end of the code snippet.\\
+2 & Color & optional & \verb|verbgraycolor| & Background color\\
+3 & Style & optional & \verb|inlinecodestyle| & Listings style\\
+3 & Content & mandatory &  & Code\\
+\bottomrule
+\end{tabularx}
+
+
+\paragraph{Examples}
+
+\begin{itemize}
+  \item \verb|\inlinecode{Example}|: This is an \inlinecode{Example} for an in line code definition.
+  \item \verb|\inlinecode[+][verbgraycolor][inlinecodestyle]{Example}|: This is an \inlinecode[+][verbgraycolor][inlinecodestyle]{Example} for an in line code definition.
+  \item \verb|\inlinecode[+][green]{Example}|: This is an \inlinecode[+][green]{Example} for an in line code definition.
+  \item \verb#\inlinecode[|]{1+2}#: Example for a different delimiter \inlinecode[|]{1+2} in case the default delimiter is used in the expression.
+\end{itemize}
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{\protect\texttt{stmlistings.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmlistings/stmlistings.sty}
+
+% \subsection{\protect\texttt{stmlistingsbase.sty}}
+% 
+% \lstinputlisting[
+%   style=texpackagedocstyle,%
+% ]{../../tex/latex/stmlistings/stmlistingsbase.sty}
+
+\newpage
+\subsection{\protect\texttt{stmlistingscommands.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmlistings/stmlistingscommands.sty}
+
+\newpage
+\subsection{\protect\texttt{stmlistingsenvironments.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmlistings/stmlistingsenvironments.sty}
+
+\newpage
+\subsection{\protect\texttt{stmlistingsstyles.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmlistings/stmlistingsstyles.sty}
+
+\end{document}
