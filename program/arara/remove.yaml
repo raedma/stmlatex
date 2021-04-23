@@ -1,16 +1,18 @@
 !config
+# For arara >= 6.0.0
+# With recursive = true
 identifier: remove
 name: Remove
-authors:
-- Paulo Cereda
 commands:
 - name: The removal feature
   command: >
     @{
+      dir = directory[0];
+      rec = Boolean.valueOf(recursive[0]);
       entries = listFilesByPatterns(
-                    toFile(directory),
+                    toFile(dir),
                     patterns,
-                    recursive);
+                    rec);
       prefix = [];
         if (isUnix()) {
             prefix = [ 'rm', '-f' ];
