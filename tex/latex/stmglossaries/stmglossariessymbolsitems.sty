@@ -163,8 +163,8 @@
 }
 
 \newglossaryentry{sym:scalar:displacement:component:global:x}{%
-  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:coord:global:x}}}},%
-  name        ={$\glssymbol{sym:scalar:coord:global:x}$-component of displacement},%
+  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:csys:structure:global:component:1}}}},%
+  name        ={$\glssymbol{sym:scalar:csys:structure:global:component:1}$-component of displacement},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
@@ -172,8 +172,8 @@
 }
 
 \newglossaryentry{sym:scalar:displacement:component:global:y}{%
-  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:coord:global:y}}}},%
-  name        ={$\glssymbol{sym:scalar:coord:global:y}$-component of displacement},%
+  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:csys:structure:global:component:2}}}},%
+  name        ={$\glssymbol{sym:scalar:csys:structure:global:component:2}$-component of displacement},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
@@ -181,8 +181,8 @@
 }
 
 \newglossaryentry{sym:scalar:displacement:component:global:z}{%
-  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:coord:global:z}}}},%
-  name        ={$\glssymbol{sym:scalar:coord:global:z}$-component of displacement},%
+  symbol      ={\ensuremath{\glssymbol{sym:scalar:displacement}_{\glssymbol{sym:scalar:csys:structure:global:component:3}}}},%
+  name        ={$\glssymbol{sym:scalar:csys:structure:global:component:3}$-component of displacement},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
@@ -228,97 +228,94 @@
   sort        =arll,%
 }
 
-% \newglossaryentry{sym:scalar:coord:x}{%
-\newglossaryentry{sym:scalar:coord:global:x}{%
+\newglossaryentry{sym:scalar:csys:structure:global:component:1}{%
   symbol      ={\ensuremath{\romanscalarsymbol{x}}},%
-  name        ={\glssymbol{sym:scalar:coord:global:x} axis},%
-  text        ={\glssymbol{sym:scalar:coord:global:x} axis},%
+  name        ={\glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
+  text        ={\glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlxg,%
 }
 
-% \newglossaryentry{sym:scalar:coord:y}{%
-\newglossaryentry{sym:scalar:coord:global:y}{%
+\newglossaryentry{sym:scalar:csys:structure:global:component:2}{%
   symbol      ={\ensuremath{\romanscalarsymbol{y}}},%
-  name        ={\glssymbol{sym:scalar:coord:global:y} axis},%
-  text        ={\glssymbol{sym:scalar:coord:global:y} axis},%
+  name        ={\glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
+  text        ={\glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlyg,%
 }
 
-% \newglossaryentry{sym:scalar:coord:z}{%
-\newglossaryentry{sym:scalar:coord:global:z}{%
+\newglossaryentry{sym:scalar:csys:structure:global:component:3}{%
   symbol      ={\ensuremath{\romanscalarsymbol{z}}},%
-  name        ={\glssymbol{sym:scalar:coord:global:z} axis},%
-  text        ={\glssymbol{sym:scalar:coord:global:z} axis},%
+  name        ={\glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
+  text        ={\glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlzg,%
 }
 
-\newglossaryentry{sym:scalar:coord:local:x}{%
-  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:coord:global:x}}}},%
-  name        ={Local \glssymbol{sym:scalar:coord:global:x} axis},%
-  text        ={Local \glssymbol{sym:scalar:coord:global:x} axis},%
+\newglossaryentry{sym:scalar:csys:structure:local:component:1}{%
+  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:csys:structure:global:component:1}}}},%
+  name        ={Local \glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
+  text        ={Local \glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlxl,%
 }
 
-\newglossaryentry{sym:scalar:coord:local:y}{%
-  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:coord:global:y}}}},%
-  name        ={Local \glssymbol{sym:scalar:coord:global:y} axis},%
-  text        ={Local \glssymbol{sym:scalar:coord:global:y} axis},%
+\newglossaryentry{sym:scalar:csys:structure:local:component:2}{%
+  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:csys:structure:global:component:2}}}},%
+  name        ={Local \glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
+  text        ={Local \glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlyl,%
 }
 
-\newglossaryentry{sym:scalar:coord:local:z}{%
-  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:coord:global:z}}}},%
-  name        ={Local \glssymbol{sym:scalar:coord:global:z} axis},%
-  text        ={Local \glssymbol{sym:scalar:coord:global:z} axis},%
+\newglossaryentry{sym:scalar:csys:structure:local:component:3}{%
+  symbol      ={\ensuremath{\hat{\glssymbol{sym:scalar:csys:structure:global:component:3}}}},%
+  name        ={Local \glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
+  text        ={Local \glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =arlzl,%
 }
 
-\newglossaryentry{sym:scalar:coord:material:x}{%
+\newglossaryentry{sym:scalar:csys:material:component:1}{%
   symbol      ={\ensuremath{\romanscalarsymbol{1}}},%
-  name        ={Material \glssymbol{sym:scalar:coord:global:x} axis},%
-  text        ={Material \glssymbol{sym:scalar:coord:global:x} axis},%
+  name        ={Material \glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
+  text        ={Material \glssymbol{sym:scalar:csys:structure:global:component:1} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
-  sort        =arlxl,%
+  sort        =arl1,%
 }
 
-\newglossaryentry{sym:scalar:coord:material:y}{%
+\newglossaryentry{sym:scalar:csys:material:component:2}{%
   symbol      ={\ensuremath{\romanscalarsymbol{2}}},%
-  name        ={Material \glssymbol{sym:scalar:coord:global:y} axis},%
-  text        ={Material \glssymbol{sym:scalar:coord:global:y} axis},%
+  name        ={Material \glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
+  text        ={Material \glssymbol{sym:scalar:csys:structure:global:component:2} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
-  sort        =arlyl,%
+  sort        =arl2,%
 }
 
-\newglossaryentry{sym:scalar:coord:material:z}{%
+\newglossaryentry{sym:scalar:csys:material:component:3}{%
   symbol      ={\ensuremath{\romanscalarsymbol{3}}},%
-  name        ={Material \glssymbol{sym:scalar:coord:global:z} axis},%
-  text        ={Material \glssymbol{sym:scalar:coord:global:z} axis},%
+  name        ={Material \glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
+  text        ={Material \glssymbol{sym:scalar:csys:structure:global:component:3} axis},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
-  sort        =arlzl,%
+  sort        =arl3,%
 }
 
 \newglossaryentry{sym:scalar:load:bodyforce}{%
@@ -618,33 +615,30 @@
   sort        =bglomega,%
 }
 
-% \newglossaryentry{sym:scalar:coord:xi}{%
-\newglossaryentry{sym:scalar:coord:natural:x}{%
+\newglossaryentry{sym:scalar:csys:natural:component:1}{%
   symbol      ={\ensuremath{\greekscalarsymbol{\xi}}},%
-  name        ={\glssymbol{sym:scalar:coord:natural:x} axis in natural coordinates},%
-  text        ={\glssymbol{sym:scalar:coord:natural:x} axis in natural coordinates},%
+  name        ={\glssymbol{sym:scalar:csys:natural:component:1} axis in natural coordinates},%
+  text        ={\glssymbol{sym:scalar:csys:natural:component:1} axis in natural coordinates},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =bglxi,%
 }
 
-% \newglossaryentry{sym:scalar:coord:eta}{%
-\newglossaryentry{sym:scalar:coord:natural:y}{%
+\newglossaryentry{sym:scalar:csys:natural:component:2}{%
   symbol      ={\ensuremath{\greekscalarsymbol{\eta}}},%
-  name        ={\glssymbol{sym:scalar:coord:natural:y} axis in natural coordinates},%
-  text        ={\glssymbol{sym:scalar:coord:natural:y} axis in natural coordinates},%
+  name        ={\glssymbol{sym:scalar:csys:natural:component:2} axis in natural coordinates},%
+  text        ={\glssymbol{sym:scalar:csys:natural:component:2} axis in natural coordinates},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
   sort        =bgleta,%
 }
 
-% \newglossaryentry{sym:scalar:coord:zeta}{%
-\newglossaryentry{sym:scalar:coord:natural:z}{%
+\newglossaryentry{sym:scalar:csys:natural:component:3}{%
   symbol      ={\ensuremath{\greekscalarsymbol{\zeta}}},%
-  name        ={\glssymbol{sym:scalar:coord:natural:z} axis in natural coordinates},%
-  text        ={\glssymbol{sym:scalar:coord:natural:z} axis in natural coordinates},%
+  name        ={\glssymbol{sym:scalar:csys:natural:component:3} axis in natural coordinates},%
+  text        ={\glssymbol{sym:scalar:csys:natural:component:3} axis in natural coordinates},%
   description ={},%
   user1       ={\ensuremath{\protect\si{\protect\milli\protect\meter}}},%
   type        =scalarlist,%
@@ -1340,15 +1334,6 @@
 % Roman
 % -----------------
 
-% \newglossaryentry{sym:index:c}{%
-  % symbol      ={\ensuremath{_c}},%
-  % name        ={},%
-  % description ={Compression},%
-  % user1       ={},
-  % type        =indexlist,%
-  % sort        =rc,%
-% }
-
 \newglossaryentry{sym:index:critical}{%
   symbol      ={\ensuremath{C}},%
   name        ={},%
@@ -1356,17 +1341,17 @@
   user1       ={},
 %   type        =indexlist,%
   type        =indexlist,%
-  sort        =icrit,%
+  sort        =itcrit,%
 }
 
 \newglossaryentry{sym:index:init}{%
-  symbol      ={\ensuremath{init}},%
+  symbol      ={init},%
   name        ={},%
   description ={Initiation},%
   user1       ={},
 %   type        =indexlist,%
   type        =indexlist,%
-  sort        =iinit,%
+  sort        =itinit,%
 }
 
 \newglossaryentry{sym:index:hardening}{%
@@ -1385,7 +1370,7 @@
   description ={Compression},%
   user1       ={},
   type        =indexlist,%
-  sort        =icompression,%
+  sort        =itcompression,%
 }
 
 \newglossaryentry{sym:index:load:compression:long}{%
@@ -1394,7 +1379,7 @@
   description ={Compression},%
   user1       ={},
   type        =indexlist,%
-  sort        =icompressionlong,%
+  sort        =itcompressionlong,%
 }
 
 \newglossaryentry{sym:index:load:shear}{%
@@ -1403,7 +1388,7 @@
   description ={Shear},%
   user1       ={},
   type        =indexlist,%
-  sort        =ishear,%
+  sort        =itshear,%
 }
 
 \newglossaryentry{sym:index:load:shear:long}{%
@@ -1412,7 +1397,7 @@
   description ={Shear},%
   user1       ={},
   type        =indexlist,%
-  sort        =ishearlong,%
+  sort        =itshearlong,%
 }
 
 \newglossaryentry{sym:index:load:tension}{%
@@ -1421,7 +1406,7 @@
   description ={Tension},%
   user1       ={},
   type        =indexlist,%
-  sort        =itension,%
+  sort        =ittension,%
 }
 
 \newglossaryentry{sym:index:load:tension:long}{%
@@ -1430,46 +1415,142 @@
   description ={Tension},%
   user1       ={},
   type        =indexlist,%
-  sort        =itensionlong,%
+  sort        =ittensionlong,%
 }
 
-% \newglossaryentry{sym:index:t}{%
-  % symbol      ={\ensuremath{_t}},%
-  % name        ={},%
-  % description ={Tension},%
-  % user1       ={},
-  % type        =indexlist,%
-  % sort        =rt,%
-% }
-
 \newglossaryentry{sym:index:mat:damage:mode:I}{%
-  symbol      ={\ensuremath{I}},%
+  symbol      ={I},%
   name        ={},%
   description ={Fracture mode I},%
   user1       ={},
-%   type        =indexlist,%
   type        =indexlist,%
-  sort        =iI,%
+  sort        =irnI,%
 }
 
 \newglossaryentry{sym:index:mat:damage:mode:II}{%
-  symbol      ={\ensuremath{II}},%
+  symbol      ={II},%
   name        ={},%
   description ={Fracture mode II},%
   user1       ={},
-%   type        =indexlist,%
   type        =indexlist,%
-  sort        =iII,%
+  sort        =irnII,%
 }
 
-\newglossaryentry{sym:index:xyz}{%
-  symbol      ={\ensuremath{x,y,z}},%
+\newglossaryentry{sym:index:mat:damage:mode:III}{%
+  symbol      ={III},%
   name        ={},%
-  description ={Coordinate components},%
+  description ={Fracture mode III},%
   user1       ={},
-%   type        =indexlist,%
   type        =indexlist,%
-  sort        =ixyz,%
+  sort        =irnIII,%
+}
+
+\newglossaryentry{sym:index:csys:material:component:1}{%
+  symbol      ={\glssymbol{sym:scalar:csys:material:component:1}},%
+  name        ={},%
+  description ={Material coordinate system component 1},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =ian1,%
+}
+
+\newglossaryentry{sym:index:csys:material:component:2}{%
+  symbol      ={\glssymbol{sym:scalar:csys:material:component:2}},%
+  name        ={},%
+  description ={Material coordinate system component 2},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =ian2,%
+}
+
+\newglossaryentry{sym:index:csys:material:component:3}{%
+  symbol      ={\glssymbol{sym:scalar:csys:material:component:3}},%
+  name        ={},%
+  description ={Material coordinate system component 3},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =ian3,%
+}
+
+\newglossaryentry{sym:index:csys:material:components}{%
+  symbol      ={\ensuremath{\glssymbol{sym:index:csys:material:component:1},\glssymbol{sym:index:csys:material:component:2},\glssymbol{sym:index:csys:material:component:3}}},%
+  name        ={},%
+  description ={Material coordinate components},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =ian9123,%
+}
+
+\newglossaryentry{sym:index:csys:structure:component:1}{%
+  symbol      ={\glssymbol{sym:scalar:csys:structure:global:component:1}},%
+  name        ={},%
+  description ={Structure coordinate system component 1},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =irlx,%
+}
+
+\newglossaryentry{sym:index:csys:structure:component:2}{%
+  symbol      ={\glssymbol{sym:scalar:csys:structure:global:component:2}},%
+  name        ={},%
+  description ={Structure coordinate system component 2},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =irly,%
+}
+
+\newglossaryentry{sym:index:csys:structure:component:3}{%
+  symbol      ={\glssymbol{sym:scalar:csys:structure:global:component:3}},%
+  name        ={},%
+  description ={Structure coordinate system component 3},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =irlz,%
+}
+
+\newglossaryentry{sym:index:csys:structure:components}{%
+  symbol      ={\ensuremath{\glssymbol{sym:index:csys:structure:component:1},\glssymbol{sym:index:csys:structure:component:2},\glssymbol{sym:index:csys:structure:component:3}}},%
+  name        ={},%
+  description ={Structure coordinate components},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =irlzxyz,%
+}
+
+\newglossaryentry{sym:index:csys:natural:component:1}{%
+  symbol      ={\glssymbol{sym:scalar:csys:natural:component:1}},%
+  name        ={},%
+  description ={Natural coordinate system component 1},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =iglx,%
+}
+
+\newglossaryentry{sym:index:csys:natural:component:2}{%
+  symbol      ={\glssymbol{sym:scalar:csys:natural:component:2}},%
+  name        ={},%
+  description ={Natural coordinate system component 2},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =igly,%
+}
+
+\newglossaryentry{sym:index:csys:natural:component:3}{%
+  symbol      ={\glssymbol{sym:scalar:csys:natural:component:3}},%
+  name        ={},%
+  description ={Natural coordinate system component 3},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =iglz,%
+}
+
+\newglossaryentry{sym:index:csys:natural:components}{%
+  symbol      ={\ensuremath{\glssymbol{sym:index:csys:natural:component:1},\glssymbol{sym:index:csys:natural:component:2},\glssymbol{sym:index:csys:natural:component:3}}},%
+  name        ={},%
+  description ={natural coordinate components},%
+  user1       ={},
+  type        =indexlist,%
+  sort        =iglzxyz,%
 }
 
 \newglossaryentry{sym:index:yield}{%
@@ -1479,7 +1560,7 @@
   user1       ={},
 %   type        =indexlist,%
   type        =indexlist,%
-  sort        =iyield,%
+  sort        =ityield,%
 }
 
 \newglossaryentry{sym:index:zero}{%
@@ -1489,7 +1570,7 @@
   user1       ={},
 %   type        =indexlist,%
   type        =indexlist,%
-  sort        =izero,%
+  sort        =ian0,%
 }
 
 % -----------------
