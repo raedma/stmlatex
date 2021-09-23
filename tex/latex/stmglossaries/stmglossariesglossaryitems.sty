@@ -49,6 +49,22 @@
 % Functionality                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newglossaryentry{glo:adequacy}{
+  name={calibration},
+  description={
+    The condition of satisfying all requirements for model acceptance, including those for model accuracy and for programmatic constraints such as implementation, cost, maintenance, and ease of use.
+  },
+  user1       = {ASMEVV102006},%
+}
+
+\newglossaryentry{glo:allowable}{
+  name={allowable},
+  description={
+    Material values that are determined from test data at the laminate or lamina level on a probability basis (e.g., A or B basis values, with 99\% probability and 95\% confidence, or 90\% probability and 95\% confidence, respectively). The amount of data required to derive these values is governed by the statistical significance (or basis) needed. 
+  },
+  user1       = {FAAAC20107B},%
+}
+
 \newglossaryentry{glo:API}{
   name        = {API},
   description = {
@@ -59,6 +75,134 @@
   },
 }
 
+\newglossaryentry{glo:bond:weak}{
+  name={Weak bond},
+  description={
+    A bond line with mechanical properties lower than expected, but without any possibility to detect that by normal NDI procedures. Such situation is mainly due to a poor chemical bonding.
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:bonding:structural}{
+  name={structural bonding},
+  description={
+    A structural joint created by the process of adhesive bonding, comprising of one or more previously-cured composite or metal parts (referred to as adherends)
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:calculation:verification}{
+  name={calibration},
+  description={
+     The process of determining the solution accuracy of a particular calculation
+  },
+  user1       = {ASMEVV102006},%
+}
+
+\newglossaryentry{glo:calibration}{
+  name={Calibration},
+  description={
+    The process of adjusting physical modelling parameters in the computational model to improve agreement with experimental data.
+  },
+  user1       = {EASACMS014012020},%
+}
+
+\newglossaryentry{glo:calibration:experiment}{
+  name={calibration experiment},
+  description={
+     An experiment performed to improve estimates of some parameters in the mathematical model.
+  },
+  user1       = {ASMEVV102006},%
+}
+
+\newglossaryentry{glo:code}{
+  name={code},
+  description={
+    The computer implementation of algorithms developed to facilitate the formulation and approximate solution of a class of problems.
+  },
+  user1       = {ASMEVV102006},%
+}
+
+\newglossaryentry{glo:component}{
+  name={component},
+  description={
+    A major section of the airframe structure (e.g., wing, body, fin, horizontal stabilizer) which can be tested as a complete unit to qualify the structure.
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:coupon}{
+  name={coupon},
+  description={
+    A small test specimen (e.g., usually a flat laminate) for evaluation of basic lamina or laminate properties or properties of generic structural features (e.g., bonded or mechanically fastened joints).
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:damage}{
+  name={damage},
+  description={
+    A structural anomaly caused by manufacturing (processing, fabrication, assembly or handling) or service usage. 
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:delamination}{
+  name={delamination},
+  description={
+    The separation of the layers of material in a laminate. This may be local or may cover a large area of the laminate. It may occur at any time in the cure or subsequent life of the laminate and may arise from a wide variety of causes.
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:design:values}{
+  name={design values},
+  description={
+    Material, structural elements, and structural detail properties that have been determined from test data and chosen to assure a high degree of confidence in the integrity of the completed structure. These values are most often based on allowables adjusted to account for actual structural conditions, and used in analysis to compute margins-of-safety. 
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:detail}{
+  name={detail},
+  description={
+    A non-generic structural element of a more complex structural member (e.g., specific design configured joints, splices, stringers, stringer runouts, or major access holes).
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:disbond}{
+  name={detail},
+  description={
+    An area within a bonded interface between two adherends in which an adhesion failure or separation has occurred. It may occur at any time during the life of the substructure and may arise from a wide variety of causes. Also, colloquially, an area of separation between two laminae in the finished laminate (in this case, the term "delamination" is normally preferred).
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:element}{
+  name={element},
+  description={
+    A generic element of a more complex structural member (e.g., skin, stringers, shear panels, sandwich panels, joints, or splices). 
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:environment}{
+  name={environment},
+  description={
+    External, non-accidental conditions (excluding mechanical loading), separately or in combination, that can be expected in service and which may affect the structure (e.g., temperature, moisture, UV radiation, and fuel).
+  },
+  user1       = {FAAAC20107B},%
+}
+
+\newglossaryentry{glo:model:conceptual}{
+  name={conceptual model},
+  description={
+    The process of determining that the numerical algorithms are correctly implemented in the computer code and of identifying errors in the software.
+  },
+  user1       = {ASMEVV102006},%
+}
+
 \newglossaryentry{glo:DTO}{
   name={DTO},
   description={
@@ -66,7 +210,55 @@
   },
   user1       = {FowlerM2012},%
 }
-
+% 
+% \newglossaryentry{glo:error}{
+%   name={Error},
+%   description={
+%      A recognizable deficiency in any phase or activity of modelling and simulation that is not due to lack of knowledge.
+%   },
+%   user1       = {AIAAG0772002},%
+% }
+% 
+% \newglossaryentry{glo:MandS}{
+%   name={Modelling \& simulation},
+%   description={
+%     Is the use of a (conceptual, mathematical or numerical) model as a basis for simulation by computational means of physical phenomena. Modelling is the act of constructing a model; simulation is the execution of a model to obtain analytical results. 
+%   },
+%   user1       = {EASACMS014012020},%
+% }
+% 
+% \newglossaryentry{glo:manufacturing:defect}{
+%   name={manufacturing defect},
+%   description={
+%     An anomaly or flaw occurring during manufacturing that can cause varying levels of degradation in structural strength, stiffness and dimensional stability. Those manufacturing defects (or permissible manufacturing variability) allowed by the quality control, manufacturing acceptance criteria are expected to meet appropriate structural requirements for the life of the aircraft part. Other manufacturing defects that escape detection in manufacturing quality control should be included in a damage threat assessment and must meet damage tolerance requirements until detected and repaired.
+%   },
+%   user1       = {FAAAC20107B},%
+% }
+% 
+% \newglossaryentry{glo:model:mathematical}{
+%   name={mathematical model},
+%   description={
+%        The mathematical equations, boundary values, initial conditions,and modeling data needed to describe the conceptual model.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:model}{
+%   name={model},
+%   description={
+%       The conceptual, mathematical, and numerical representations of the physical phenomena needed to represent specific real-world conditions and scenarios. Thus, the model includes the geometrical representation, governing equations, boundary and initial conditions, loadings, constitutive models and related material parameters, spatial and temporal approximations, and numerical solution algorithms.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:model:update}{
+%   name={model update},
+%   description={
+%        The process of changing the basic assumptions, structure, parameter estimates, boundary conditions, or initial conditions of a model to improve model accuracy.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
 \newglossaryentry{glo:MPM}{
   name        = {MPM},
   description = {
@@ -74,14 +266,116 @@
   },
   user1       = {bib:online:MPM},%
 }
-
-\newglossaryentry{glo:Simulation}{
+% 
+% \newglossaryentry{glo:PIRT}{
+%   name        = {PIRT},
+%   description = {
+%     Is a  summarized list of the physical phenomena, along with a ranking (e.g., high, medium, low) of the importance of each phenomenon to the system responses of interest.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+\newglossaryentry{glo:simulation}{
   name={Simulation},
   description={
-     The ensemble of models - deterministic, load, boundary, material, performance, and uncertainty - that are exercised to produce a simulation outcome.
+    The ensemble of models - deterministic, load, boundary, material, performance, and uncertainty - that are exercised to produce a simulation outcome.
   },
   user1       = {ThackerBH2004},%
 }
+% 
+% \newglossaryentry{glo:simulation:outcome}{
+%   name={simulation outcome},
+%   description={
+%     Features of interest extracted from simulation results that will be used, along with estimates of the uncertainty, for validation comparisons.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:simulation:result}{
+%   name={simulation results},
+%   description={
+%     The output generated by the computational model.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:subcomponent}{
+%   name={subcomponent},
+%   description={
+%     A major three-dimensional structure which can provide completed structural representation of a section of the full structure (e.g., stub-box, section of a spar, wing panel, body panel with frames).
+%   },
+%   user1       = {FAAAC20107B},%
+% }
+% 
+% \newglossaryentry{glo:uncertainty}{
+%   name={uncertainty},
+%   description={
+%     A potential deficiency in any phase or activity of the modelling process that is due to the lack of knowledge.
+%   },
+%   user1       = {AIAAG0772002},%
+% }
+% 
+% \newglossaryentry{glo:uncertainty:aleatory}{
+%   name={aleatory uncertainty},
+%   description={
+%     Uncertainty due to inherent randomness.\\
+%     Aleatory uncertainty is also referred to as stochastic uncertainty, variability, inherent uncertainty, uncertainty due to chance, and Type A uncertainty. The fundamental nature of aleatory uncertainty is randomness, e.g., from a stochastic process. Randomness can, in principle, be reduced, e.g., by improved control of a random process, but if it is removed, for example, by assumption, then you have fundamentally changed the nature of the analysis. Aleatory uncertainty can exist due to inter-individual differences, such as random heterogeneity in a population, and it can exist spatially or temporally. Sources of aleatory uncertainty can commonly be singled out from other contributors to uncertainty by their representation as randomly distributed quantities that may take on values in a known range, but for which the exact value will vary by chance from unit to unit, point to point in space, or time to time. The mathematical representation, or characterization, mostcommonly used for aleatory uncertainty is a probability distribution.
+%   },
+%   user1       = {OberkampfWL2010},%
+% }
+% 
+% \newglossaryentry{glo:uncertainty:epistemic}{
+%   name={epistemic uncertainty},
+%   description={
+%     Uncertainty due to lack of knowledge.\\
+%     Epistemic uncertainty is also referred to as reducible uncertainty, knowledge uncertainty, and subjective uncertainty. In the risk assessment community, it is common to refer to epistemic uncertainty simply as uncertainty and aleatory uncertainty as variability. The fundamental source of epistemic uncertainty is incomplete information or incomplete knowledge of any type that is related to the system of interest or its simulation. Epistemic uncertainty is a property of the modeler or observer, whereas aleatory uncertainty is a property of the system being modeled or observed. The lack of knowledge can be related to modeling issues for the system, computational issues of the model, or experimental data needed for validation. Modeling issues include lack of knowledge of characteristics or processes in the system, the initial state of the system, or the surroundings or environment of the system. Computational issues include programming mistakes, estimation of numerical solution errors, and numerical approximations in algorithms. Experimental data issues include incomplete knowledge of experimental information that is needed for simulation of the experiment and approximations or corrections that are made in the processing of the experimental data. An increase in knowledge or information can lead to a reduction in epistemic uncertainty and thereby a reduction in the uncertainty of the response of the system, given that no other changes are made.
+%   },
+%   user1       = {OberkampfWL2010},%
+% }
+% 
+% \newglossaryentry{glo:uncertainty:quantification}{
+%   name={uncertainty quantification},
+%   description={
+%     The process of characterizing all uncertainties in the model or experiment and of quantifying their effect on the simulation or experimental outcomes.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:validation}{
+%   name={validation},
+%   description={
+%     The process of determining the degree to which a model is an accurate representation of the real world from the perspective of the intended uses of the model.
+%   },
+%   user1       = {EASACMS014012020},%
+% }
+% 
+% \newglossaryentry{glo:validation:experiment}{
+%   name={validation experiment},
+%   description={
+%     An experiment that is designed and performed to generate data for the purpose of model validation.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:validationmetric}{
+%   name={validation metric},
+%   description={
+%     Mathematical measure that quantifies the level of agreement between simulation outcomes and experimental outcomes.
+%   },
+%   user1       = {ASMEVV102006},%
+% }
+% 
+% \newglossaryentry{glo:verification}{
+%   name={Verification},
+%   description={
+%     The process of determining that a computational model accurately represents the underlying mathematical model and its solution.
+%     \begin{description}
+%     \item[Code Verification] establish confidence, through the collection of evidence that the mathematical model and solution algorithms are working correctly.
+%     \item[Calculation Verification] establish confidence, through the collection of evidence, that the discrete  solution of the mathematical model is accurate. 
+%     \end{description}
+%   },
+%   user1       = {EASACMS014012020},%
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % That's it                        %

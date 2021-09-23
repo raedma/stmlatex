@@ -33,8 +33,7 @@
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
 
 %
-%\@ifpackageloaded{longtable}{}{\RequirePackage{longtable}}%
-\@ifpackageloaded{tabu}{}{\RequirePackage{tabu}}%
+\@ifpackageloaded{xltabular}{}{\RequirePackage{xltabular}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Functionality                    %
@@ -58,15 +57,13 @@
 
 \newglossarystyle{stmacronymstyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lX}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lX}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     %\textbf{Label} & \textbf{Symbol}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%
@@ -85,15 +82,13 @@
 
 \newglossarystyle{stmacronymlabelstyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lcX}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lcX}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     \textbf{Label} & \textbf{Acronym} & \textbf{Description}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%

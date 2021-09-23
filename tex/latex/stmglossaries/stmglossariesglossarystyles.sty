@@ -33,8 +33,7 @@
 \@ifpackageloaded{stmglossariesbase}{}{\RequirePackage{stmglossariesbase}}%
 
 %
-%\@ifpackageloaded{longtable}{}{\RequirePackage{longtable}}%
-\@ifpackageloaded{tabu}{}{\RequirePackage{tabu}}%
+\@ifpackageloaded{xltabular}{}{\RequirePackage{xltabular}}
 
 %
 \@ifpackageloaded{stmbibliography}{}{\RequirePackage{stmbibliography}}%
@@ -62,15 +61,15 @@
 
 \newglossarystyle{stmglossarystyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lX}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lX}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     %\textbf{Entry} & \textbf{Symbol}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
+    %\endhead%
+    %\endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}% Group heading
@@ -88,15 +87,15 @@
 
 \newglossarystyle{stmglossarysourcestyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lXc}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lXc}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     %\textbf{Entry} & \textbf{Symbol} & \textbf{Sources}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
+    %\endhead%
+    %\endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}% Group heading
@@ -119,15 +118,15 @@
 
 \newglossarystyle{stmglossarylabelstyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lcX}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lcX}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     \textbf{Label} & \textbf{Entry} & \textbf{Description}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
+    %\endhead%
+    %\endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%
@@ -147,15 +146,15 @@
 
 \newglossarystyle{stmglossarylabelsourcestyle}{%
   \renewenvironment{theglossary}%
-    {\begin{longtabu} to \linewidth {lcXc}}%
-    {\end{longtabu}}%
+    {\xltabular[l]{\linewidth}{lcXc}}%
+    {\endxltabular}%
   % Header line
   \renewcommand*{\glossaryheader}{%
     \textbf{Label} & \textbf{Entry} & \textbf{Description} & \textbf{Sources}
     \tabularnewline%
     \tabularnewline%
-    \endhead%
-    \endfoot%
+    %\endhead%
+    %\endfoot%
   }%
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%

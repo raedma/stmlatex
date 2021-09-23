@@ -45,9 +45,7 @@
 % ---------------------------
 
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: makeglossaries
-% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: biber
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
@@ -61,6 +59,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage{morewrites}
 
 \usepackage[
   acronyms=true,
@@ -71,7 +70,9 @@
 ]{stmglossaries}
 
 \usepackage{booktabs}
-\usepackage{longtable,tabu}
+%\usepackage{longtable,tabu}
+% \usepackage{longtable}[=v4.13]%
+% \usepackage{tabu}%
 \usepackage{ltxtable}
 \usepackage{tabularx}
 
@@ -143,7 +144,6 @@
   name        ={},%
   description ={Reference configuration},%
   user1       ={},
-%   type        =indexlist,%
   type        =exampleindexlist,%
   sort        =izero,%
 }
@@ -202,38 +202,16 @@ This package provides an expendable set of commonly used acronyms as well as sym
 
 This is a simple test. It uses an acronym \gls{acr:APU}. You can use all the acronyms defined in \autoref{sec:appendix:acronyms:all}. The example also has an equation to test the symbols:
 
-% \begin{equation}  
-% \glssymbol{sym:scalar:load:force} = \glssymbol{sym:scalar:mass}\glssymbol{sym:scalar:acceleration}
-% \end{equation}
-
 \begin{equation}  
 \glssymbol{exampleforce} = \glssymbol{examplemass}\glssymbol{exampleacceleration}
 \end{equation}
-
-% \begin{equation}  
-% \divergenceoperator(\glssymbol{sym:vector:mech:stress:cauchy})+\glssymbol{sym:vector:load:bodyforce}=\glssymbol{sym:scalar:mat:density}\glssymbol{sym:vector:mech:acceleration}
-% \end{equation}
-% 
-% \begin{equation}  
-% \glssymbol{sym:vector:mech:stress:cauchy} = \glssymbol{sym:matrix:mat:stiffness}\glssymbol{sym:vector:mech:strain}
-% \end{equation}
-% 
-% \begin{equation}  
-% \glssymbol{sym:state:scalar:position:deformed},\glssymbol{sym:state:vector:direction:deformed},\glssymbol{sym:state:double:modulus}
-% \end{equation}
 
 It creates a nice little list of symbols
 
 \glstocfalse
 \printglossary[type=example1list  ,style=stmsymbolstyle  ,nonumberlist]
+% \printglossary[type=example1list,nonumberlist]
 \glstoctrue
-
-% and list of acronyms
-% 
-% \glstocfalse
-% \printglossary[type=\acronymtype,style=stmacronymstyle,nonumberlist]
-% % \printglossary[style=altlist,title=Glossary]
-% \glstoctrue
 
 \section{Requirements}
 \label{sec:requirements}
@@ -842,6 +820,7 @@ This is a style for variable indices with one left align item column. The column
 
 \glstocfalse
 \printglossary[type=exampleindexlist   ,style=stmindexstyle   ,nonumberlist]
+%\printglossary[type=exampleindexlist,nonumberlist]
 \glstoctrue
 
 \subsubsection{\protect\texttt{stmexponentstyle}}
@@ -929,7 +908,10 @@ This is a style for variable operators with one left align item column. The colu
 \printglossary[type=statelist   ,style=stmsymbollabelstyle,nonumberlist]
 \printglossary[type=indexlist   ,style=stmsymbollabelstyle,nonumberlist]
 \printglossary[type=exponentlist,style=stmsymbollabelstyle,nonumberlist]
+\begingroup
+\renewcommand{\arraystretch}{1.4}
 \printglossary[type=operatorlist,style=stmoperatorlabelstyle,nonumberlist]
+\endgroup
 \glsresetall
 \glstoctrue
 
