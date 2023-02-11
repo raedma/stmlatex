@@ -17,7 +17,7 @@
 %          
 %                                 __/|__
 %                                /_/_/_/  
-%            www.dlr.de/fa/en      |/ DLR
+%            www.dlr.de/sy/en      |/ DLR
 %
 % Copyright (C) 2019-... DLR Lightweight Systems
 % 
@@ -60,15 +60,14 @@
 % arara: makeglossaries
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
 % arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
-% arara: remove: { patterns: [ '*.acn', '*.acr', '*.alg', '*.aux', '*.bbl', '*.bcf', '*.blg', '*.dvi', '*.glg', '*.glo', '*.gls', '*.idx', '*.ilg', '*.ind', '*.ist', '*kate-swp', '*.lock', '*.lof', '*.log', '*.lol', '*.lot', '*.mw', '*.nlo', '*.out', '*.ps', '*.run.xml', '*.slg*', '*.syg*', '*.syi*', '*.synctex', '*.synctex.gz', '*.tex.backup', '*tex.kate-swp', '*.toc*', '*.user.adi*', 'stmtext-*.tex' ], recursive: yes }
+% arara: clean: { extensions: [ acn, acr, alg, aux, auxlock, bbl, bcf, blg, dpth, dvi, glg, glo, gls, idx, ilg, ind, ist, kate-swp, lock, lof, log, lol, lot, mw, nlo, out, ps, run.xml, slg, slg*, syg, syg*, syi, syi*, synctex, synctex.gz, tex.backup, tex.kate-swp, toc*, user.adi ] }
 
 % ---------------------------
 % Packages
 % ---------------------------
 
 \usepackage{booktabs}
-\usepackage{longtable,tabu}
-\usepackage{ltxtable}
+\usepackage{xltabular}
 \usepackage{xspace}
 
 % ---------------------------
@@ -152,8 +151,9 @@ This overview contains the most important informations about package options. If
 
 These options can only have the values \texttt{true} or \texttt{false}.
 
-\begin{filecontents}{\tabledir\jobname-optionsbool.tex}
-\begin{longtable}{@{}>{\ttfamily}l>{\ttfamily}cX@{}}
+%\begin{filecontents}{\tabledir\jobname-optionsbool.tex}
+%\begin{longtable}{@{}>{\ttfamily}l>{\ttfamily}cX@{}}
+\begin{xltabular}{\linewidth}{@{}>{\ttfamily}l>{\ttfamily}cX@{}}
 % Captions
 \caption{Boolean class options}\\
 \label{tab:options:boolean}\\
@@ -204,12 +204,13 @@ plots          \stmindex{Options!plots}          & false & Load the \stmlatexpac
 tabular        \stmindex{Options!tabular}        & false & Load the \stmlatexpackagelink{stmtabular} package\\
 tikz           \stmindex{Options!tikz}           & false & Load the \stmlatexpackagelink{stmtikz} package\\
 units          \stmindex{Options!units}          & false & Load the \stmlatexpackagelink{stmunits} package\\
-\end{longtable}
-\end{filecontents}
-
-\begingroup
-\LTXtable{\linewidth}{\tabledir\jobname-optionsbool.tex}
-\endgroup
+\end{xltabular}
+%\end{longtable}
+%\end{filecontents}
+%
+%\begingroup
+%\LTXtable{\linewidth}{\tabledir\jobname-optionsbool.tex}
+%\endgroup
 
 \paragraph{String options}
 
@@ -218,7 +219,8 @@ These options have strings as values. Possible arguments are listed. The default
 \begin{table}[htbp]
   \caption{String class options}
   \label{tab:options:string}
-  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  %\begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  \begin{xltabular}{\linewidth}{>{\ttfamily}l>{\ttfamily}cX}
   \toprule
   %Name & Default & Description\\
   \multicolumn{1}{c}{Key} & \multicolumn{1}{c}{Values} & \multicolumn{1}{c}{Description}\\
@@ -227,7 +229,8 @@ These options have strings as values. Possible arguments are listed. The default
   layout   \stmindex{Options!layout}   & standard|dlr|\underline{koma}     & Document layout\\
   type     \stmindex{Options!type}     & article|\underline{report}|book & Base document type\\
   \bottomrule
-  \end{longtabu}%
+  \end{xltabular}
+  %\end{longtabu}%
 \end{table}
 
 The following options are only available for \texttt{layout=dlr} which uses the \rmlatexname based document classes.
@@ -235,7 +238,8 @@ The following options are only available for \texttt{layout=dlr} which uses the 
 \begin{table}[htbp]
   \caption{Additional string class options for \protect\texttt{layout=dlr}}
   \label{tab:options:string:dlr}
-  \begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  %\begin{longtabu} to \linewidth {>{\ttfamily}l>{\ttfamily}cX}
+  \begin{xltabular}{\linewidth}{>{\ttfamily}l>{\ttfamily}cX}
   \toprule
   %Name & Default & Description\\
   \multicolumn{1}{c}{Key} & \multicolumn{1}{c}{Values} & \multicolumn{1}{c}{Description}\\
@@ -243,7 +247,8 @@ The following options are only available for \texttt{layout=dlr} which uses the 
   institute \stmindex{Options!institute} & \underline{FA-STM}     & See the \href{\rmlatexurl}{\rmlatexname} documentation for alternatives\\
   site      \stmindex{Options!site}      & \underline{BS}         & See the \href{\rmlatexurl}{\rmlatexname} documentation for alternatives\\
   \bottomrule
-  \end{longtabu}%
+  \end{xltabular}
+  %\end{longtabu}%
 \end{table}
 
 \levelstay{Option \protect\texttt{attachfile}}
