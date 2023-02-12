@@ -13,13 +13,13 @@
 %                       Initial draft
 %               
 % Contact:   Martin Raedel,  martin.raedel@dlr.de
-%            DLR Composite Structures and Adaptive Systems
+%            DLR Lightweight Systems
 %          
 %                                 __/|__
 %                                /_/_/_/  
-%            www.dlr.de/fa/en      |/ DLR
+%            www.dlr.de/sy/en      |/ DLR
 %
-% Copyright (C) 2019-... DLR Composite Structures and Adaptive Systems
+% Copyright (C) 2019-... DLR Lightweight Systems
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Content                          %
@@ -29,7 +29,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % Provide the name of your page, the date it was last updated, and a comment about what it's used for
-\ProvidesClass{stmtext}[2019/11/25 STM documentation class]
+\ProvidesClass{stmtext}[2023/02/12 STM documentation class]
 
 % ---------------------------
 % Package
