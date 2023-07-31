@@ -97,6 +97,32 @@
   }
 }
 
+% Style for usage in papers with:
+% - header line: no
+% - initial empty lines: none
+% - group heading: none
+% - group skip: no
+% - columns: 1
+% - indent of first column: no
+\newglossarystyle{stmacronympaperstyle}{%
+  \renewenvironment{theglossary}%
+    {\xltabular[l]{\linewidth}{@{}lX}}%
+    {\endxltabular}%
+  % Header line
+  \renewcommand*{\glossaryheader}{%
+    %\textbf{Label} & \textbf{Symbol}
+    %\tabularnewline%
+  }%
+  % indicate what to do at the start of each logical group
+  %\renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glsgroupskip}{}% What to do between groups
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \glsentryitem{##1}\glstarget{##1}{##2}
+      & ##3\glspostdescription ##5% Description
+    \tabularnewline%
+  }
+}
+
 % -----------------
 % Style to show the keys
 % -----------------
