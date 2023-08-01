@@ -767,6 +767,42 @@ pdflatex
 pdflatex
 \end{verbatim}
 
+\subsubsection{\protect\texttt{stmglossarylabelsourcestyle}}
+\label{sec:usage:styles:glossary:stmglossarylabelsourcestyle}
+
+\paragraph{Description}
+
+This glossary style has four columns. The columns are \textit{Label}, \textit{Entry}, \textit{Description} and \textit{Sources}. The first and third column are left aligned, the second and last column are centered.
+
+In case you use this style, at least the following compile sequence is necessary:
+
+\begin{verbatim}
+pdflatex
+makeglossaries
+pdflatex
+biber
+pdflatex
+pdflatex
+\end{verbatim}
+
+\subsubsection{\protect\texttt{stmglossarylabelsourcestyle2}}
+\label{sec:usage:styles:glossary:stmglossarylabelsourcestyle2}
+
+\paragraph{Description}
+
+This glossary style has three columns. The columns are \textit{Label}, \textit{Entry} and \textit{Sources}. The first column is left aligned, the last two column is centered. The description is printed on a separate line over all columns.
+
+In case you use this style, at least the following compile sequence is necessary:
+
+\begin{verbatim}
+pdflatex
+makeglossaries
+pdflatex
+biber
+pdflatex
+pdflatex
+\end{verbatim}
+
 \subsection{Symbol styles}
 \label{sec:usage:styles:symbols}
 
@@ -884,9 +920,7 @@ This is a style for variable operators with one left align item column. The colu
 
 \glstocfalse
 \glsaddall[types={main}]
-%\printglossary[type=main,style=stmglossarylabelstyle,nonumberlist]
-\printglossary[type=main,style=stmglossarylabelsourcestyle,nonumberlist]
-%\printacronyms[style=stmacronymlabelstyle,nonumberlist]
+\printglossary[type=main,style=stmglossarylabelsourcestyle2,nonumberlist]
 \glstoctrue
 
 \newpage
