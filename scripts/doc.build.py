@@ -1,6 +1,7 @@
 """Script to build the documentation.
 
-This script builds the tex documents in the doc directory
+This script builds the tex documents in the doc directory.
+It requires an installation of arara (https://ctan.org/pkg/arara).
 
 Example:
 
