@@ -111,7 +111,7 @@ def parse_cli(args):
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description='Build documentation',
         epilog=textwrap.dedent('''\
-         Contact:   https://gitlab.dlr.de/jmes
+         Contact:   https://github.com/raedma/stmlatex
                     
                                          __/|__
                                         /_/_/_/  
