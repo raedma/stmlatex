@@ -74,11 +74,19 @@
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}% Group heading
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2}
-      & ##3\glspostdescription ##5% Description
+  % This version only works with \RequirePackage{glossaries}[=v4.49]
+  %\renewcommand*{\glossaryentryfield}[5]{%
+  %  \glsentryitem{##1}\glstarget{##1}{##2}
+  %    & ##3\glspostdescription ##5% Description
+  %  \tabularnewline%
+  %}
+  % 
+  % This version works with v4.50 of \RequirePackage{glossaries} and hopefully higher
+  \renewcommand*{\glossentry}[2]{% 
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}
+      & \glossentrysymbol{##1}\glspostdescription ##2% Description
     \tabularnewline%
-  }
+  }%
 }
 
 % -----------------
@@ -100,9 +108,9 @@
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}% Group heading
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2} &%
-		##3\glspostdescription ##5 &%
+  \renewcommand*{\glossentry}[2]{% 
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &%
+		\glossentrysymbol{##1}\glspostdescription ##2 &%
     \tabularnewline%
 		\ifglshasfield{useri}{##1}{\space%
       % in the event of multiple cites, \glsentryuseri{##1} needs to be expanded before being passed to \cite.
@@ -132,10 +140,10 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
+  \renewcommand*{\glossentry}[2]{% 
     \glsentrycounterlabel{##1} &%
-    \glsentryitem{##1}\glstarget{##1}{##2}&%
-    ##3\glspostdescription ##5% Description
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}&%
+    \glossentrysymbol{##1}\glspostdescription ##2% Description
     \tabularnewline%
   }
 }
@@ -160,10 +168,10 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
+  \renewcommand*{\glossentry}[2]{% 
     \glsentrycounterlabel{##1} &%
-    \glsentryitem{##1}\glstarget{##1}{##2}&%
-    ##3\glspostdescription ##5&%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}&%
+    \glossentrysymbol{##1}\glspostdescription ##2&%
 		\ifglshasfield{useri}{##1}{\space%
       % in the event of multiple cites, \glsentryuseri{##1} needs to be expanded before being passed to \cite.
       \glsletentryfield{\thiscite}{##1}{useri}%
@@ -194,9 +202,9 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
+  \renewcommand*{\glossentry}[2]{%
     \glsentrycounterlabel{##1} &%
-    \glsentryitem{##1}\glstarget{##1}{##2}&%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}&%
     %##3\glspostdescription ##5&%
 		\ifglshasfield{useri}{##1}{\space%
       % in the event of multiple cites, \glsentryuseri{##1} needs to be expanded before being passed to \cite.
@@ -205,7 +213,7 @@
 		}{}%
     %\space ##2%
     \tabularnewline%
-    \multicolumn{3}{X}{##3\glspostdescription ##5}
+    \multicolumn{3}{X}{\glossentrysymbol{##1}\glossentrydesc{##1}\glspostdescription ##2}
     \tabularnewline%
     \tabularnewline%
   }

@@ -69,9 +69,9 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2}
-      & ##3\glspostdescription ##5% Description
+  \renewcommand*{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}
+      & \glossentrysymbol{##1}\glossentrydesc{##1}\glspostdescription ##2% Description
     \tabularnewline%
   }
 }
@@ -90,9 +90,9 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2}
-      & ##3\glspostdescription ##5% Description
+  \renewcommand*{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}
+      & \glossentrysymbol{##1}\glossentrydesc{##1}\glspostdescription ##2% Description
     \tabularnewline%
   }
 }
@@ -116,9 +116,9 @@
   % indicate what to do at the start of each logical group
   %\renewcommand*{\glsgroupheading}[1]{}%
   \renewcommand*{\glsgroupskip}{}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
-    \glsentryitem{##1}\glstarget{##1}{##2}
-      & ##3\glspostdescription ##5% Description
+  \renewcommand*{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}
+      & \glossentrysymbol{##1}\glossentrydesc{##1}\glspostdescription ##2% Description
     \tabularnewline%
   }
 }
@@ -141,10 +141,10 @@
   %\renewcommand*{\glsgroupheading}[1]{}%
   %\renewcommand*{\glsgroupskip}{}% What to do between groups
   \renewcommand*{\glsgroupskip}{\tabularnewline}% What to do between groups
-  \renewcommand*{\glossaryentryfield}[5]{%
+  \renewcommand*{\glossentry}[2]{%
     \glsentrycounterlabel{##1} &%
-    \glsentryitem{##1}\glstarget{##1}{##2}&%
-    ##3\glspostdescription ##5% Description
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}&%
+    \glossentrysymbol{##1}\glossentrydesc{##1}\glspostdescription ##2% Description
     \tabularnewline%
   }
 }
