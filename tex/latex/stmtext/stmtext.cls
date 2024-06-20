@@ -87,7 +87,7 @@
 \DeclareStringOption[english]{language}
 
 % DLR options
-\DeclareStringOption[FA-STM]{institute}
+\DeclareStringOption[SY-STM]{institute}
 \DeclareStringOption[BS]{site}
 
 % Options that are dependent of the position of hyperref
