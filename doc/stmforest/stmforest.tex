@@ -1,0 +1,214 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is the documentation for the
+% stmforest package
+%
+% Usage
+%  - Compile using 'arara -w stmforest.tex'
+% 
+% Revisions: 2024-11-08 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Lightweight Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/sy/en      |/ DLR
+%
+% Copyright (C) 2024-... DLR Lightweight Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --------------------------- 
+% Documentclass
+% ---------------------------
+
+\documentclass[%
+  type=article,%
+  layout=koma,%
+  date=true,%
+  hyperref=true,%
+  listings=true,%
+  forest=false,%
+]{stmtext}
+
+% ---------------------------
+% Build automation
+% ---------------------------
+
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: pdflatex: {shell: yes, synctex: yes, interaction: nonstopmode}
+% arara: clean: { extensions: [ acn, acr, alg, aux, auxlock, bbl, bcf, blg, dpth, dvi, glg, glo, gls, idx, ilg, ind, ist, kate-swp, lock, lof, log, lol, lot, mw, nlo, out, ps, run.xml, slg, slg*, syg, syg*, syi, syi*, synctex, synctex.gz, tex.backup, tex.kate-swp, toc*, user.adi ] }
+
+% ---------------------------
+% Packages
+% ---------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage[
+  libraries=true,
+  styles=true,
+]{stmforest}
+
+% ---------------------------
+% Doc info
+% ---------------------------
+
+\author{Martin R\"{a}del}
+\title{stmforest package description}
+\subtitle{Copyright \copyright{} \the\year{} DLR SY STM\\v\formatdate[versiondatestyle]{\DTMToday}}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+These are the forest definitions for \texttt{stmlatex}. It is build upon the \href{https://ctan.org/pkg/forest}{forest} package.
+\end{abstract}
+
+\tableofcontents
+
+\section{Usage - in the preamble}
+
+\subsection{Load the whole \protect\texttt{stmforest} package}
+
+\subsubsection{Description}
+
+This is an interface package which loads \texttt{forest} and definitions commonly required throughout document creation.
+
+By default the package loads
+
+\begin{itemize}[noitemsep]
+  \item \verb+stmforestbase.sty+
+  \item \verb+stmforestlibraries.sty+
+  \item \verb+stmforeststyles.sty+
+\end{itemize}
+
+See \autoref{sec:usage:preamble:wholepackage:options} for options to change the default package behavior.
+
+\subsubsection{Options}
+\label{sec:usage:preamble:wholepackage:options}
+
+\paragraph{Option \protect\textit{libraries}} 
+\label{sec:usage:preamble:wholepackage:options:libraries}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the standard libraries commonly required.
+
+\begin{verbatim}
+\usepackage[libraries=true|false]{stmforest}
+\end{verbatim}
+
+\texttt{libraries=true} is the default. It is used in case \texttt{libraries=false} is not set explicitly.
+
+\paragraph{Option \protect\textit{styles}} 
+\label{sec:usage:preamble:wholepackage:options:styles}
+
+This is a boolean option. Expected values are either \texttt{true} or \texttt{false}. It controls whether to load the predefined \texttt{forest} styles.
+
+\begin{verbatim}
+\usepackage[styles=true|false]{stmforest}
+\end{verbatim}
+
+\texttt{styles=true} is the default. It is used in case \texttt{styles=false} is not set explicitly.
+
+\subsection{\protect\texttt{stmforestlibraries}}
+\label{sec:usage:preamble:libraries}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:libraries:description}
+
+This package contains standard libraries commonly required in the creation of \texttt{forest} trees.
+
+% \subsubsection{Options}
+% \label{sec:usage:preamble:libraries:options}
+
+\subsection{\protect\texttt{stmforeststyles}}
+\label{sec:usage:preamble:styles}
+
+% \subsubsection{Description}
+% \label{sec:usage:preamble:styles:description}
+
+This package contains styles commonly required in the creation of \texttt{forest} trees.
+
+\section{Examples}
+
+\subsection{Directory tree}
+
+A simple example of how to create a nice directory tree from the styles defined in \texttt{stmforeststyles}. The result is shown in \autoref{fig:ex:dirtree}.
+
+\begin{figure}[htbp]
+\centering
+\begin{forest}
+pic dir tree,
+pic root,
+for tree={% folder icons by default; override using file for file icons
+    directory,
+    fit=band,
+    s sep=2.5pt,
+},
+[folder
+    [File1.ext, file]
+    [File2.ext, file]
+    [...\vphantom{a}, file]
+    [subfolder1
+        [File3.ext, file]
+    ]
+    [subfolder2]
+    [...\vphantom{a}]
+    ]
+]
+\end{forest}
+\caption{Directory tree example}
+\label{fig:ex:dirtree}
+\end{figure}
+
+\section{Known issues}
+
+\begin{description}[leftmargin=\parindent,labelindent=\parindent,style=nextline]
+% 
+\item[...]\mbox{}\\[-2.0\baselineskip]
+%
+\end{description}
+
+\newpage
+\appendix
+
+\section{The code}
+
+\subsection{\protect\texttt{stmforest.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmforest/stmforest.sty}
+
+\subsection{\protect\texttt{stmforestbase.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmforest/stmforestbase.sty}
+
+\subsection{\protect\texttt{stmforestlibraries.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmforest/stmforestlibraries.sty}
+
+\subsection{\protect\texttt{stmforeststyles.sty}}
+
+\lstinputlisting[
+  style=texpackagedocstyle,%
+]{../../tex/latex/stmforest/stmforeststyles.sty}
+
+\end{document}
