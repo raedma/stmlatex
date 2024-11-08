@@ -1,0 +1,100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This is a interface to all stm forest definitions
+% Based upon the forest package:
+%   https://ctan.org/pkg/forest
+%
+% Usage
+%  - Preamble:
+%    - \usepackage{stmforeststyles}
+% 
+% Revisions: 2024-11-08 Martin Raedel <martin.raedel@dlr.de>
+%                       Initial draft
+%               
+% Contact:   Martin Raedel,  martin.raedel@dlr.de
+%            DLR Lightweight Systems
+%          
+%                                 __/|__
+%                                /_/_/_/  
+%            www.dlr.de/sy/en      |/ DLR
+%
+% Copyright (C) 2024-... DLR Lightweight Systems
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Content                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{stmforeststyles}[2024/11/08 STMs custom LaTeX forest style definitions]
+
+% ---------------------------
+% Package
+% ---------------------------
+
+\@ifpackageloaded{forest}{}{\RequirePackage{forest}}%
+\@ifpackageloaded{stmcolors}{}{\RequirePackage{stmcolors}}%
+
+% ---------------------------
+% Styles
+% ---------------------------
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+
+
+\newlength\ZZZTempSize
+\setlength\ZZZTempSize{4pt}
+\tikzset{%
+  folder/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.05*\ZZZTempSize,0.2\ZZZTempSize+5pt) rectangle ++(.75*\ZZZTempSize,-0.2\ZZZTempSize-5pt);
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.15*\ZZZTempSize,-\ZZZTempSize) rectangle (1.15*\ZZZTempSize,\ZZZTempSize);
+  },
+  file/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\ZZZTempSize,.4*\ZZZTempSize+5pt) coordinate (a) |- (\ZZZTempSize,-1.2*\ZZZTempSize) coordinate (b) -- ++(0,1.6*\ZZZTempSize) coordinate (c) -- ++(-5pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
+  },
+}
+\forestset{%
+  declare autowrapped toks={pic me}{},
+  declare boolean register={pic root},
+  pic root=0,
+  pic dir tree/.style={%
+    for tree={%
+      folder,
+      font=\ttfamily,
+      grow'=0,
+    },
+    before typesetting nodes={%
+      for tree={%
+        edge label+/.option={pic me},
+      },
+      if pic root={
+        tikz+={
+          \pic at ([xshift=\ZZZTempSize].west) {folder};
+        },
+        align={l}
+      }{},
+    },
+  },
+  pic me set/.code n args=2{%
+    \forestset{%
+      #1/.style={%
+        inner xsep=2\ZZZTempSize,
+        pic me={pic {#2}},
+      }
+    }
+  },
+  pic me set={directory}{folder},
+  pic me set={file}{file},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% That's it                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput
