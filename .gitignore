@@ -21,3 +21,9 @@
 /doc/stmplots/ZZY_TikZ
 /doc/stmtikz/ZZY_TikZ
 arara.log
+stmunits.aux
+stmunits.log
+stmunits.lot
+stmunits.out
+stmunits.toc
+stmunits.synctex.gz
