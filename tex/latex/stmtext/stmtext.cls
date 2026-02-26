@@ -76,7 +76,7 @@
 \DeclareBoolOption[true] {indexstandard}
 \DeclareBoolOption[true] {hyperref}
 \DeclareBoolOption[false]{listings}
-\DeclareBoolOption[false]{math}
+\DeclareBoolOption[false]{stmmath}
 \DeclareBoolOption[false]{plots}
 \DeclareBoolOption[false]{tabular}
 \DeclareBoolOption[false]{tikz}
@@ -139,7 +139,7 @@
 }
 
 % Process options
-\ProcessKeyvalOptions{stmtext}
+\ProcessKeyvalOptions*
 
 % ---------------------------
 % Base class
@@ -296,7 +296,7 @@
   \RequirePackage{stmlistings}
 \fi
 
-\ifstmtext@math
+\ifstmtext@stmmath
   \RequirePackage{stmmath}
 \fi
 
